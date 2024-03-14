@@ -1,3 +1,4 @@
+using Xunit;
 namespace HeatProductionOptimizer.Tests;
 
 public class AssetManagerTests
@@ -34,7 +35,7 @@ public class AssetManagerTests
         string cityName = "Heatington";
 
         //ACT
-        HeatingGrid city = new HeatingGrid(architecture, cityBuildings, cityName);   
+        HeatingGrid city = new HeatingGrid(architecture, cityBuildings, cityName);
 
         //ASSERT
         Assert.Equal(architecture, city.GetArchitecture());
