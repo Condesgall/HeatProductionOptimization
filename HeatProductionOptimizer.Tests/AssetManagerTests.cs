@@ -1,5 +1,5 @@
+using Xunit;
 namespace HeatProductionOptimizer.Tests;
-
 public class AssetManagerTests
 {
     [Fact]
@@ -17,12 +17,12 @@ public class AssetManagerTests
         ProductionUnit gasBoiler = new ProductionUnit(name, maxHeat, productionCosts, co2Emissions, gasConsumption, maxElectricity);
 
         //ASSERT
-        Assert.Equal(name, gasBoiler.GetName());
-        Assert.Equal(maxHeat, gasBoiler.GetMaxHeat());
-        Assert.Equal(productionCosts, gasBoiler.GetProductionCosts());
-        Assert.Equal(co2Emissions, gasBoiler.GetCO2Emissions());
-        Assert.Equal(gasConsumption, gasBoiler.GetGasConsumption());
-        Assert.Equal(maxElectricity, gasBoiler.GetMaxElectricity());
+        Assert.Equal(name, gasBoiler.GetName);
+        Assert.Equal(maxHeat, gasBoiler.GetMaxHeat);
+        Assert.Equal(productionCosts, gasBoiler.GetProductionCosts);
+        Assert.Equal(co2Emissions, gasBoiler.GetCO2Emissions);
+        Assert.Equal(gasConsumption, gasBoiler.GetGasConsumption);
+        Assert.Equal(maxElectricity, gasBoiler.GetMaxElectricity);
     }
 
     [Fact]
@@ -32,13 +32,16 @@ public class AssetManagerTests
         string architecture = "Singe District Heating Network";
         int cityBuildings = 1600;
         string cityName = "Heatington";
+        ProductionUnit gasBoiler = new ProductionUnit("GB", 5.0, 500, 215, 1.1, 0);
+        List<ProductionUnit> productionUnits = new List<ProductionUnit>() { gasBoiler };
 
         //ACT
-        HeatingGrid city = new HeatingGrid(architecture, cityBuildings, cityName);   
+        HeatingGrid city = new HeatingGrid(architecture, cityBuildings, cityName, productionUnits);
 
         //ASSERT
-        Assert.Equal(architecture, city.GetArchitecture());
-        Assert.Equal(cityBuildings, city.GetCityBuildings());
-        Assert.Equal(cityName, city.GetCityName());
+        Assert.Equal(architecture, city.GetArchitecture);
+        Assert.Equal(cityBuildings, city.GetCityBuildings);
+        Assert.Equal(cityName, city.GetCityName);
+        Assert.Equal(productionUnits, city.GetProductionUnits);
     }
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Gw68ymkk5WWTKkaxan4xbvYr4J478yVWDSsdluDKoUCZxCdZwBp8/b0tZPujTuu5Cdlby3TmPYTptK5LtrlL8A==",
+  "dgSpecHash": "YUmGoEvdrbwLLAMUUmp7xJLe4pO4EL+AE/sRfnoLL5xJPqfBuVUTZtHMmN9JyCkUMbAIposUv1IzXReJ5O11hg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\2nd semester project\\HeatProductionOptimization\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ritab\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

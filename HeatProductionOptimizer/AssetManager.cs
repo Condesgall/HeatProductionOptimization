@@ -4,45 +4,59 @@ public class AssetManager
     static ProductionUnit oilBoiler = new ProductionUnit("OB", 4.0, 700, 265, 1.2, 0);
     static ProductionUnit gasMotor = new ProductionUnit("GM", 3.6, 1100, 640, 1.9, 2.7);
     static ProductionUnit electricBoiler = new ProductionUnit("EK", 8.0, 50, 0, 0, -8.0);
-    static HeatingGrid city = new HeatingGrid("Single District Heating Network", 1600, "Heatington");
+    static List<ProductionUnit> productionUnits = new List<ProductionUnit>() {gasBoiler, oilBoiler, gasMotor, electricBoiler};   
+    public static HeatingGrid Heatington {get; set; }= new HeatingGrid("Single District Heating Network", 1600, "Heatington", productionUnits);
 }
 
 public class HeatingGrid
 {
-    private string Architecture;
+    private string? Architecture;
     private int CityBuildings;
-    private string CityName;
+    private string? CityName;
+    private List<ProductionUnit> ProductionUnits;
 
-    public HeatingGrid(string architecture, int cityBuildings, string cityName)
+    public HeatingGrid(string architecture, int cityBuildings, string cityName, List<ProductionUnit> productionUnits)
     {
         Architecture = architecture;
         CityBuildings = cityBuildings;
         CityName = cityName;
+        ProductionUnits = productionUnits;
     }
 
-    public string GetArchitecture()
+    public string? GetArchitecture
     {
-        return Architecture;
+        get {return Architecture; }
+        set {Architecture = value;}
     }
-    public int GetCityBuildings()
+
+    public int GetCityBuildings
     {
-        return CityBuildings;
+        get {return CityBuildings; }
+        set {CityBuildings = value;}
     }
-    public string GetCityName()
+
+    public string? GetCityName
     {
-        return CityName;
+        get {return CityName; }
+        set {CityName = value;}
     }
+
+    public List<ProductionUnit> GetProductionUnits
+    {
+        get {return ProductionUnits; }
+        set {ProductionUnits = value;}
+    }
+
 }
 
 public class ProductionUnit
 {
-    private string Name;
+    private string? Name;
     private double MaxHeat;
     private int ProductionCosts;
     private int CO2Emissions;
     private double GasConsumption;
     private double MaxElectricity;
-    //private string GraphicalRepresentationFilePath; // path to the image
 
     //todo add image
     public ProductionUnit(string name, double maxHeat, int productionCosts, int co2Emissions, double gasConsumption, double maxElectricity)
@@ -55,33 +69,41 @@ public class ProductionUnit
         MaxElectricity = maxElectricity;
     }
 
-    public string GetName()
+    public string? GetName
     {
-        return Name;
+        get {return Name; }
+        set {Name = value;}
     }
 
-    public double GetMaxHeat()
+    public double GetMaxHeat
     {
-        return MaxHeat;
+        get {return MaxHeat; }
+        set {MaxHeat = value;}
     }
 
-    public int GetProductionCosts()
+    public int GetProductionCosts
     {
-        return ProductionCosts;
+        get {return ProductionCosts; }
+        set {ProductionCosts = value;}
     }
 
-    public int GetCO2Emissions()
+    public int GetCO2Emissions
     {
-        return CO2Emissions;
+        get {return CO2Emissions; }
+        set {CO2Emissions = value;}
     }
 
-    public double GetGasConsumption()
+    public double GetGasConsumption
     {
-        return GasConsumption;
+        get {return GasConsumption; }
+        set {GasConsumption = value;}
     }
 
-    public double GetMaxElectricity()
+    public double GetMaxElectricity
     {
-        return MaxElectricity;
+        get {return MaxElectricity; }
+        set {MaxElectricity = value;}
     }
 }
+
+
