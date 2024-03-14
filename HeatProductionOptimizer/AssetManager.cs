@@ -13,7 +13,7 @@ public class HeatingGrid
     private int CityBuildings;
     private string CityName;
 
-    public ProductionUnit(string architecture, int cityBuildings, string cityName)
+    public HeatingGrid(string architecture, int cityBuildings, string cityName)
     {
         Architecture = architecture;
         CityBuildings = cityBuildings;
@@ -24,7 +24,7 @@ public class HeatingGrid
     {
         return Architecture;
     }
-    public string GetCityBuildings()
+    public int GetCityBuildings()
     {
         return CityBuildings;
     }
@@ -59,25 +59,29 @@ public class ProductionUnit
     {
         return Name;
     }
+
     public double GetMaxHeat()
     {
         return MaxHeat;
     }
+
     public int GetProductionCosts()
     {
         return ProductionCosts;
     }
+
     public int GetCO2Emissions()
     {
         return CO2Emissions;
     }
+
     public double GetGasConsumption()
     {
         return GasConsumption;
     }
+
     public double GetMaxElectricity()
     {
         return MaxElectricity;
     }
-
 }

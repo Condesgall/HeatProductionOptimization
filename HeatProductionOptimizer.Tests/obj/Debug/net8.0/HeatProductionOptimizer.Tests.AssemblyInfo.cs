@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HeatProductionOptimizer.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8f3a0b438448187bcc59927898ae393f3cd5057")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3c339daa0e4bf138beb63c2046b5c5ab0790282")]
 [assembly: System.Reflection.AssemblyProductAttribute("HeatProductionOptimizer.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HeatProductionOptimizer.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
