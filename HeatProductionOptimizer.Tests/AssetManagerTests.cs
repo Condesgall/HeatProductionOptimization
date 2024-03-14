@@ -24,4 +24,21 @@ public class AssetManagerTests
         Assert.Equal(gasConsumption, gasBoiler.GetGasConsumption());
         Assert.Equal(maxElectricity, gasBoiler.GetMaxElectricity());
     }
+
+    [Fact]
+    public void HeatingGrid_WithValidparameters_SetsPropertiesCorrectly()
+    {
+        //ARRANGE
+        string architecture = "Singe District Heating Network";
+        int cityBuildings = 1600;
+        string cityName = "Heatington";
+
+        //ACT
+        HeatingGrid city = new HeatingGrid(architecture, cityBuildings, cityName);   
+
+        //ASSERT
+        Assert.Equal(architecture, city.GetArchitecture());
+        Assert.Equal(cityBuildings, city.GetCityBuildings());
+        Assert.Equal(cityName, city.GetCityName());
+    }
 }

@@ -13,3 +13,18 @@ C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimiza
 C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb
 C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.genruntimeconfig.cache
 C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\ref\HeatProductionOptimizer.dll
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.exe
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.deps.json
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.runtimeconfig.json
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.dll
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.pdb
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfoInputs.cache
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfo.cs
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.CoreCompileInputs.cache
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.sourcelink.json
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.dll
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\refint\HeatProductionOptimizer.dll
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.genruntimeconfig.cache
+C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\ref\HeatProductionOptimizer.dll
