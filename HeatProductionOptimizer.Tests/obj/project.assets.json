@@ -5524,6 +5524,7 @@
     "net8.0": [
       "HeatProductionOptimizer >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
+      "Newtonsoft.json >= 13.0.3",
       "coverlet.collector >= 6.0.0",
       "xunit >= 2.5.3",
       "xunit.runner.visualstudio >= 2.5.3"
@@ -5578,6 +5579,10 @@
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.8.0, )"
+          },
+          "Newtonsoft.json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           },
           "coverlet.collector": {
             "target": "Package",

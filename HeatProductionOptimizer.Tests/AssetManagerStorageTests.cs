@@ -63,7 +63,7 @@ public class AssetManagerJsonTests
 
             List<ProductionUnit> productionUnitsList = Heatington.GetProductionUnits.ToList();
             List<ProductionUnit> deserializedProductionUnitsList = deserializedHeatington.GetProductionUnits.ToList();
-            
+
             for (int i = 0; i < Heatington.GetProductionUnits.Count(); i++)
             {
                 Assert.Equal(productionUnitsList[i].GetName, deserializedProductionUnitsList[i].GetName);

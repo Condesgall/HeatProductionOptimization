@@ -51,6 +51,10 @@
               "target": "Package",
               "version": "[17.8.0, )"
             },
+            "Newtonsoft.json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[6.0.0, )"

@@ -56,6 +56,7 @@
   },
   "packageFolders": {
     "C:\\Users\\ritab\\.nuget\\packages\\": {}
+    "C:\\Users\\ritab\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -67,6 +68,7 @@
       "outputPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "C:\\Users\\ritab\\AppData\\Roaming\\NuGet\\NuGet.Config"
         "C:\\Users\\ritab\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
