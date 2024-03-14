@@ -4,6 +4,34 @@ public class AssetManager
     static ProductionUnit oilBoiler = new ProductionUnit("OB", 4.0, 700, 265, 1.2, 0);
     static ProductionUnit gasMotor = new ProductionUnit("GM", 3.6, 1100, 640, 1.9, 2.7);
     static ProductionUnit electricBoiler = new ProductionUnit("EK", 8.0, 50, 0, 0, -8.0);
+    static HeatingGrid city = new HeatingGrid("Single District Heating Network", 1600, "Heatington");
+}
+
+public class HeatingGrid
+{
+    private string Architecture;
+    private int CityBuildings;
+    private string CityName;
+
+    public ProductionUnit(string architecture, int cityBuildings, string cityName)
+    {
+        Architecture = architecture;
+        CityBuildings = cityBuildings;
+        CityName = cityName;
+    }
+
+    public string GetArchitecture()
+    {
+        return Architecture;
+    }
+    public string GetCityBuildings()
+    {
+        return CityBuildings;
+    }
+    public string GetCityName()
+    {
+        return CityName;
+    }
 }
 
 public class ProductionUnit
