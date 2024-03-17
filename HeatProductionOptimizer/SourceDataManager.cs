@@ -1,6 +1,11 @@
 using System;
 using System.Globalization;
 
+public interface IFileLoading
+{
+    void Load();
+}
+
 public class SdmParameters
 {
     public string TimeFrom {get; set;}
@@ -17,7 +22,7 @@ public class SdmParameters
     }
 }
 
-public class ParameterLoader
+public class ParameterLoader : IFileLoading
 {
     public List<SdmParameters> Winter { get; private set; }
     public List<SdmParameters> Summer { get; private set; }
