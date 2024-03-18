@@ -77,7 +77,7 @@ public class ParameterLoader : IFileLoading
 
     public void Display()
     {
-        Console.WriteLine("WINTER DATA");
+        Console.WriteLine("\t -----------\n\t|WINTER DATA|\n\t -----------");
         Console.WriteLine();
         foreach(SdmParameters param in Winter)
         {
@@ -88,7 +88,7 @@ public class ParameterLoader : IFileLoading
             Console.WriteLine();
         }
 
-        Console.WriteLine("SUMMER DATA");
+        Console.WriteLine("\n\n\n\t -----------\n\t|SUMMER DATA|\n\t -----------");
         Console.WriteLine();
         foreach(SdmParameters param in Summer)
         {
