@@ -4,6 +4,7 @@ using System.Globalization;
 public interface IFileLoading
 {
     void Load();
+    void Display();
 }
 
 public class SdmParameters
@@ -38,7 +39,6 @@ public class ParameterLoader : IFileLoading
 
     public void Load()
     {
-        int i = 0;
         using (var reader = new StreamReader(FilePath))
         {
             // Going line by line, reading all the parameters from each.
@@ -55,7 +55,7 @@ public class ParameterLoader : IFileLoading
                 else
                 {
                     // Inputting the read data into temporary objects (the InvariantCulture part is to make sure
-                    // it takes "." as a decimal point, and not a separator as in some languages.
+                    // it takes "." as a decimal point, instead of "," as in some languages).
                     SdmParameters currentWinterParameters = new(
                         lineParts[0], 
                         lineParts[1], 
@@ -70,10 +70,33 @@ public class ParameterLoader : IFileLoading
 
                     Winter.Add(currentWinterParameters);
                     Summer.Add(currentSummerParameters);
-
-                    i++;
                 }
             }
         }  
+    }
+
+    public void Display()
+    {
+        Console.WriteLine("WINTER DATA");
+        Console.WriteLine();
+        foreach(SdmParameters param in Winter)
+        {
+            Console.WriteLine($"Time from: {param.TimeFrom}");
+            Console.WriteLine($"Time to: {param.TimeTo}");
+            Console.WriteLine($"Heat demand: {param.HeatDemand}");
+            Console.WriteLine($"Electricity price: {param.ElPrice}");
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("SUMMER DATA");
+        Console.WriteLine();
+        foreach(SdmParameters param in Summer)
+        {
+            Console.WriteLine($"Time from: {param.TimeFrom}");
+            Console.WriteLine($"Time to: {param.TimeTo}");
+            Console.WriteLine($"Heat demand: {param.HeatDemand}");
+            Console.WriteLine($"Electricity price: {param.ElPrice}");
+            Console.WriteLine();
+        }
     }
 }
