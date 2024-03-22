@@ -210,3 +210,4 @@ C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimizati
 C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProd.947ABA4A.Up2Date
 C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.genruntimeconfig.cache
 C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimization\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\ref\HeatProductionOptimizer.Tests.dll
+C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer.Tests\bin\Debug\net8.0\CsvHelper.dll

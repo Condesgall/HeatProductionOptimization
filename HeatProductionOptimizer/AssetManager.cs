@@ -1,109 +1,116 @@
-public class AssetManager
+namespace AssetManager_
 {
-    static ProductionUnit gasBoiler = new ProductionUnit("GB", 5.0, 500, 215, 1.1, 0);
-    static ProductionUnit oilBoiler = new ProductionUnit("OB", 4.0, 700, 265, 1.2, 0);
-    static ProductionUnit gasMotor = new ProductionUnit("GM", 3.6, 1100, 640, 1.9, 2.7);
-    static ProductionUnit electricBoiler = new ProductionUnit("EK", 8.0, 50, 0, 0, -8.0);
-    static List<ProductionUnit> productionUnits = new List<ProductionUnit>() {gasBoiler, oilBoiler, gasMotor, electricBoiler};   
-    public static HeatingGrid Heatington {get; set; }= new HeatingGrid("Single District Heating Network", 1600, "Heatington", productionUnits);
+    public class AssetManager
+    {
+        //list of production units for the project
+        public static List<ProductionUnit> productionUnits = new List<ProductionUnit>
+        {
+            new ProductionUnit("GB", 5.0, 500, 215, 1.1, 0),
+            new ProductionUnit("OB", 4.0, 700, 265, 1.2, 0),
+            new ProductionUnit("GM", 3.6, 1100, 640, 1.9, 2.7),
+            new ProductionUnit("EK", 8.0, 50, 0, 0, -8.0)
+        };
+
+        //heating grid for the project
+        public static HeatingGrid heatingGrid = new HeatingGrid("single district heating network", 1600, "Heatington");
+
+        //dictionary that stores heating grids and respective production units
+        public static Dictionary<HeatingGrid,List<ProductionUnit>> heatingGridsAndProductionUnits = new Dictionary<HeatingGrid,List<ProductionUnit>>()
+        {
+            {heatingGrid, productionUnits}
+        };
+    }
+
+    public class ProductionUnit
+    {
+        private string name;
+        private double maxHeat;
+        private int productionCosts;
+        private int co2Emissions;
+        private double gasConsumption;
+        private double maxElectricity;
+
+        //todo add image
+        //constructor for the production unit class
+        public ProductionUnit(string name_, double maxHeat_, int productionCosts_, int co2Emissions_, double gasConsumption_, double maxElectricity_)
+        {
+            name = name_;
+            maxHeat = maxHeat_;
+            productionCosts = productionCosts_;
+            co2Emissions = co2Emissions_;
+            gasConsumption = gasConsumption_;
+            maxElectricity = maxElectricity_;
+        }
+
+        //properties for the variables
+        public string Name
+        {
+            get {return name; }
+            set {name = value;}
+        }
+
+        public double MaxHeat
+        {
+            get {return maxHeat; }
+            set {maxHeat = value;}
+        }
+
+        public int ProductionCosts
+        {
+            get {return productionCosts; }
+            set {productionCosts = value;}
+        }
+
+        public int Co2Emissions
+        {
+            get {return co2Emissions; }
+            set {co2Emissions = value;}
+        }
+
+        public double GasConsumption
+        {
+            get {return gasConsumption; }
+            set {gasConsumption = value;}
+        }
+
+        public double MaxElectricity
+        {
+            get {return maxElectricity; }
+            set {maxElectricity = value;}
+        }
+    }
+
+    public class HeatingGrid
+    {
+        private string architecture;
+        private int cityBuildings;
+        private string cityName;
+
+        //constructor for the heating grid class
+        public HeatingGrid(string architecture_, int cityBuildings_, string cityName_)
+        {
+            architecture = architecture_;
+            cityBuildings = cityBuildings_;
+            cityName = cityName_;
+        }
+
+        //properties
+        public string Architecture
+        {
+            get {return architecture; }
+            set {architecture = value;}
+        }
+
+        public int CityBuildings
+        {
+            get {return cityBuildings; }
+            set {cityBuildings = value;}
+        }
+
+        public string CityName
+        {
+            get {return cityName; }
+            set {cityName = value;}
+        }
+    }
 }
-
-public class HeatingGrid
-{
-    private string? Architecture;
-    private int CityBuildings;
-    private string? CityName;
-    private List<ProductionUnit> ProductionUnits;
-
-    public HeatingGrid(string architecture, int cityBuildings, string cityName, List<ProductionUnit> productionUnits)
-    {
-        Architecture = architecture;
-        CityBuildings = cityBuildings;
-        CityName = cityName;
-        ProductionUnits = productionUnits;
-    }
-
-    public string? GetArchitecture
-    {
-        get {return Architecture; }
-        set {Architecture = value;}
-    }
-
-    public int GetCityBuildings
-    {
-        get {return CityBuildings; }
-        set {CityBuildings = value;}
-    }
-
-    public string? GetCityName
-    {
-        get {return CityName; }
-        set {CityName = value;}
-    }
-
-    public List<ProductionUnit> GetProductionUnits
-    {
-        get {return ProductionUnits; }
-        set {ProductionUnits = value;}
-    }
-
-}
-
-public class ProductionUnit
-{
-    private string? Name;
-    private double MaxHeat;
-    private int ProductionCosts;
-    private int CO2Emissions;
-    private double GasConsumption;
-    private double MaxElectricity;
-
-    //todo add image
-    public ProductionUnit(string name, double maxHeat, int productionCosts, int co2Emissions, double gasConsumption, double maxElectricity)
-    {
-        Name = name;
-        MaxHeat = maxHeat;
-        ProductionCosts = productionCosts;
-        CO2Emissions = co2Emissions;
-        GasConsumption = gasConsumption;
-        MaxElectricity = maxElectricity;
-    }
-
-    public string? GetName
-    {
-        get {return Name; }
-        set {Name = value;}
-    }
-
-    public double GetMaxHeat
-    {
-        get {return MaxHeat; }
-        set {MaxHeat = value;}
-    }
-
-    public int GetProductionCosts
-    {
-        get {return ProductionCosts; }
-        set {ProductionCosts = value;}
-    }
-
-    public int GetCO2Emissions
-    {
-        get {return CO2Emissions; }
-        set {CO2Emissions = value;}
-    }
-
-    public double GetGasConsumption
-    {
-        get {return GasConsumption; }
-        set {GasConsumption = value;}
-    }
-
-    public double GetMaxElectricity
-    {
-        get {return MaxElectricity; }
-        set {MaxElectricity = value;}
-    }
-}
-
-

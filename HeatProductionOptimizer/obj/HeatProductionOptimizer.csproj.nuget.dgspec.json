@@ -43,9 +43,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Newtonsoft.json": {
+            "CsvHelper": {
               "target": "Package",
-              "version": "[13.0.3, )"
+              "version": "[31.0.2, )"
             }
           },
           "imports": [

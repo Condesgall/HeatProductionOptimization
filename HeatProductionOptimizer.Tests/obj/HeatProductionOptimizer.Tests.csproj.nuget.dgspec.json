@@ -51,10 +51,6 @@
               "target": "Package",
               "version": "[17.8.0, )"
             },
-            "Newtonsoft.json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[6.0.0, )"
@@ -127,9 +123,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Newtonsoft.json": {
+            "CsvHelper": {
               "target": "Package",
-              "version": "[13.0.3, )"
+              "version": "[31.0.2, )"
             }
           },
           "imports": [

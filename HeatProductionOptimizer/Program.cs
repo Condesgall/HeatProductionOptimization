@@ -1,9 +1,12 @@
-﻿class Program
+﻿using AssetManager_;
+
+class Program
 {
     static void Main()
     {
-        AssetManagerJson assetManagerJson = new AssetManagerJson();
-        assetManagerJson.SaveAMData(AssetManager.Heatington);
-        assetManagerJson.LoadAMData();
+        AssetManager assetManager = new AssetManager();
+        AssetManagerStorage assetManagerStorage = new AssetManagerStorage();
+        assetManagerStorage.SaveAMData();
+        
     }
 }
