@@ -1,5 +1,4 @@
 using AssetManager_;
-using Xunit;
 namespace HeatProductionOptimizer.Tests;
 public class AssetManagerTests
 {
