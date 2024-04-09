@@ -31,3 +31,21 @@ C:\Users\sandr\OneDrive\Skrivebord\2nd semester project\HeatProductionOptimizati
 C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.AssemblyReference.cache
 C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProd.C00D3D32.Up2Date
 C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\CsvHelper.dll
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.exe
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.deps.json
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.runtimeconfig.json
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.dll
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\HeatProductionOptimizer.pdb
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\CsvHelper.dll
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.AssemblyReference.cache
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfoInputs.cache
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfo.cs
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.CoreCompileInputs.cache
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.sourcelink.json
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.CopyComplete
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.dll
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\refint\HeatProductionOptimizer.dll
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.genruntimeconfig.cache
+C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\ref\HeatProductionOptimizer.dll

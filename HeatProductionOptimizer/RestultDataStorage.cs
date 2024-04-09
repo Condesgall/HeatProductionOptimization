@@ -1,56 +1,76 @@
 using System.Globalization;
 using ResultDataManager_;
 
-public interface IResultDataStorage
-{
-    void Load();
-    void Save();
-}
-
-public class ResultDataCSV : IResultDataStorage
-{
-    private string FilePath;
-    ResultDataManager loadedResultData = new ResultDataManager();
-    
-
-    public ResultDataCSV(string filePath)
+namespace ResultDataStorage{
+    public interface IResultDataStorage
     {
-        FilePath = filePath;
+        void Load();
+        void Save();
     }
 
-    public void Load()
+    public class ResultDataCSV : IResultDataStorage
     {
-        using (var reader = new StreamReader(FilePath))
+        private string FilePath;
+        ResultDataManager loadedResultData = new ResultDataManager();
+        
+
+        public ResultDataCSV(string filePath)
         {
-            // Skipping the first line
-            reader.ReadLine();
+            FilePath = filePath;
+        }
 
-            // Going line by line, reading all the parameters from each.
-            string? line;
-            while ((line = reader.ReadLine()) != null)
+        public void Load()
+        {
+            using (var reader = new StreamReader(FilePath))
             {
-                string[] lineParts = line.Split(',');
-            
-                // Loading everything part by part, considering first column to be unitName, and following columns are result data parameters
-                string unitName = lineParts[0];
-                OptimizationResults results = new(
-                    double.Parse(lineParts[1], CultureInfo.InvariantCulture),
-                    double.Parse(lineParts[2], CultureInfo.InvariantCulture),
-                    double.Parse(lineParts[3], CultureInfo.InvariantCulture),
-                    double.Parse(lineParts[4], CultureInfo.InvariantCulture),
-                    double.Parse(lineParts[5], CultureInfo.InvariantCulture),
-                    double.Parse(lineParts[6], CultureInfo.InvariantCulture),
-                    double.Parse(lineParts[7], CultureInfo.InvariantCulture)
-                    );
+                // Skipping the first line
+                reader.ReadLine();
 
-                loadedResultData.AddResultData(unitName, results);
+                // Going line by line, reading all the parameters from each.
+                string? line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] lineParts = line.Split(',');
+                
+                    // Loading everything part by part, considering first column to be unitName, and following columns are result data parameters
+                    string unitName = lineParts[0];
+                    OptimizationResults results = new(
+                        double.Parse(lineParts[1], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[2], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[3], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[4], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[5], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[6], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[7], CultureInfo.InvariantCulture)
+                        );
+
+                    loadedResultData.AddResultData(unitName, results);
+                }
             }
         }
-    }
+        public void Save()
+        {
+            using (var writer = new StreamWriter(FilePath))
+            {
+                // Write header line
+                writer.WriteLine("UnitName,ProducedHeat,ProducedElectricity,ConsumedElectricity,Expenses,Profit,PrimaryEnergyConsumption,CO2Emissions");
 
-    public void Save()
-    {
-        // To do.   
+                // Write data for each unit
+                foreach (var unitResult in loadedResultData.resultData)
+                {
+                    string line = $"{unitResult.Key}," + 
+                                $"{unitResult.Value.ProducedHeat}," + 
+                                $"{unitResult.Value.ProducedElectricity}," +
+                                $"{unitResult.Value.ConsumedElectricity}," +
+                                $"{unitResult.Value.Expenses}," +
+                                $"{unitResult.Value.Profit}," +
+                                $"{unitResult.Value.PrimaryEnergyConsumption}," +
+                                $"{unitResult.Value.Co2Emissions}";
+
+                    writer.WriteLine(line);
+                }
+            }
+        }
     }
 }
 
