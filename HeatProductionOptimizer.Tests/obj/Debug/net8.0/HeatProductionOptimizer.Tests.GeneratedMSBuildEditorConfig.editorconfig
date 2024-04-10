@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HeatProductionOptimizer.Tests
-build_property.ProjectDir = C:\Users\kubun\OneDrive\Documents\Studia\Semester 2 2024\5. Semester Project 2\HeatProductionOptimization\HeatProductionOptimizer.Tests\
+build_property.ProjectDir = C:\Users\Lenovo\Downloads\HeatProductionOptimization\HeatProductionOptimizer.Tests\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

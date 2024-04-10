@@ -11,7 +11,7 @@ namespace ResultDataStorage{
     public class ResultDataCSV : IResultDataStorage
     {
         private string FilePath;
-        ResultDataManager loadedResultData = new ResultDataManager();
+        public ResultDataManager loadedResultData = new ResultDataManager();
         
 
         public ResultDataCSV(string filePath)
