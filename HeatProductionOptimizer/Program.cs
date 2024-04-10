@@ -1,4 +1,4 @@
-﻿using AssetManager_;
+using AssetManager_;
 
 class Program
 {
