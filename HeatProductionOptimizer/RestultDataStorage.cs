@@ -1,7 +1,8 @@
 using System.Globalization;
 using ResultDataManager_;
 
-namespace ResultDataStorage{
+namespace ResultDataStorage
+{
     public interface IResultDataStorage
     {
         void Load();
@@ -11,8 +12,8 @@ namespace ResultDataStorage{
     public class ResultDataCSV : IResultDataStorage
     {
         private string FilePath;
-        ResultDataManager loadedResultData = new ResultDataManager();
-        
+        public ResultDataManager loadedResultData = new ResultDataManager();
+
 
         public ResultDataCSV(string filePath)
         {
@@ -31,7 +32,7 @@ namespace ResultDataStorage{
                 while ((line = reader.ReadLine()) != null)
                 {
                     string[] lineParts = line.Split(',');
-                
+
                     // Loading everything part by part, considering first column to be unitName, and following columns are result data parameters
                     string unitName = lineParts[0];
                     OptimizationResults results = new(
@@ -55,11 +56,11 @@ namespace ResultDataStorage{
                 // Write header line
                 writer.WriteLine("UnitName,ProducedHeat,ProducedElectricity,ConsumedElectricity,Expenses,Profit,PrimaryEnergyConsumption,CO2Emissions");
 
-                // Write data for each unit
+                // Write data  for each unit
                 foreach (var unitResult in loadedResultData.resultData)
                 {
-                    string line = $"{unitResult.Key}," + 
-                                $"{unitResult.Value.ProducedHeat}," + 
+                    string line = $"{unitResult.Key}," +
+                                $"{unitResult.Value.ProducedHeat}," +
                                 $"{unitResult.Value.ProducedElectricity}," +
                                 $"{unitResult.Value.ConsumedElectricity}," +
                                 $"{unitResult.Value.Expenses}," +
