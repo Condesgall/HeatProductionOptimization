@@ -78,6 +78,14 @@ namespace AssetManager_
             get {return maxElectricity; }
             set {maxElectricity = value;}
         }
+        //Sets all the properties to 0
+        public void SwitchOffProductionUnit(){
+            MaxHeat = 0;
+            ProductionCosts = 0;
+            Co2Emissions = 0;
+            GasConsumption = 0;
+            MaxElectricity = 0;
+        }
     }
 
     public class HeatingGrid

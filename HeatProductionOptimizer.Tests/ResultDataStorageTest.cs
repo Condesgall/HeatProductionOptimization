@@ -1,22 +1,22 @@
 using Xunit;
 using System.IO;
+using System.Reflection;
 using System.Globalization;
 using ResultDataStorage;
 using ResultDataManager_;
-
 
 namespace ResultDataStorage.Tests
 {
     public class ResultDataCSVTests
     {
+        private readonly string assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
         [Fact]
         public void Load_CorrectlyParsesDataFromFile()
         {
-            // Arrange
-            string filePath = "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\Test.csv";; // Replace with actual path
+            string filePath = Path.Combine(assemblyDirectory, "Test.csv");
             ResultDataCSV resultDataCSV = new ResultDataCSV(filePath);
 
-            // Act
             resultDataCSV.Load();
 
             // Assert
@@ -38,15 +38,13 @@ namespace ResultDataStorage.Tests
         [Fact]
         public void Save_CorrectlyWritesDataToFile()
         {
-            // Arrange
-            string testFilePath = "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\Test.csv"; // Replace with actual path
-            var resultDataManager = new ResultDataManager(); // Ensure correct namespace is used
+            string testFilePath = Path.Combine(assemblyDirectory, "Test.csv"); 
+            var resultDataManager = new ResultDataManager();
             OptimizationResults testData = new OptimizationResults(1, 2, 3, 4, 5, 6, 7);
             resultDataManager.AddResultData("GB", testData);
             ResultDataCSV resultDataCSV = new ResultDataCSV(testFilePath);
 
-            // Act
-            resultDataCSV.loadedResultData = resultDataManager; // Set the loaded data
+            resultDataCSV.loadedResultData = resultDataManager; 
             resultDataCSV.Save();
 
             // Assert
