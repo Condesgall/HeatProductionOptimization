@@ -5568,19 +5568,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\kubun\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
       "projectName": "HeatProductionOptimizer.Tests",
-      "projectPath": "C:\\Users\\Lenovo\\Downloads\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\Downloads\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\obj\\",
+      "projectPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+      "packagesPath": "C:\\Users\\kubun\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\kubun\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5592,8 +5592,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\Downloads\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\Downloads\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
+            "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
+              "projectPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
             }
           }
         }
@@ -5641,7 +5641,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
