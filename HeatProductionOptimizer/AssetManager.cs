@@ -5,10 +5,10 @@ namespace AssetManager_
         //list of production units for the project
         public static List<ProductionUnit> productionUnits = new List<ProductionUnit>
         {
-            new ProductionUnit("GB", 5.0, 500, 215, 1.1, 0),
-            new ProductionUnit("OB", 4.0, 700, 265, 1.2, 0),
-            new ProductionUnit("GM", 3.6, 1100, 640, 1.9, 2.7),
-            new ProductionUnit("EK", 8.0, 50, 0, 0, -8.0)
+            new ProductionUnit("GB", 5.0, 500, 215, 1.1, 0), //heat only boiler
+            new ProductionUnit("OB", 4.0, 700, 265, 1.2, 0), //heat only boiler
+            new ProductionUnit("GM", 3.6, 1100, 640, 1.9, 2.7), //electricity producing unit
+            new ProductionUnit("EK", 8.0, 50, 0, 0, -8.0) //electricity consuming units
         };
 
         //heating grid for the project

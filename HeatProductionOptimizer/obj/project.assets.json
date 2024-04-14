@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "CsvHelper/31.0.2": {
+      "CsvHelper/31.0.3": {
         "type": "package",
         "compile": {
           "lib/net8.0/CsvHelper.dll": {
@@ -18,15 +18,15 @@
     }
   },
   "libraries": {
-    "CsvHelper/31.0.2": {
-      "sha512": "ndlIN77XcFm6qqGlNPzl0XjVupMCBVhVSiO+1+X2UhJtnnvkx9f//7FOvlkLuEQ76NC3Y7owa8IOhgtKVa4H7Q==",
+    "CsvHelper/31.0.3": {
+      "sha512": "ygck8DR4mG/VDA/LgIVVGpEtXXPDVaaNZNJGrOAJ4pckVw4MbAQ3n/u6YFDv3bwlQhlxTmPhCyk5E4hxe96Crg==",
       "type": "package",
-      "path": "csvhelper/31.0.2",
+      "path": "csvhelper/31.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "csvhelper.31.0.2.nupkg.sha512",
+        "csvhelper.31.0.3.nupkg.sha512",
         "csvhelper.nuspec",
         "lib/net462/CsvHelper.dll",
         "lib/net462/CsvHelper.xml",
@@ -49,23 +49,23 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "CsvHelper >= 31.0.2"
+      "CsvHelper >= 31.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kubun\\.nuget\\packages\\": {}
+    "C:\\Users\\ritab\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+      "projectUniqueName": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
       "projectName": "HeatProductionOptimizer",
-      "projectPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
-      "packagesPath": "C:\\Users\\kubun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
+      "projectPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+      "packagesPath": "C:\\Users\\ritab\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kubun\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\ritab\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -83,6 +83,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -91,7 +96,7 @@
         "dependencies": {
           "CsvHelper": {
             "target": "Package",
-            "version": "[31.0.2, )"
+            "version": "[31.0.3, )"
           }
         },
         "imports": [
@@ -110,7 +115,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

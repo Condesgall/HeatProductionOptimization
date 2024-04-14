@@ -8,17 +8,17 @@
     ".NETCoreApp,Version=v8.0": {
       "HeatProductionOptimizer/1.0.0": {
         "dependencies": {
-          "CsvHelper": "31.0.2"
+          "CsvHelper": "31.0.3"
         },
         "runtime": {
           "HeatProductionOptimizer.dll": {}
         }
       },
-      "CsvHelper/31.0.2": {
+      "CsvHelper/31.0.3": {
         "runtime": {
           "lib/net8.0/CsvHelper.dll": {
             "assemblyVersion": "31.0.0.0",
-            "fileVersion": "31.0.2.15"
+            "fileVersion": "31.0.3.17"
           }
         }
       }
@@ -30,12 +30,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "CsvHelper/31.0.2": {
+    "CsvHelper/31.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ndlIN77XcFm6qqGlNPzl0XjVupMCBVhVSiO+1+X2UhJtnnvkx9f//7FOvlkLuEQ76NC3Y7owa8IOhgtKVa4H7Q==",
-      "path": "csvhelper/31.0.2",
-      "hashPath": "csvhelper.31.0.2.nupkg.sha512"
+      "sha512": "sha512-ygck8DR4mG/VDA/LgIVVGpEtXXPDVaaNZNJGrOAJ4pckVw4MbAQ3n/u6YFDv3bwlQhlxTmPhCyk5E4hxe96Crg==",
+      "path": "csvhelper/31.0.3",
+      "hashPath": "csvhelper.31.0.3.nupkg.sha512"
     }
   }
 }

@@ -71,7 +71,7 @@ namespace ResultDataManager_
         // result data gets stored in this dictionary (allows to separate it by production unit).
         public Dictionary<string, OptimizationResults> resultData = new Dictionary<string, OptimizationResults>();
 
-        // adds/updates result data.
+        // adds result data.
         public void AddResultData(string productionUnitName, OptimizationResults result)
         {
             //adds result data (separated by production unit) to dictionary
