@@ -66,16 +66,19 @@ namespace ResultDataManager_
         }
     }
 
-    public class ResultDataManager()
+    public class ResultDataManager
     {
-        // result data gets stored in this dictionary (allows to separate it by production unit).
-        public Dictionary<string, OptimizationResults> resultData = new Dictionary<string, OptimizationResults>();
+        public string TimeFrom;
+        public string TimeTo;
+        public string ProductionUnit;
+        public OptimizationResults OptimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
 
-        // adds result data.
-        public void AddResultData(string productionUnitName, OptimizationResults result)
+        public ResultDataManager(string timeFrom, string timeTo, string productionUnit, OptimizationResults optimizationResults)
         {
-            //adds result data (separated by production unit) to dictionary
-            resultData.Add(productionUnitName, result);
+            TimeFrom = timeFrom;
+            TimeTo = timeTo;
+            ProductionUnit = productionUnit;
+            OptimizationResults = optimizationResults;
         }
     }
 }

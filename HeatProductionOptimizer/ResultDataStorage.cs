@@ -5,13 +5,13 @@ namespace ResultDataStorage{
     public interface IResultDataStorage
     {
         void Load();
-        void Save();
+        //void Save();
     }
 
     public class ResultDataCSV : IResultDataStorage
     {
         private string FilePath;
-        public ResultDataManager loadedResultData = new ResultDataManager();
+        public List<ResultDataManager> loadedResultData;
         
 
         public ResultDataCSV(string filePath)
@@ -33,21 +33,26 @@ namespace ResultDataStorage{
                     string[] lineParts = line.Split(',');
                 
                     // Loading everything part by part, considering first column to be unitName, and following columns are result data parameters
-                    string unitName = lineParts[0];
+                    string timeFrom = lineParts[0];
+                    string timeTo = lineParts[1];
+                    string unitName = lineParts[2];
                     OptimizationResults results = new(
-                        double.Parse(lineParts[1], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[2], CultureInfo.InvariantCulture),
                         double.Parse(lineParts[3], CultureInfo.InvariantCulture),
                         double.Parse(lineParts[4], CultureInfo.InvariantCulture),
                         double.Parse(lineParts[5], CultureInfo.InvariantCulture),
                         double.Parse(lineParts[6], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[7], CultureInfo.InvariantCulture)
+                        double.Parse(lineParts[7], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[8], CultureInfo.InvariantCulture),
+                        double.Parse(lineParts[9], CultureInfo.InvariantCulture)
                         );
 
-                    loadedResultData.AddResultData(unitName, results);
+                    ResultDataManager currentData = new ResultDataManager(timeFrom, timeTo, unitName, results);
+                    loadedResultData.Add(currentData);
                 }
             }
         }
+
+        /*
         public void Save()
         {
             using (var writer = new StreamWriter(FilePath))
@@ -70,7 +75,7 @@ namespace ResultDataStorage{
                     writer.WriteLine(line);
                 }
             }
-        }
+        }*/
     }
 }
 
