@@ -66,6 +66,7 @@ class Program
         parameterLoader.Load();
         Console.WriteLine("1. Winter data");
         Console.WriteLine("2. Summer data");
+        Console.Write("> ");
         string? userInput = Console.ReadLine();
         int userChoice = CheckIfValidInput(userInput, 2);
 
@@ -84,6 +85,7 @@ class Program
     {
         Console.WriteLine("1. Summer result data.");
         Console.WriteLine("2. Winter result data.");
+        Console.Write("> ");
         string? userInput = Console.ReadLine();
         int userChoice = CheckIfValidInput(userInput, 2);
         if (userChoice == 1)
