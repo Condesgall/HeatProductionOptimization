@@ -1,84 +1,47 @@
 namespace ResultDataManager_
 {
-    public class OptimizationResults
+public class OptimizationResults
+{
+    public double ProducedHeat { get; set; }
+    public double ProducedElectricity { get; set; }
+    public double ConsumedElectricity { get; set; }
+    public double Expenses { get; set; }
+    public double Profit { get; set; }
+    public double PrimaryEnergyConsumption { get; set; }
+    public double Co2Emissions { get; set; }
+
+    // Constructor
+    public OptimizationResults(double producedHeat, double producedElectricity, double consumedElectricity, double expenses, double profit, double primaryEnergyConsumption, double co2Emissions)
     {
-        private double producedHeat;
-        private double producedElectricity;
-        private double consumedElectricity;
-        private double expenses;
-        private double profit;
-        private double primaryEnergyConsumption;
-        private double co2Emissions;
-
-        //constructor
-        public OptimizationResults(double producedHeat_, double producedElectricity_, double consumedElectricity_, double expenses_, double profit_, double primaryEnergyConsumption_, double co2Emissions_) 
-        {
-            producedHeat = producedHeat_;
-            producedElectricity = producedElectricity_;
-            consumedElectricity = consumedElectricity_;
-            expenses = expenses_;
-            profit = profit_;
-            primaryEnergyConsumption = primaryEnergyConsumption_;
-            co2Emissions = co2Emissions_;
-        }
-
-        // properties
-        public double ProducedHeat
-        {
-            get { return producedHeat; }
-            set { producedHeat = value; }
-        }
-
-        public double ProducedElectricity
-        {
-            get { return producedElectricity; }
-            set { producedElectricity = value; }
-        }
-
-        public double ConsumedElectricity
-        {
-            get { return consumedElectricity; }
-            set { consumedElectricity = value; }
-        }
-
-        public double Expenses
-        {
-            get { return expenses; }
-            set { expenses = value; }
-        }
-
-        public double Profit
-        {
-            get { return profit; }
-            set { producedHeat = value; }
-        }
-
-        public double PrimaryEnergyConsumption
-        {
-            get { return primaryEnergyConsumption; }
-            set { producedHeat = value; }
-        }
-
-        public double Co2Emissions
-        {
-            get { return co2Emissions; }
-            set { co2Emissions = value; }
-        }
+        ProducedHeat = producedHeat;
+        ProducedElectricity = producedElectricity;
+        ConsumedElectricity = consumedElectricity;
+        Expenses = expenses;
+        Profit = profit;
+        PrimaryEnergyConsumption = primaryEnergyConsumption;
+        Co2Emissions = co2Emissions;
     }
+}
 
-    public class ResultDataManager
+    public class ResultData
     {
         public string TimeFrom;
         public string TimeTo;
         public string ProductionUnit;
         public OptimizationResults OptimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
 
-        public ResultDataManager(string timeFrom, string timeTo, string productionUnit, OptimizationResults optimizationResults)
+        public ResultData(string timeFrom, string timeTo, string productionUnit, OptimizationResults optimizationResults)
         {
             TimeFrom = timeFrom;
             TimeTo = timeTo;
             ProductionUnit = productionUnit;
             OptimizationResults = optimizationResults;
         }
+    }
+
+    public class ResultDataManager
+    {
+        public static List<ResultData> Winter = new List<ResultData>();
+        public static List<ResultData> Summer = new List<ResultData>();
     }
 }
