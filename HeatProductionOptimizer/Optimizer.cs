@@ -1,4 +1,5 @@
 using AssetManager_;
+using ResultDataManager_;
 
 public class Optimizer
 {
@@ -45,76 +46,63 @@ public class Optimizer
         }
     }
 
-     public void OptimizeProduction(ParameterLoader parameterLoader, AssetManager_.AssetManager assetManager, ResultDataManager_.ResultDataManager resultDataManager)
+    public void OptimizeProduction(List<SdmParameters> sourceData)
     {
-        double producedHeat = 0;
-        double producedElectricity = 0;
-        double consumedElectricity = 0;
-        double expenses = 0;
-        double profit = 0;
-        double primaryEnergyConsumption = 0;
-        double co2Emissions = 0;
 
-        // Loop  winter data
-        foreach (var winterData in parameterLoader.Winter)
+        foreach (var SdmParameters in sourceData)
         {
-            foreach (var productionUnit in AssetManager_.AssetManager.productionUnits)
+            double currentHeatNeeded = SdmParameters.HeatDemand;
+            OptimizationResults optimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
+            ResultData resultData = new ResultData("","","",optimizationResults);
+
+            // Check if Gas Boiler itself can meet the heat demand
+            if(currentHeatNeeded <= AssetManager.productionUnits[0].MaxHeat)
             {
-                //Only for scenario 1
-                if (productionUnit.Name == "GB" || productionUnit.Name == "OB" ){
-                    
-                    
-                    
-                    
-                    var optimizationResults = new ResultDataManager_.OptimizationResults(
-                        producedHeat,
-                        producedElectricity,
-                        consumedElectricity,
-                        expenses,
-                        profit,
-                        primaryEnergyConsumption,
-                        co2Emissions
-                    );
+                optimizationResults.ProducedHeat = currentHeatNeeded;
+                optimizationResults.Expenses = currentHeatNeeded * AssetManager.productionUnits[0].ProductionCosts;
+                optimizationResults.PrimaryEnergyConsumption = currentHeatNeeded * AssetManager.productionUnits[0].GasConsumption;
+                optimizationResults.Co2Emissions = currentHeatNeeded * AssetManager.productionUnits[0].Co2Emissions;
 
-                    // Add optimization results
-                    resultDataManager.AddResultData(productionUnit.Name, optimizationResults);
-                }
-                else
-                {
-                    continue;
-                }
+                resultData.TimeFrom = SdmParameters.TimeFrom;
+                resultData.TimeTo = SdmParameters.TimeTo;
+                resultData.ProductionUnit = "GB";
+                resultData.OptimizationResults = optimizationResults;
+
+                ResultDataManager.Summer.Add(resultData);
             }
-        }
-
-        // Loop summer data
-        foreach (var summerData in parameterLoader.Summer)
-        {
-            foreach (var productionUnit in AssetManager_.AssetManager.productionUnits)
+            else
             {
-               //Only for scenario 1
-                if (productionUnit.Name == "GB" || productionUnit.Name == "OB" ){
-                    
-                    
-                    
-                    
-                    var optimizationResults = new ResultDataManager_.OptimizationResults(
-                        producedHeat,
-                        producedElectricity,
-                        consumedElectricity,
-                        expenses,
-                        profit,
-                        primaryEnergyConsumption,
-                        co2Emissions
-                    );
+                optimizationResults.ProducedHeat = AssetManager.productionUnits[0].MaxHeat;
+                optimizationResults.Expenses = AssetManager.productionUnits[0].MaxHeat * AssetManager.productionUnits[0].ProductionCosts;
+                optimizationResults.PrimaryEnergyConsumption = AssetManager.productionUnits[0].MaxHeat * AssetManager.productionUnits[0].GasConsumption;
+                optimizationResults.Co2Emissions = AssetManager.productionUnits[0].MaxHeat * AssetManager.productionUnits[0].Co2Emissions;
 
-                    // Add optimization results
-                    resultDataManager.AddResultData(productionUnit.Name, optimizationResults);
-                }
-                else
-                {
-                    continue;
-                }
+                resultData.TimeFrom = SdmParameters.TimeFrom;
+                resultData.TimeTo = SdmParameters.TimeTo;
+                resultData.ProductionUnit = "GB";
+                resultData.OptimizationResults = optimizationResults;
+
+                ResultDataManager.Winter.Add(resultData);
+
+                currentHeatNeeded -= AssetManager.productionUnits[0].MaxHeat;
+                OptimizationResults optimizationResults2 = new OptimizationResults(0,0,0,0,0,0,0);
+                ResultData resultData2 = new ResultData("","","",optimizationResults);
+
+                optimizationResults2.ProducedHeat = currentHeatNeeded;
+                optimizationResults2.Expenses = currentHeatNeeded * AssetManager.productionUnits[0].ProductionCosts;
+                optimizationResults2.PrimaryEnergyConsumption = currentHeatNeeded * AssetManager.productionUnits[0].GasConsumption;
+                optimizationResults2.Co2Emissions = currentHeatNeeded * AssetManager.productionUnits[0].Co2Emissions;
+
+                resultData2.TimeFrom = SdmParameters.TimeFrom;
+                resultData2.TimeTo = SdmParameters.TimeTo;
+                resultData2.ProductionUnit = "OB";
+                resultData2.OptimizationResults = optimizationResults2;
+
+                ResultDataManager.Winter.Add(resultData2);
             }
+        
+
+            // Add optimization results
         }
     }
 }
