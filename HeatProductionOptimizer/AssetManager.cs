@@ -19,6 +19,31 @@ namespace AssetManager_
         {
             {heatingGrid, productionUnits}
         };
+
+        public void DisplayAssetManager()
+        {
+            Console.WriteLine("_____________________________");
+            Console.WriteLine("Heating area: ");
+            Console.WriteLine("_____________________________");
+            Console.WriteLine("");
+            Console.WriteLine($"City name: {heatingGrid.CityName}");
+            Console.WriteLine($"Number of buildings: {heatingGrid.CityBuildings}");
+            Console.WriteLine($"Architecture: {heatingGrid.Architecture}");
+            Console.WriteLine("");
+            Console.WriteLine("_____________________________");
+            Console.WriteLine("Production units: ");
+            Console.WriteLine("_____________________________");
+            foreach (var productionUnit in productionUnits)
+            {
+                Console.WriteLine($"Name: {productionUnit.Name}");
+                Console.WriteLine($"Maximum heat: {productionUnit.MaxHeat}");
+                Console.WriteLine($"Maximum electricity: {productionUnit.MaxElectricity}");
+                Console.WriteLine($"Production costs: {productionUnit.ProductionCosts}");
+                Console.WriteLine($"CO2 emissions: {productionUnit.Co2Emissions}");
+                Console.WriteLine($"Gas consumption: {productionUnit.GasConsumption}");
+                Console.WriteLine("_____________________________");
+            }
+        }
     }
 
     public class ProductionUnit
