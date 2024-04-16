@@ -11,7 +11,7 @@ namespace ResultDataStorage{
     public class ResultDataCSV : IResultDataStorage
     {
         private string FilePath;
-        public List<ResultDataManager> loadedResultData;
+        public List<ResultData> loadedResultData;
         
 
         public ResultDataCSV(string filePath)
@@ -46,36 +46,40 @@ namespace ResultDataStorage{
                         double.Parse(lineParts[9], CultureInfo.InvariantCulture)
                         );
 
-                    ResultDataManager currentData = new ResultDataManager(timeFrom, timeTo, unitName, results);
+                    ResultData currentData = new ResultData(timeFrom, timeTo, unitName, results);
                     loadedResultData.Add(currentData);
                 }
             }
         }
 
-        /*
-        public void Save()
+        public void Save(List<ResultData> rdm)
         {
             using (var writer = new StreamWriter(FilePath))
             {
-                // Write header line
-                writer.WriteLine("UnitName,ProducedHeat,ProducedElectricity,ConsumedElectricity,Expenses,Profit,PrimaryEnergyConsumption,CO2Emissions");
+                //header
+                writer.WriteLine("TimeFrom,TimeTo,UnitName,ProducedHeat,ProducedElectricity,ConsumedElectricity,Expenses,Profit,PrimaryEnergyConsumption,CO2Emissions");
 
-                // Write data for each unit
-                foreach (var unitResult in loadedResultData.resultData)
+                // Loop that writes data for each object in the rdm
+                foreach (var resultData in rdm)
                 {
-                    string line = $"{unitResult.Key}," + 
-                                $"{unitResult.Value.ProducedHeat}," + 
-                                $"{unitResult.Value.ProducedElectricity}," +
-                                $"{unitResult.Value.ConsumedElectricity}," +
-                                $"{unitResult.Value.Expenses}," +
-                                $"{unitResult.Value.Profit}," +
-                                $"{unitResult.Value.PrimaryEnergyConsumption}," +
-                                $"{unitResult.Value.Co2Emissions}";
+                    // Construct the data line witch the data from objects
+                    string line = $"{resultData.TimeFrom}," +
+                                  $"{resultData.TimeTo}," +
+                                  $"{resultData.ProductionUnit}," +
+                                  $"{resultData.OptimizationResults.ProducedHeat}," +
+                                  $"{resultData.OptimizationResults.ProducedElectricity}," +
+                                  $"{resultData.OptimizationResults.ConsumedElectricity}," +
+                                  $"{resultData.OptimizationResults.Expenses}," +
+                                  $"{resultData.OptimizationResults.Profit}," +
+                                  $"{resultData.OptimizationResults.PrimaryEnergyConsumption}," +
+                                  $"{resultData.OptimizationResults.Co2Emissions}";
 
+                    // Write the line to the file
                     writer.WriteLine(line);
                 }
+
             }
-        }*/
+        }
     }
 }
 

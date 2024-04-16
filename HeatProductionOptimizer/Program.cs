@@ -1,10 +1,13 @@
 using AssetManager_;
+using ResultDataManager_;
 
 class Program
 {
     public static bool running = true;
-    public static ParameterLoader sourceDataManager = new ParameterLoader("C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\SourceData.csv");
+    static string fullPath = Path.GetFullPath("SourceData.csv");
+    public static ParameterLoader parameterLoader = new ParameterLoader(fullPath);
     public static AssetManager assetManager = new AssetManager();
+    public static  ResultDataManager resultDataManager = new ResultDataManager();
     static void Main()
     {
         Console.WriteLine("Welcome to heat production optimization.");
@@ -60,7 +63,7 @@ class Program
     //todo: figure out a way to separate the data to display
     private static void DisplaySourceDataManagerHandler()
     {
-        sourceDataManager.Load();
+        parameterLoader.Load();
         Console.WriteLine("1. Winter data");
         Console.WriteLine("2. Summer data");
         string? userInput = Console.ReadLine();
@@ -68,18 +71,29 @@ class Program
 
         if (userChoice == 1)
         {
-            sourceDataManager.DisplayWinterData();
+            parameterLoader.DisplayWinterData();
         }
         if (userChoice == 2)
         {
-            sourceDataManager.DisplaySummerData();
+            parameterLoader.DisplaySummerData();
         }
     }
 
     //to do
     private static void DisplayResultDataManagerHandler()
     {
-
+        Console.WriteLine("1. Summer result data.");
+        Console.WriteLine("2. Winter result data.");
+        string? userInput = Console.ReadLine();
+        int userChoice = CheckIfValidInput(userInput, 2);
+        if (userChoice == 1)
+        {
+            resultDataManager.DisplayResultData(ResultDataManager.Summer);
+        }
+        if (userChoice == 2)
+        {
+            resultDataManager.DisplayResultData(ResultDataManager.Winter);
+        }
     }
 
     private static int CheckIfValidInput(string? userInput, int numberOfOptions)
