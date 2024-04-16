@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {}
+    "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
+    "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+        "projectUniqueName": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
         "projectName": "HeatProductionOptimizer",
-        "projectPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
-        "packagesPath": "C:\\Users\\ritab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
+        "projectPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+        "packagesPath": "C:\\Users\\kubun\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ritab\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kubun\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -64,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

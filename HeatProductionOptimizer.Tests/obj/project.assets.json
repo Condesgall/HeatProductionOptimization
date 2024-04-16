@@ -5568,19 +5568,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ritab\\.nuget\\packages\\": {}
+    "C:\\Users\\kubun\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
       "projectName": "HeatProductionOptimizer.Tests",
-      "projectPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
-      "packagesPath": "C:\\Users\\ritab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\obj\\",
+      "projectPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+      "packagesPath": "C:\\Users\\kubun\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ritab\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\kubun\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5592,8 +5592,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
-              "projectPath": "C:\\Users\\ritab\\Downloads\\University\\Semester Project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
+            "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
+              "projectPath": "C:\\Users\\kubun\\OneDrive\\Documents\\Studia\\Semester 2 2024\\5. Semester Project 2\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
             }
           }
         }
@@ -5602,11 +5602,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -5646,7 +5641,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
