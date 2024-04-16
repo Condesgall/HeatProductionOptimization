@@ -4,7 +4,8 @@ using System.Globalization;
 public interface IFileLoading
 {
     void Load();
-    void Display();
+    void DisplayWinterData();
+    void DisplaySummerData();
 }
 
 public class SdmParameters
@@ -75,11 +76,11 @@ public class ParameterLoader : IFileLoading
         }  
     }
 
-    public void Display()
+    public void DisplaySummerData()
     {
-        Console.WriteLine("\t -----------\n\t|WINTER DATA|\n\t -----------");
+        Console.WriteLine("\n\n\n\t -----------\n\t|SUMMER DATA|\n\t -----------");
         Console.WriteLine();
-        foreach(SdmParameters param in Winter)
+        foreach(SdmParameters param in Summer)
         {
             Console.WriteLine($"Time from: {param.TimeFrom}");
             Console.WriteLine($"Time to: {param.TimeTo}");
@@ -87,10 +88,13 @@ public class ParameterLoader : IFileLoading
             Console.WriteLine($"Electricity price: {param.ElPrice}");
             Console.WriteLine();
         }
+    }
 
-        Console.WriteLine("\n\n\n\t -----------\n\t|SUMMER DATA|\n\t -----------");
+    public void DisplayWinterData()
+    {
+        Console.WriteLine("\t -----------\n\t|WINTER DATA|\n\t -----------");
         Console.WriteLine();
-        foreach(SdmParameters param in Summer)
+        foreach(SdmParameters param in Winter)
         {
             Console.WriteLine($"Time from: {param.TimeFrom}");
             Console.WriteLine($"Time to: {param.TimeTo}");

@@ -1,4 +1,5 @@
 using AssetManager_;
+using ResultDataManager_;
 
 public class Optimizer
 {
@@ -41,6 +42,73 @@ public class Optimizer
             else
             {
                 heatBoilersNetProductionCosts = productionUnit.ProductionCosts;
+            }
+        }
+    }
+
+     public void OptimizeProduction(ParameterLoader parameterLoader, AssetManager assetManager, ResultDataManager resultDataManager)
+    {
+        double producedHeat = 0;
+        double producedElectricity = 0;
+        double consumedElectricity = 0;
+        double expenses = 0;
+        double profit = 0;
+        double primaryEnergyConsumption = 0;
+        double co2Emissions = 0;
+
+        // Loop  winter data
+        foreach (var winterData in parameterLoader.Winter)
+        {
+            foreach (var productionUnit in AssetManager.productionUnits)
+            {
+                //Only for scenario 1
+                if (productionUnit.Name == "GB" || productionUnit.Name == "OB" )
+                {
+                    var optimizationResults = new OptimizationResults(
+                        producedHeat,
+                        producedElectricity,
+                        consumedElectricity,
+                        expenses,
+                        profit,
+                        primaryEnergyConsumption,
+                        co2Emissions
+                    );
+
+                    // Add optimization results
+                    //resultDataManager.AddResultData(productionUnit.Name, optimizationResults);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+
+        // Loop summer data
+        foreach (var summerData in parameterLoader.Summer)
+        {
+            foreach (var productionUnit in AssetManager.productionUnits)
+            {
+               //Only for scenario 1
+                if (productionUnit.Name == "GB" || productionUnit.Name == "OB" ){
+                    
+                    var optimizationResults = new OptimizationResults(
+                        producedHeat,
+                        producedElectricity,
+                        consumedElectricity,
+                        expenses,
+                        profit,
+                        primaryEnergyConsumption,
+                        co2Emissions
+                    );
+
+                    // Add optimization results
+                    //resultDataManager.AddResultData(productionUnit.Name, optimizationResults);
+                }
+                else
+                {
+                    continue;
+                }
             }
         }
     }

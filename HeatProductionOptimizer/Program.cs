@@ -57,12 +57,26 @@ class Program
         assetManager.DisplayAssetManager();
     }
 
+    //todo: figure out a way to separate the data to display
     private static void DisplaySourceDataManagerHandler()
     {
         sourceDataManager.Load();
-        sourceDataManager.Display();
+        Console.WriteLine("1. Winter data");
+        Console.WriteLine("2. Summer data");
+        string? userInput = Console.ReadLine();
+        int userChoice = CheckIfValidInput(userInput, 2);
+
+        if (userChoice == 1)
+        {
+            sourceDataManager.DisplayWinterData();
+        }
+        if (userChoice == 2)
+        {
+            sourceDataManager.DisplaySummerData();
+        }
     }
 
+    //to do
     private static void DisplayResultDataManagerHandler()
     {
 
