@@ -12,7 +12,7 @@ public class SdmParameters
 {
     public string TimeFrom {get; set;}
     public string TimeTo {get; set;}
-    public decimal HeatDemand {get; set;}
+    public decimal HeatDemand;
     public decimal ElPrice {get; set;}
 
     public SdmParameters(string timeFrom, string timeTo, decimal heatDemand, decimal elPrice)

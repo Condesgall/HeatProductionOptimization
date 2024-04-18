@@ -425,3 +425,13 @@ C:\Users\Lenovo\Downloads\HeatProductionOptimization\HeatProductionOptimizer.Tes
 C:\Users\Lenovo\Downloads\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.csproj.CopyComplete
 C:\Users\Lenovo\Downloads\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.genruntimeconfig.cache
 C:\Users\Lenovo\Downloads\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\ref\HeatProductionOptimizer.Tests.dll
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_HeatProductionOptimizer.Tests
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.AssemblyInfo.cs
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.sourcelink.json
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.dll
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\refint\HeatProductionOptimizer.Tests.dll
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.pdb

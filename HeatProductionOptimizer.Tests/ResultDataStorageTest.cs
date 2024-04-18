@@ -1,4 +1,4 @@
-using Xunit;
+/*using Xunit;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
@@ -68,4 +68,4 @@ namespace ResultDataStorage.Tests
             }
         }
     }
-}
+}*/

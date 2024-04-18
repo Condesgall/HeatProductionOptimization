@@ -88,71 +88,135 @@ public class Optimizer
         productionUnitNetCosts.OrderBy(key => key.Value);
     }
 
-    public void OptimizeProductionByCosts(List<SdmParameters> sourceData)
+    public void OptimizeProduction(List<SdmParameters> sourceData, int optimizeBy)
     {
-        foreach (var SdmParameters in sourceData)
+        foreach (var sdmParameters in sourceData)
         {
-            decimal currentHeatNeeded = SdmParameters.HeatDemand;
-            OptimizationResults optimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
-            ResultData resultData = new ResultData("","","",optimizationResults);
-
-            // Check if Gas Boiler itself can meet the heat demand
-            if(currentHeatNeeded <= AssetManager.productionUnits[0].MaxHeat)
+            
+            ProductionUnit primaryUnit;
+            ProductionUnit secondaryUnit;
+            // Check whether Oil or Gas Boiler is more efficient for given parameter.
+            switch(optimizeBy)
             {
-                optimizationResults.ProducedHeat = currentHeatNeeded;
-                optimizationResults.Expenses = currentHeatNeeded * AssetManager.productionUnits[0].ProductionCosts;
-                optimizationResults.PrimaryEnergyConsumption = currentHeatNeeded * AssetManager.productionUnits[0].GasConsumption;
-                optimizationResults.Co2Emissions = currentHeatNeeded * AssetManager.productionUnits[0].Co2Emissions;
+                //optimize cost only
+                case 1:
+                if(AssetManager.productionUnits[0].ProductionCosts<AssetManager.productionUnits[1].ProductionCosts)
+                {
+                    primaryUnit = AssetManager.productionUnits[0];
+                    secondaryUnit = AssetManager.productionUnits[1];
+                }
+                else
+                {
+                    primaryUnit = AssetManager.productionUnits[1];
+                    secondaryUnit = AssetManager.productionUnits[0];
+                }
+                break;
+                
+                //optimize co2 only
+                case 2:
+                if(AssetManager.productionUnits[0].Co2Emissions<AssetManager.productionUnits[1].Co2Emissions)
+                {
+                    primaryUnit = AssetManager.productionUnits[0];
+                    secondaryUnit = AssetManager.productionUnits[1];
+                }
+                else
+                {
+                    primaryUnit = AssetManager.productionUnits[1];
+                    secondaryUnit = AssetManager.productionUnits[0];
+                }
+                break;
 
-                resultData.TimeFrom = SdmParameters.TimeFrom;
-                resultData.TimeTo = SdmParameters.TimeTo;
-                resultData.ProductionUnit = "GB";
-                resultData.OptimizationResults = optimizationResults;
+                //optimize co2 and costs
+                case 3:
+                // This checks expenses * co2 emissions, i.e. rate of both cost
+                // and co2 emissions when producing a MWh of heat.
+                decimal coefficient0 = AssetManager.productionUnits[0].ProductionCosts * AssetManager.productionUnits[0].Co2Emissions;
+                decimal coefficient1 = AssetManager.productionUnits[1].ProductionCosts * AssetManager.productionUnits[1].Co2Emissions;
+                if(coefficient0<coefficient1)
+                {
+                    primaryUnit = AssetManager.productionUnits[0];
+                    secondaryUnit = AssetManager.productionUnits[1];
+                }
+                else
+                {
+                    primaryUnit = AssetManager.productionUnits[1];
+                    secondaryUnit = AssetManager.productionUnits[0];
+                }
+                break;
 
-                //adds results to list (summer)
-                ResultDataManager.Summer.Add(resultData);
+                default: 
+                System.Console.WriteLine("Incorrect optimizeBy parameter.");
+                return;
             }
-            else
+
+            // Check how much heat is needed.
+            decimal currentHeatNeeded = sdmParameters.HeatDemand;
+
+            while(true)
             {
-                //if Gas Boiler itself can't meet the heat demand, it uses max heat, so produced heat for this unit is the max heat
-                optimizationResults.ProducedHeat = AssetManager.productionUnits[0].MaxHeat;
-                //calculation of expenses
-                optimizationResults.Expenses = AssetManager.productionUnits[0].MaxHeat * AssetManager.productionUnits[0].ProductionCosts;
-                //calculates consumption of gas
-                optimizationResults.PrimaryEnergyConsumption = AssetManager.productionUnits[0].MaxHeat * AssetManager.productionUnits[0].GasConsumption;
-                //calculates co2 emissions
-                optimizationResults.Co2Emissions = AssetManager.productionUnits[0].MaxHeat * AssetManager.productionUnits[0].Co2Emissions;
+                // Empty resultData instance for results.
+                ResultData resultData = new ResultData();
 
-                resultData.TimeFrom = SdmParameters.TimeFrom;
-                resultData.TimeTo = SdmParameters.TimeTo;
-                resultData.ProductionUnit = "GB";
-                resultData.OptimizationResults = optimizationResults;
+                // Declare currentMaxHeat with a value of unit's max heat.
+                decimal currentMaxHeat = primaryUnit.MaxHeat;
 
-                //adds result data to list (winter)
-                ResultDataManager.Winter.Add(resultData);
+                // Subtract currentHeatNeeded from currentMaxHeat. If the result is 
+                currentMaxHeat -= currentHeatNeeded;
 
-                //subtracts the maximum heat from oil boiler from the current heat needed
-                currentHeatNeeded -= AssetManager.productionUnits[1].MaxHeat;
-                OptimizationResults optimizationResults2 = new OptimizationResults(0,0,0,0,0,0,0);
-                ResultData resultData2 = new ResultData("","","",optimizationResults);
+                // Check if current unit meets the whole demand.
+                if(currentMaxHeat >= 0)
+                {
+                    // *Produce* all heat with the first boiler.
+                    resultData.OptimizationResults.ProducedHeat = currentHeatNeeded;
+                    resultData.OptimizationResults.Expenses = currentHeatNeeded * primaryUnit.ProductionCosts;
+                    resultData.OptimizationResults.PrimaryEnergyConsumption = currentHeatNeeded * primaryUnit.GasConsumption;
+                    resultData.OptimizationResults.Co2Emissions = currentHeatNeeded * primaryUnit.Co2Emissions;
+                    resultData.TimeFrom = sdmParameters.TimeFrom;
+                    resultData.TimeTo = sdmParameters.TimeTo;
+                    resultData.ProductionUnit = primaryUnit.Name;
 
-                optimizationResults2.ProducedHeat = currentHeatNeeded;
-                optimizationResults2.Expenses = currentHeatNeeded * AssetManager.productionUnits[1].ProductionCosts;
-                optimizationResults2.PrimaryEnergyConsumption = currentHeatNeeded * AssetManager.productionUnits[1].GasConsumption;
-                optimizationResults2.Co2Emissions = currentHeatNeeded * AssetManager.productionUnits[1].Co2Emissions;
+                    // Save the data.
+                    SaveToResultDataManager(resultData, sdmParameters);
 
-                resultData2.TimeFrom = SdmParameters.TimeFrom;
-                resultData2.TimeTo = SdmParameters.TimeTo;
-                resultData2.ProductionUnit = "OB";
-                resultData2.OptimizationResults = optimizationResults2;
+                    break;
+                }
+                else
+                {
+                    // *Produce* as much heat as primaryUnit can.
+                    resultData.OptimizationResults.ProducedHeat = primaryUnit.MaxHeat;
+                    resultData.OptimizationResults.Expenses = primaryUnit.MaxHeat * primaryUnit.ProductionCosts;
+                    resultData.OptimizationResults.PrimaryEnergyConsumption = currentHeatNeeded * primaryUnit.GasConsumption;
+                    resultData.OptimizationResults.Co2Emissions = primaryUnit.MaxHeat * primaryUnit.Co2Emissions;
+                    resultData.TimeFrom = sdmParameters.TimeFrom;
+                    resultData.TimeTo = sdmParameters.TimeTo;
+                    resultData.ProductionUnit = primaryUnit.Name;
 
-                ResultDataManager.Winter.Add(resultData2);
-            }
+                    // Then let secondaryUnit produce the rest.
+                    currentHeatNeeded = currentMaxHeat * (-1.0m);
+                    primaryUnit = secondaryUnit;
+
+                    // Save the data.
+                    SaveToResultDataManager(resultData, sdmParameters);
+                }
+            }  
         }
     }
 
+    public string GetSeason(SdmParameters sdmParameters)
+    {
+        // In given data set, summer has values around 1.5 and winter has values around 6.5
+        if(sdmParameters.HeatDemand > 4) return "winter";
+        else return "summer";
+    }
+
+    public void SaveToResultDataManager(ResultData resultData, SdmParameters sdmParameters)
+    {
+        // Check the source data and add result data to the right list.
+        if(GetSeason(sdmParameters)=="winter") ResultDataManager.Winter.Add(resultData);
+        if(GetSeason(sdmParameters)=="summer") ResultDataManager.Summer.Add(resultData);
+    }
+    
     // SCENARIO 2
-    // 
 
     //not complete
     public void OptimizeProduction(List<SdmParameters> sourceData)

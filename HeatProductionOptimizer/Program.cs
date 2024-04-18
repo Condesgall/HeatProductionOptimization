@@ -1,5 +1,6 @@
 using AssetManager_;
 using ResultDataManager_;
+using ResultDataStorage;
 
 class Program
 {
@@ -8,7 +9,7 @@ class Program
     public static ParameterLoader parameterLoader = new ParameterLoader(fullPath);
     public static AssetManager assetManager = new AssetManager();
     public static  ResultDataManager resultDataManager = new ResultDataManager();
-    public static Optimizer optimizer = new Optimizer();
+    public static ResultDataCSV resultDataCSV = new ResultDataCSV("ResultData.csv");
     static void Main()
     {
         Console.WriteLine("Welcome to heat production optimization.");
@@ -92,10 +93,12 @@ class Program
         if (userChoice == 1)
         {
             resultDataManager.DisplayResultData(ResultDataManager.Summer);
+            resultDataCSV.Save(ResultDataManager.Summer);
         }
         if (userChoice == 2)
         {
             resultDataManager.DisplayResultData(ResultDataManager.Winter);
+            resultDataCSV.Save(ResultDataManager.Winter);
         }
     }
 
