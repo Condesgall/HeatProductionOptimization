@@ -30,6 +30,15 @@ public class OptimizationResults
         public string ProductionUnit;
         public OptimizationResults OptimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
 
+        // Parameterless constructor for Optimizer.OptimizeProduction();
+        public ResultData()
+        {
+            TimeFrom = "";
+            TimeTo = "";
+            ProductionUnit = "";
+            OptimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
+        }
+
         public ResultData(string timeFrom, string timeTo, string productionUnit, OptimizationResults optimizationResults)
         {
             TimeFrom = timeFrom;
@@ -53,8 +62,8 @@ public class OptimizationResults
                 string fullPath = Path.GetFullPath("SourceData.csv");
                 ParameterLoader parameterLoader = new ParameterLoader(fullPath);
                 parameterLoader.Load();
-                optimizer.OptimizeProduction(parameterLoader.Summer);
-                optimizer.OptimizeProduction(parameterLoader.Winter);
+                optimizer.OptimizeProduction(parameterLoader.Summer, 2);
+                optimizer.OptimizeProduction(parameterLoader.Winter, 2);
             }
         }
 
@@ -68,12 +77,12 @@ public class OptimizationResults
                 Console.WriteLine("");
                 Console.WriteLine($"Optimization results:");
                 Console.WriteLine("");
-                Console.WriteLine($"Produced heat: {resultData.OptimizationResults.ProducedHeat}");
-                Console.WriteLine($"Produced electricity: {resultData.OptimizationResults.ProducedElectricity}");
-                Console.WriteLine($"Consumed electricity: {resultData.OptimizationResults.ConsumedElectricity}");
-                Console.WriteLine($"Expenses: {resultData.OptimizationResults.Expenses}");
-                Console.WriteLine($"Primary energy consumption: {resultData.OptimizationResults.PrimaryEnergyConsumption}");
-                Console.WriteLine($"CO2 emissions: {resultData.OptimizationResults.Co2Emissions}");
+                Console.WriteLine($"Produced heat: {resultData.OptimizationResults.ProducedHeat} MW");
+                Console.WriteLine($"Produced electricity: {resultData.OptimizationResults.ProducedElectricity} MW");
+                Console.WriteLine($"Consumed electricity: {resultData.OptimizationResults.ConsumedElectricity} MW");
+                Console.WriteLine($"Expenses: {resultData.OptimizationResults.Expenses} DKK");
+                Console.WriteLine($"Primary energy consumption: {resultData.OptimizationResults.PrimaryEnergyConsumption} MWh");
+                Console.WriteLine($"CO2 emissions: {resultData.OptimizationResults.Co2Emissions} kg");
                 Console.WriteLine("_____________________________");
             }
         }
