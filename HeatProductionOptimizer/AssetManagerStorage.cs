@@ -36,11 +36,11 @@ public class AssetManagerStorage : IAssetManagerStorage
                         for (int i = 3; i < csvReader.ColumnCount; i++)
                         {
                             var name = csvReader.GetField<string>(i);
-                            var maxHeat = csvReader.GetField<double>(i + 1);
+                            var maxHeat = csvReader.GetField<decimal>(i + 1);
                             var productionCosts = csvReader.GetField<int>(i + 2);
                             var co2Emissions = csvReader.GetField<int>(i + 3);
-                            var gasConsumption = csvReader.GetField<double>(i + 4);
-                            var maxElectricity = csvReader.GetField<double>(i + 5);
+                            var gasConsumption = csvReader.GetField<decimal>(i + 4);
+                            var maxElectricity = csvReader.GetField<decimal>(i + 5);
                             ProductionUnit loadedProductionUnit = new ProductionUnit(name, maxHeat, productionCosts, co2Emissions, gasConsumption, maxElectricity);
                             if (!AssetManager.productionUnits.Contains(loadedProductionUnit))
                             {

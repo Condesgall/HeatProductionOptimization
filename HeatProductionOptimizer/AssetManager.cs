@@ -5,10 +5,10 @@ namespace AssetManager_
         //list of production units for the project
         public static List<ProductionUnit> productionUnits = new List<ProductionUnit>
         {
-            new ProductionUnit("GB", 5.0, 500, 215, 1.1, 0), //heat only boiler
-            new ProductionUnit("OB", 4.0, 700, 265, 1.2, 0), //heat only boiler
-            new ProductionUnit("GM", 3.6, 1100, 640, 1.9, 2.7), //electricity producing unit
-            new ProductionUnit("EK", 8.0, 50, 0, 0, -8.0) //electricity consuming units
+            new ProductionUnit("GB", 5.0m, 500, 215, 1.1m, 0), //heat only boiler
+            new ProductionUnit("OB", 4.0m, 700, 265, 1.2m, 0), //heat only boiler
+            new ProductionUnit("GM", 3.6m, 1100, 640, 1.9m, 2.7m), //electricity producing unit
+            new ProductionUnit("EK", 8.0m, 50, 0, 0, -8.0m) //electricity consuming units
         };
 
         //heating grid for the project
@@ -49,15 +49,15 @@ namespace AssetManager_
     public class ProductionUnit
     {
         private string name;
-        private double maxHeat;
+        private decimal maxHeat;
         private int productionCosts;
         private int co2Emissions;
-        private double gasConsumption;
-        private double maxElectricity;
+        private decimal gasConsumption;
+        private decimal maxElectricity;
 
         //todo add image
         //constructor for the production unit class
-        public ProductionUnit(string name_, double maxHeat_, int productionCosts_, int co2Emissions_, double gasConsumption_, double maxElectricity_)
+        public ProductionUnit(string name_, decimal maxHeat_, int productionCosts_, int co2Emissions_, decimal gasConsumption_, decimal maxElectricity_)
         {
             name = name_;
             maxHeat = maxHeat_;
@@ -74,7 +74,7 @@ namespace AssetManager_
             set {name = value;}
         }
 
-        public double MaxHeat
+        public decimal MaxHeat
         {
             get {return maxHeat; }
             set {maxHeat = value;}
@@ -92,13 +92,13 @@ namespace AssetManager_
             set {co2Emissions = value;}
         }
 
-        public double GasConsumption
+        public decimal GasConsumption
         {
             get {return gasConsumption; }
             set {gasConsumption = value;}
         }
 
-        public double MaxElectricity
+        public decimal MaxElectricity
         {
             get {return maxElectricity; }
             set {maxElectricity = value;}

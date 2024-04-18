@@ -37,13 +37,13 @@ namespace ResultDataStorage{
                     string timeTo = lineParts[1];
                     string unitName = lineParts[2];
                     OptimizationResults results = new(
-                        double.Parse(lineParts[3], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[4], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[5], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[6], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[7], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[8], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[9], CultureInfo.InvariantCulture)
+                        decimal.Parse(lineParts[3], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[4], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[5], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[6], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[7], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[8], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[9], CultureInfo.InvariantCulture)
                         );
 
                     ResultData currentData = new ResultData(timeFrom, timeTo, unitName, results);

@@ -7,13 +7,13 @@ public class ResultDataManagerTests
     public void OptimizationResults_WithValidParameters_SetsPropertiesCorrectly()
     {
         //arrange
-        double producedHeat = 1;
-        double producedElectricity = 2;
-        double consumedElectricity = 3;
-        double expenses = 3;
-        double profit = 4;
-        double primaryEnergyConsumption = 5;
-        double co2Emissions = 6;
+        decimal producedHeat = 1;
+        decimal producedElectricity = 2;
+        decimal consumedElectricity = 3;
+        decimal expenses = 3;
+        decimal profit = 4;
+        decimal primaryEnergyConsumption = 5;
+        decimal co2Emissions = 6;
 
         //act
         OptimizationResults optimizationResults = new OptimizationResults(producedHeat, producedElectricity, consumedElectricity, expenses, profit, primaryEnergyConsumption, co2Emissions);

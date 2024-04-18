@@ -7,11 +7,11 @@ public class AssetManagerTests
     {
         //ARRANGE
         string name = "GB";
-        double maxHeat = 5.0;
+        decimal maxHeat = 5.0;
         int productionCosts = 500;
         int co2Emissions = 215;
-        double gasConsumption = 1.1;
-        double maxElectricity = 2.7;
+        decimal gasConsumption = 1.1;
+        decimal maxElectricity = 2.7;
 
         //ACT
         ProductionUnit gasBoiler = new ProductionUnit(name, maxHeat, productionCosts, co2Emissions, gasConsumption, maxElectricity);

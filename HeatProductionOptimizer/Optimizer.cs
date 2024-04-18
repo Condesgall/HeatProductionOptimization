@@ -3,22 +3,22 @@ using ResultDataManager_;
 
 public class Optimizer
 {
-    private double heatBoilersNetProductionCosts;
-    private double electricityProducingNetProductionCosts;
-    private double electricityConsumingNetProductionCosts;
+    private decimal heatBoilersNetProductionCosts;
+    private decimal electricityProducingNetProductionCosts;
+    private decimal electricityConsumingNetProductionCosts;
 
     //properties
-    public double GetElectricityConsumingNetProductionCosts
+    public decimal GetElectricityConsumingNetProductionCosts
     {
         get { return electricityConsumingNetProductionCosts; }
         set { electricityConsumingNetProductionCosts = value; }
     }
-    public double GetElectricityProducingNetProductionCosts
+    public decimal GetElectricityProducingNetProductionCosts
     {
         get { return electricityProducingNetProductionCosts;}
         set { electricityProducingNetProductionCosts = value; }
     }
-    public double GetHeatBoilersNetProductionCosts
+    public decimal GetHeatBoilersNetProductionCosts
     {
         get { return heatBoilersNetProductionCosts;}
         set { heatBoilersNetProductionCosts = value; }
@@ -50,7 +50,7 @@ public class Optimizer
     {
         foreach (var SdmParameters in sourceData)
         {
-            double currentHeatNeeded = SdmParameters.HeatDemand;
+            decimal currentHeatNeeded = SdmParameters.HeatDemand;
             OptimizationResults optimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
             ResultData resultData = new ResultData("","","",optimizationResults);
 

@@ -2,16 +2,16 @@ namespace ResultDataManager_
 {
 public class OptimizationResults
 {
-    public double ProducedHeat { get; set; }
-    public double ProducedElectricity { get; set; }
-    public double ConsumedElectricity { get; set; }
-    public double Expenses { get; set; }
-    public double Profit { get; set; }
-    public double PrimaryEnergyConsumption { get; set; }
-    public double Co2Emissions { get; set; }
+    public decimal ProducedHeat { get; set; }
+    public decimal ProducedElectricity { get; set; }
+    public decimal ConsumedElectricity { get; set; }
+    public decimal Expenses { get; set; }
+    public decimal Profit { get; set; }
+    public decimal PrimaryEnergyConsumption { get; set; }
+    public decimal Co2Emissions { get; set; }
 
     // Constructor
-    public OptimizationResults(double producedHeat, double producedElectricity, double consumedElectricity, double expenses, double profit, double primaryEnergyConsumption, double co2Emissions)
+    public OptimizationResults(decimal producedHeat, decimal producedElectricity, decimal consumedElectricity, decimal expenses, decimal profit, decimal primaryEnergyConsumption, decimal co2Emissions)
     {
         ProducedHeat = producedHeat;
         ProducedElectricity = producedElectricity;

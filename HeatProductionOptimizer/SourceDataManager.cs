@@ -12,10 +12,10 @@ public class SdmParameters
 {
     public string TimeFrom {get; set;}
     public string TimeTo {get; set;}
-    public double HeatDemand {get; set;}
-    public double ElPrice {get; set;}
+    public decimal HeatDemand {get; set;}
+    public decimal ElPrice {get; set;}
 
-    public SdmParameters(string timeFrom, string timeTo, double heatDemand, double elPrice)
+    public SdmParameters(string timeFrom, string timeTo, decimal heatDemand, decimal elPrice)
     {
         TimeFrom = timeFrom;
         TimeTo = timeTo;
@@ -60,14 +60,14 @@ public class ParameterLoader : IFileLoading
                     SdmParameters currentWinterParameters = new(
                         lineParts[0], 
                         lineParts[1], 
-                        double.Parse(lineParts[2], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[3], CultureInfo.InvariantCulture));
+                        decimal.Parse(lineParts[2], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[3], CultureInfo.InvariantCulture));
 
                     SdmParameters currentSummerParameters = new(
                         lineParts[5],
                         lineParts[6],
-                        double.Parse(lineParts[7], CultureInfo.InvariantCulture),
-                        double.Parse(lineParts[8], CultureInfo.InvariantCulture));
+                        decimal.Parse(lineParts[7], CultureInfo.InvariantCulture),
+                        decimal.Parse(lineParts[8], CultureInfo.InvariantCulture));
 
                     Winter.Add(currentWinterParameters);
                     Summer.Add(currentSummerParameters);
