@@ -8,6 +8,7 @@ class Program
     public static ParameterLoader parameterLoader = new ParameterLoader(fullPath);
     public static AssetManager assetManager = new AssetManager();
     public static  ResultDataManager resultDataManager = new ResultDataManager();
+    public static Optimizer optimizer = new Optimizer();
     static void Main()
     {
         Console.WriteLine("Welcome to heat production optimization.");

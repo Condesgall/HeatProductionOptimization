@@ -53,8 +53,8 @@ public class OptimizationResults
                 string fullPath = Path.GetFullPath("SourceData.csv");
                 ParameterLoader parameterLoader = new ParameterLoader(fullPath);
                 parameterLoader.Load();
-                optimizer.OptimizeProduction(parameterLoader.Summer);
-                optimizer.OptimizeProduction(parameterLoader.Winter);
+                optimizer.OptimizeProductionByCosts(parameterLoader.Summer);
+                optimizer.OptimizeProductionByCosts(parameterLoader.Winter);
             }
         }
 

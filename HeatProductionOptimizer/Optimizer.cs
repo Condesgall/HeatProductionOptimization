@@ -3,20 +3,21 @@ using ResultDataManager_;
 
 public class Optimizer
 {
+    public static Dictionary<ProductionUnit, decimal> productionUnitNetCosts = new Dictionary<ProductionUnit, decimal>();
     private decimal heatBoilersNetProductionCosts;
-    private decimal electricityProducingNetProductionCosts;
-    private decimal electricityConsumingNetProductionCosts;
+    private decimal elProducingNetProductionCosts;
+    private decimal elConsumingNetProductionCosts;
 
     //properties
-    public decimal GetElectricityConsumingNetProductionCosts
+    public decimal GetElConsumingNetProductionCosts
     {
-        get { return electricityConsumingNetProductionCosts; }
-        set { electricityConsumingNetProductionCosts = value; }
+        get { return elConsumingNetProductionCosts; }
+        set { elConsumingNetProductionCosts = value; }
     }
-    public decimal GetElectricityProducingNetProductionCosts
+    public decimal GetElProducingNetProductionCosts
     {
-        get { return electricityProducingNetProductionCosts;}
-        set { electricityProducingNetProductionCosts = value; }
+        get { return elProducingNetProductionCosts;}
+        set { elProducingNetProductionCosts = value; }
     }
     public decimal GetHeatBoilersNetProductionCosts
     {
@@ -24,29 +25,70 @@ public class Optimizer
         set { heatBoilersNetProductionCosts = value; }
     }
 
-    public void CalculateNetProductionCosts()
+    public decimal CalculateNetProductionCosts(SdmParameters sdmParameters)
     {
         foreach (var productionUnit in AssetManager.productionUnits)
         {
-            //if the production unit is elecricity producing
-            if (productionUnit.MaxElectricity > 0)
+            switch (productionUnit.MaxElectricity)
             {
-                electricityProducingNetProductionCosts = productionUnit.ProductionCosts - (productionUnit.MaxElectricity * productionUnit.ProductionCosts);
-            }
-            //if the production unit is electricity consuming
-            else if (productionUnit.MaxElectricity < 0)
-            {
-                electricityConsumingNetProductionCosts = productionUnit.ProductionCosts + (productionUnit.MaxElectricity * productionUnit.ProductionCosts);
-            }
-            //if the production unit is heat only
-            else
-            {
-                heatBoilersNetProductionCosts = productionUnit.ProductionCosts;
+                //production unit produces electricity
+                case >0:
+                //if electricity that can be produced isnt over the limit
+                    if (sdmParameters.HeatDemand <= productionUnit.MaxElectricity)
+                    {
+                        elProducingNetProductionCosts = sdmParameters.HeatDemand * (productionUnit.ProductionCosts - sdmParameters.ElPrice);
+                    }
+                    //if it is over the limit
+                    else if (sdmParameters.HeatDemand > productionUnit.MaxElectricity)
+                    {
+                        elProducingNetProductionCosts = sdmParameters.HeatDemand * productionUnit.ProductionCosts - productionUnit.MaxElectricity * sdmParameters.ElPrice;
+                    }
+                    //if the heat demand is bigger than the max heat
+                    else
+                    {
+                        elProducingNetProductionCosts = productionUnit.MaxHeat * productionUnit.ProductionCosts - productionUnit.MaxElectricity * sdmParameters.ElPrice;
+                    }
+                    return elConsumingNetProductionCosts;
+                //production unit consumes electricity
+                case <0:
+                    //if heat demand doesnt surpass the heat limit
+                    if (sdmParameters.HeatDemand <= productionUnit.MaxHeat)
+                    {
+                        elConsumingNetProductionCosts = sdmParameters.HeatDemand * (productionUnit.ProductionCosts + sdmParameters.ElPrice);
+                    }
+                    else
+                    {
+                        elConsumingNetProductionCosts = productionUnit.MaxHeat * (productionUnit.ProductionCosts + sdmParameters.ElPrice);
+                    }
+                    return elConsumingNetProductionCosts;
+                //heat only
+                case 0:
+                    //if heat demand doesnt surpass the heat limit
+                    if (sdmParameters.HeatDemand <= productionUnit.MaxHeat)
+                    {
+                        heatBoilersNetProductionCosts = productionUnit.ProductionCosts*sdmParameters.HeatDemand;
+                    }
+                    else
+                    {
+                        heatBoilersNetProductionCosts = productionUnit.ProductionCosts*productionUnit.MaxHeat;
+                    }
+                    return heatBoilersNetProductionCosts;
+                default:
             }
         }
+        return 0;
+    }
+    public void GetProductionUnitsNetCosts(SdmParameters sdmParameters)
+    {
+        foreach (var productionUnit in AssetManager.productionUnits)
+        {
+            decimal netCost = CalculateNetProductionCosts(sdmParameters);
+            productionUnitNetCosts.Add(productionUnit, netCost);
+        }
+        productionUnitNetCosts.OrderBy(key => key.Value);
     }
 
-    public void OptimizeProduction(List<SdmParameters> sourceData)
+    public void OptimizeProductionByCosts(List<SdmParameters> sourceData)
     {
         foreach (var SdmParameters in sourceData)
         {
@@ -106,6 +148,18 @@ public class Optimizer
 
                 ResultDataManager.Winter.Add(resultData2);
             }
+        }
+    }
+
+    // SCENARIO 2
+    // 
+
+    //not complete
+    public void OptimizeProduction(List<SdmParameters> sourceData)
+    {
+        foreach (var sdmParameters in sourceData)
+        {
+            GetProductionUnitsNetCosts(sdmParameters);
         }
     }
 }
