@@ -1,2 +1,2 @@
-UnitName,ProducedHeat,ProducedElectricity,ConsumedElectricity,Expenses,Profit,PrimaryEnergyConsumption,CO2Emissions
-GB,1,2,3,4,5,6,7
+TimeFrom,TimeTo,UnitName,ProducedHeat,ProducedElectricity,ConsumedElectricity,Expenses,Profit,PrimaryEnergyConsumption,CO2Emissions
+1/1/1970 0:00,1/1/1970 1:00,OB,4.0,0,0,2800.0,0,7.944,1060.0
