@@ -10,8 +10,28 @@ class Program
     public static AssetManager assetManager = new AssetManager();
     public static  ResultDataManager resultDataManager = new ResultDataManager();
     public static ResultDataCSV resultDataCSV = new ResultDataCSV("ResultData.csv");
+    Optimizer optimizer = new Optimizer();
     static void Main()
     {
+        ResultData gbResults = new ResultData();
+        gbResults.ProductionUnit = "GB";
+        gbResults.OptimizationResults.ProducedHeat = 1m;
+        gbResults.OptimizationResults.ProducedElectricity = 2m;
+        gbResults.OptimizationResults.ConsumedElectricity = 3m;
+        gbResults.OptimizationResults.Expenses = 4m;
+        gbResults.OptimizationResults.Profit = 5m;
+        gbResults.OptimizationResults.PrimaryEnergyConsumption = 6m;
+        gbResults.OptimizationResults.Co2Emissions = 7m;
+        List<ResultData> resultData = new List<ResultData>() { gbResults };
+        resultDataCSV.Save(resultData);
+        resultDataCSV.loadedResultData = new List<ResultData>();
+        resultDataCSV.Load();
+        foreach (var data in resultDataCSV.loadedResultData)
+        {
+            Console.WriteLine(data.ProductionUnit);
+            Console.WriteLine(data.OptimizationResults.ProducedElectricity);
+        }
+
         Console.WriteLine("Welcome to heat production optimization.");
         Commands();
     }
