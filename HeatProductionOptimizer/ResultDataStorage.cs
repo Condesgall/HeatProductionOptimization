@@ -5,14 +5,13 @@ namespace ResultDataStorage{
     public interface IResultDataStorage
     {
         void Load();
-        //void Save();
+        void Save(List<ResultData> rdm);
     }
 
     public class ResultDataCSV : IResultDataStorage
     {
         private string FilePath;
-        public List<ResultData> loadedResultData;
-        
+        public List<ResultData>? loadedResultData;
 
         public ResultDataCSV(string filePath)
         {
@@ -47,7 +46,10 @@ namespace ResultDataStorage{
                         );
 
                     ResultData currentData = new ResultData(timeFrom, timeTo, unitName, results);
-                    loadedResultData.Add(currentData);
+                    if (loadedResultData != null) 
+                    {
+                        loadedResultData.Add(currentData);
+                    }
                 }
             }
         }
