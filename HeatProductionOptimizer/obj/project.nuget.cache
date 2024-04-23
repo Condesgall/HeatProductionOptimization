@@ -1,10 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "gHYgW/Se8c3hEv3D/7+Oef8p7hX6PKPrkQYpxIBbmAMBERNr1RlkYv38EJzLEH48U/15tf0cF0HS3eS3S69HXw==",
+  "dgSpecHash": "Wh6SS8Lf5wtTpM3cSVIyI8pFSG3GBu1KW380u9uE0gHqNFrh69iXCpprct16U04NrkeZmILHbQYtU5i746V/cQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+  "projectFilePath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Lenovo\\.nuget\\packages\\csvhelper\\31.0.3\\csvhelper.31.0.3.nupkg.sha512"
+    "C:\\Users\\sandr\\.nuget\\packages\\csvhelper\\31.0.4\\csvhelper.31.0.4.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit\\2.7.1\\xunit.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.analyzers\\1.12.0\\xunit.analyzers.1.12.0.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.assert\\2.7.1\\xunit.assert.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.core\\2.7.1\\xunit.core.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.extensibility.core\\2.7.1\\xunit.extensibility.core.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.extensibility.execution\\2.7.1\\xunit.extensibility.execution.2.7.1.nupkg.sha512"
   ],
   "logs": []
 }
