@@ -130,7 +130,7 @@ public class Optimizer
             }  
         }
     }
-
+    
     public string GetSeason(SdmParameters sdmParameters)
     {
         // In given data set, summer has values around 1.5 and winter has values around 6.5
@@ -198,6 +198,7 @@ public class Optimizer
         }
         return netProductionCosts;
     }
+
     public Dictionary<ProductionUnit, decimal> GetProductionUnitsNetCosts(SdmParameters sdmParameters, List<ProductionUnit> productionUnits)
     {
         foreach (var productionUnit in productionUnits)

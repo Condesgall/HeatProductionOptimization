@@ -27,4 +27,22 @@ public class ResultDataManagerTests
         Assert.Equal(primaryEnergyConsumption, optimizationResults.PrimaryEnergyConsumption);
         Assert.Equal(co2Emissions, optimizationResults.Co2Emissions);
     }
+    
+    [Fact]
+    public void ResultData_WithValidParameters_SetsPropertiesCorrectly()
+    {
+        //arrange
+        string timeFrom = "1";
+        string timeTo = "2";
+        string productionUnit = "unit";
+        OptimizationResults optimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
+
+        //act
+        ResultData resultData = new ResultData(timeFrom, timeTo, productionUnit, optimizationResults);
+        //assert
+        Assert.Equal(timeFrom, resultData.TimeFrom);
+        Assert.Equal(timeTo, resultData.TimeTo);
+        Assert.Equal(productionUnit, resultData.ProductionUnit);
+        Assert.Equal(optimizationResults, resultData.OptimizationResults);
+    }
 }

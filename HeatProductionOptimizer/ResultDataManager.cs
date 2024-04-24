@@ -2,15 +2,56 @@ namespace ResultDataManager_
 {
 public class OptimizationResults
 {
-    public decimal ProducedHeat { get; set; }
-    public decimal ProducedElectricity { get; set; }
-    public decimal ConsumedElectricity { get; set; }
-    public decimal Expenses { get; set; }
-    public decimal Profit { get; set; }
-    public decimal PrimaryEnergyConsumption { get; set; }
-    public decimal Co2Emissions { get; set; }
+    private decimal producedHeat;
+    private decimal producedElectricity;
+    private decimal consumedElectricity;
+    private decimal expenses;
+    private decimal profit;
+    private decimal primaryEnergyConsumption;
+    private decimal co2Emissions;
 
-    // Constructor
+    public decimal ProducedHeat 
+    { 
+        get { return producedHeat; }
+        set { producedHeat = value; }
+    }
+
+    public decimal ProducedElectricity
+    { 
+        get { return producedElectricity; }
+        set { producedElectricity = value; }
+    }
+
+    public decimal ConsumedElectricity
+    { 
+        get { return consumedElectricity; }
+        set { consumedElectricity = value; }
+    }
+
+    public decimal Expenses
+    { 
+        get { return expenses; }
+        set { expenses = value; }
+    }
+
+    public decimal Profit
+    { 
+        get { return profit; }
+        set { profit = value; }
+    }
+
+    public decimal PrimaryEnergyConsumption
+    { 
+        get { return primaryEnergyConsumption; }
+        set { primaryEnergyConsumption = value; }
+    }
+
+    public decimal Co2Emissions
+    { 
+        get { return co2Emissions; }
+        set { co2Emissions = value; }
+    }
+
     public OptimizationResults(decimal producedHeat, decimal producedElectricity, decimal consumedElectricity, decimal expenses, decimal profit, decimal primaryEnergyConsumption, decimal co2Emissions)
     {
         ProducedHeat = producedHeat;
@@ -25,9 +66,28 @@ public class OptimizationResults
 
     public class ResultData
     {
-        public string TimeFrom;
-        public string TimeTo;
-        public string ProductionUnit;
+        private string timeFrom;
+        private string timeTo;
+        private string productionUnit;
+        
+        public string TimeFrom
+        {
+            get { return timeFrom; }
+            set { timeFrom = value; }
+        }
+
+        public string TimeTo
+        {
+            get { return timeTo; }
+            set { timeTo = value; }
+        }
+
+        public string ProductionUnit
+        {
+            get { return productionUnit; }
+            set { productionUnit = value; }
+        }
+        
         public OptimizationResults OptimizationResults = new OptimizationResults(0,0,0,0,0,0,0);
 
         // Parameterless constructor for Optimizer.OptimizeProduction();

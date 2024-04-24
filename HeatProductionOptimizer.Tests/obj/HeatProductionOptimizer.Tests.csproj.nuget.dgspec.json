@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj": {}
+    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj": {
+    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
         "projectName": "HeatProductionOptimizer.Tests",
-        "projectPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
-                "projectPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
+              "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
               }
             }
           }
@@ -79,14 +79,14 @@
         }
       }
     },
-    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
+    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
         "projectName": "HeatProductionOptimizer",
-        "projectPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
