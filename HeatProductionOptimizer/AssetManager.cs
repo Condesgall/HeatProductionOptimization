@@ -112,7 +112,97 @@ namespace AssetManager_
             GasConsumption = 0;
             MaxElectricity = 0;
         }
+
+        /// <summary>
+        /// Checks if the unit is electricity producing, consuming, or neither.
+        /// </summary>
+        /// <remarks>
+        /// Usage Codes:
+        /// -1: Electricity producing
+        /// -2: Electricity consuming.
+        /// -3: Doesn't use electricity.
+        /// </remarks>
+        public int GetProductionUnitType()
+        {
+            if (MaxElectricity > 0)
+            {
+                return -1;
+            }
+            else if (MaxElectricity < 0)
+            {
+                return -2;
+            }
+            else if (MaxElectricity == 0)
+            {
+                return -3;
+            }
+            else
+            {
+                return -4;
+            }
+        }
+
+        public bool HeatLessThanMaxElectricityProduction(decimal heatDemand)
+        {
+            if (heatDemand <= MaxElectricity)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CanReachHeatDemand(SdmParameters sdmParameters)
+        {
+            if (sdmParameters.HeatDemand > MaxHeat)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool CombinedUnitsReachHeatDemand(SdmParameters sdmParameters, ProductionUnit unit1, ProductionUnit unit2)
+        {
+            if (sdmParameters.HeatDemand > unit1.MaxHeat + unit2.MaxHeat)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool IsElectricBoiler()
+        {
+            if (GasConsumption == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IfThereIsASecondUnit()
+        {
+            if (Name == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
+
 
     public class HeatingGrid
     {
