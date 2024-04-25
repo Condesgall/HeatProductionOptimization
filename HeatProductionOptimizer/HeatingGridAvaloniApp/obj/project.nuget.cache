@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Bpsx2NlG9oDVgYa8KkYub6NfqVFb2xxdhhCo4K3HSD+77Rw105nV1imdk1LVikF4MSb4kNhdy2EsmqBv97I9Ug==",
+  "dgSpecHash": "CkzbzsBWr4dRPTJPRNZAtwpWCmodUm5ioOnH++lgMyGVmyTT6cbn27OCahIMxrnDiEP1jAVXwsWLbPu5r1bRZg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,8 @@
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.codeanalysis.csharp.scripting\\3.8.0\\microsoft.codeanalysis.csharp.scripting.3.8.0.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\3.8.0\\microsoft.codeanalysis.scripting.common.3.8.0.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\reactiveui\\18.3.1\\reactiveui.18.3.1.nupkg.sha512",

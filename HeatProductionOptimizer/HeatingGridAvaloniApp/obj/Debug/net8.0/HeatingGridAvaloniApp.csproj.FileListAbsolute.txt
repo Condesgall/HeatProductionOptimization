@@ -130,3 +130,5 @@ C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\HeatingGridAvaloniApp\obj\Debug\net8.0\HeatingG.88ABF3FA.Up2Date
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\HeatingGridAvaloniApp\obj\Debug\net8.0\HeatingGridAvaloniApp.genruntimeconfig.cache
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\HeatingGridAvaloniApp\obj\Debug\net8.0\ref\HeatingGridAvaloniApp.dll
+C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\HeatingGridAvaloniApp\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\HeatingGridAvaloniApp\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
