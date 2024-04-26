@@ -141,13 +141,22 @@ public class ResultDataManagerTests
         ProductionUnit optimalUnit = new ProductionUnit("a", 4, 2, 3, 0, 3);
         ProductionUnit unit2 = new ProductionUnit("", 8, 0, 0, 0, -8);
         SdmParameters sdmParameters = new SdmParameters("", "", 6, 2);
-        //el produced = 3
-        //remaining heat = 2
-        //3 - 2 = 1, so el producing
+        decimal heatRemaining = sdmParameters.HeatDemand - optimalUnit.MaxHeat;
 
         resultData.UpdateOptimizationResults_Electricity(optimalUnit, unit2, sdmParameters);
 
-        Assert.Equal(1, resultData.OptimizationResults.ProducedElectricity);
+        decimal electricityProduced = optimalUnit.CalculateElectricityProduced(sdmParameters.HeatDemand);
+        decimal electricityConsumed = unit2.CalculateElectricityConsumed(heatRemaining);
+        decimal result = electricityProduced - electricityConsumed;
+
+        if (result>0)
+        {
+            Assert.Equal(result, resultData.OptimizationResults.ProducedElectricity); 
+        }
+        else
+        {
+            Assert.Equal(result, resultData.OptimizationResults.ConsumedElectricity); 
+        }
     }
 
     [Fact]
@@ -170,8 +179,49 @@ public class ResultDataManagerTests
         ProductionUnit unit2 = new ProductionUnit("", 8, 0, 0, 0, 3);
         SdmParameters sdmParameters = new SdmParameters("", "", 6, 2);
         //heat remaining = 6 - 4 = 2
+        decimal heatRemaining = sdmParameters.HeatDemand - optimalUnit.MaxHeat;
         
-        var expected = unit2.MaxElectricity;
+        var expected = unit2.CalculateElectricityProduced(heatRemaining);
+        resultData.UpdateOptimizationResults_Electricity(optimalUnit, unit2, sdmParameters);
+
+        Assert.Equal(expected, resultData.OptimizationResults.ProducedElectricity);
+    }
+
+    [Fact]
+    public void UpdateOptimizationResults_Electricity_WhenMinus4()
+    {
+        ProductionUnit optimalUnit = new ProductionUnit("a", 4, 2, 3, 0, 0);
+        ProductionUnit unit2 = new ProductionUnit("", 8, 0, 0, 0, -3);
+        SdmParameters sdmParameters = new SdmParameters("", "", 6, 2);
+        decimal heatRemaining = sdmParameters.HeatDemand - optimalUnit.MaxHeat;
+
+        var expected = unit2.CalculateElectricityConsumed(heatRemaining);
+        resultData.UpdateOptimizationResults_Electricity(optimalUnit, unit2, sdmParameters);
+
+        Assert.Equal(expected, resultData.OptimizationResults.ConsumedElectricity);
+    }
+
+    [Fact]
+    public void UpdateOptimizationResults_Electricity_WhenMinus5()
+    {
+        ProductionUnit optimalUnit = new ProductionUnit("a", 4, 2, 3, 0, 6);
+        ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+        SdmParameters sdmParameters = new SdmParameters("", "", 6, 2);
+        
+        var expected = optimalUnit.CalculateElectricityProduced(sdmParameters.HeatDemand);
+        resultData.UpdateOptimizationResults_Electricity(optimalUnit, unit2, sdmParameters);
+
+        Assert.Equal(expected, resultData.OptimizationResults.ProducedElectricity);
+    }
+
+    [Fact]
+    public void UpdateOptimizationResults_Electricity_WhenMinus6()
+    {
+        ProductionUnit optimalUnit = new ProductionUnit("a", 4, 2, 3, 0, 6);
+        ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+        SdmParameters sdmParameters = new SdmParameters("", "", 6, 2);
+        
+        var expected = optimalUnit.CalculateElectricityConsumed(sdmParameters.HeatDemand);
         resultData.UpdateOptimizationResults_Electricity(optimalUnit, unit2, sdmParameters);
 
         Assert.Equal(expected, resultData.OptimizationResults.ProducedElectricity);

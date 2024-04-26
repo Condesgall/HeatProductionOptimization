@@ -157,20 +157,21 @@ public class OptimizerTests
         string timeFrom = "00";
         string timeTo = "01";
         decimal heatDemand = 1.79m;
-        decimal heatDemand2 = 3.00m;
         decimal elPrice = 752.03m;
         SdmParameters sdmParameters = new SdmParameters(timeFrom, timeTo, heatDemand, elPrice);
-        SdmParameters sdmParameters2 = new SdmParameters(timeFrom, timeTo, heatDemand2, elPrice);
         ProductionUnit productionUnit = new ProductionUnit("GM", 3.6m, 1100, 640, 1.9m, 2.7m);
+        decimal electricityProduced = productionUnit.CalculateElectricityProduced(sdmParameters.HeatDemand);
+        
         //act
         var test1 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
-        var test2 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters2, productionUnit);
-        decimal calculations = sdmParameters.HeatDemand * (productionUnit.ProductionCosts - sdmParameters.ElPrice);
-        decimal calculations2 = (sdmParameters2.HeatDemand * productionUnit.ProductionCosts) - (productionUnit.MaxElectricity * sdmParameters2.ElPrice);
+        
+        //when heatDemand <= maxEl -- heatDemand, sdmParameters
+        decimal profit = electricityProduced * sdmParameters.ElPrice;
+        decimal expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
+        decimal result1 = expenses - profit;
 
         //assert
-        Assert.Equal(calculations, test1);
-        Assert.Equal(calculations2, test2);
+        Assert.Equal(result1, test1);
     }
 
     [Fact]
@@ -179,20 +180,18 @@ public class OptimizerTests
         string timeFrom = "00";
         string timeTo = "01";
         decimal heatDemand = 1.79m;
-        decimal heatDemand2 = 3.00m;
         decimal elPrice = 752.03m;
         SdmParameters sdmParameters = new SdmParameters(timeFrom, timeTo, heatDemand, elPrice);
-        SdmParameters sdmParameters2 = new SdmParameters(timeFrom, timeTo, heatDemand2, elPrice);
         ProductionUnit productionUnit = new ProductionUnit("GM", 2m, 1100, 640, 1.9m, -8.0m);
         //act
-        var test1 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
-        var test2 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters2, productionUnit);
-        decimal calculations = sdmParameters.HeatDemand * (productionUnit.ProductionCosts + sdmParameters.ElPrice);
-        decimal calculations2 = productionUnit.MaxHeat * (productionUnit.ProductionCosts + sdmParameters.ElPrice);
+        var test = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
+
+        decimal expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
+        decimal extraExpenses = sdmParameters.HeatDemand * sdmParameters.ElPrice;
+        decimal result = expenses + extraExpenses;
 
         //assert
-        Assert.Equal(calculations, test1);
-        Assert.Equal(calculations2, test2);
+        Assert.Equal(result, test);
     }
 
     [Fact]

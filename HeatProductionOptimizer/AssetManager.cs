@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace AssetManager_
 {
     public class AssetManager
@@ -136,22 +138,52 @@ namespace AssetManager_
             {
                 return -3;
             }
+            else 
+            {
+                bool allZero = true; // Flag to track if all properties are zero
+                PropertyInfo[] properties = typeof(ProductionUnit).GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    object? value = property.GetValue(this);
+                    if (value != null && (int)value != 0)
+                    {
+                        allZero = false; 
+                        break; 
+                    }
+                }
+                if (allZero)
+                {
+                    return -4; // Return -4 if all properties are zero
+                }
+            }
+            return -5;
+        }
+
+        public decimal CalculateElectricityProduced(decimal heatDemand)
+        {
+            decimal electricityProduced = (heatDemand/MaxHeat) * MaxElectricity;
+            if (electricityProduced <= MaxElectricity)
+            {
+                return electricityProduced;
+            }
             else
             {
-                return -4;
+                return MaxElectricity;
             }
         }
 
-        public bool HeatLessThanMaxElectricityProduction(decimal heatDemand)
+        public decimal CalculateElectricityConsumed(decimal heatDemand)
         {
-            if (heatDemand <= MaxElectricity)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                decimal electricityConsumed = (heatDemand / MaxHeat) * MaxElectricity;
+            
+                if (electricityConsumed > MaxElectricity)
+                {
+                    return MaxElectricity;
+                }
+                else
+                {
+                    return electricityConsumed;
+                }
         }
 
         public bool CanReachHeatDemand(SdmParameters sdmParameters)

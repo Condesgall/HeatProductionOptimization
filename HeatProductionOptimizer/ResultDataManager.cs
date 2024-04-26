@@ -196,59 +196,55 @@ public class OptimizationResults
         {
             int typeOfcombination = CheckWhatTypeOfCombination(optimalUnit, secondUnit);
             decimal heatDemand = sdmParameters.HeatDemand;
+            decimal heatRemaining = heatDemand - optimalUnit.MaxHeat;
 
             switch (typeOfcombination)
             {
                 // El producing unit + el consuming unit
                 case -1:
-                    decimal remaindingHeat = heatDemand - optimalUnit.MaxHeat;
-                    decimal electricityProduced = optimalUnit.MaxElectricity;
+                    
+                    decimal electricityProduced = optimalUnit.CalculateElectricityProduced(heatDemand);
+                    decimal electricityConsumed = secondUnit.CalculateElectricityConsumed(heatRemaining);
 
-                    if (ElecricityProducing(electricityProduced, remaindingHeat))
+                    decimal totalElectricity = electricityProduced - electricityConsumed;
+                    if (totalElectricity > 0)
                     {
-                        optimizationResults.ProducedElectricity = electricityProduced - remaindingHeat;
+                        optimizationResults.ProducedElectricity = totalElectricity;
                     }
                     else
                     {
-                        optimizationResults.ConsumedElectricity =- (electricityProduced - remaindingHeat);
+                        optimizationResults.ConsumedElectricity = totalElectricity;
                     }
                     break;
 
                 // El producing + heat only
                 case -2:
-                    optimizationResults.ProducedElectricity = optimalUnit.MaxElectricity;
+                    optimizationResults.ProducedElectricity = optimalUnit.CalculateElectricityProduced(heatDemand);
                     break;
 
                 // heat only + el producing
                 case -3:
-                    decimal heatRemaining = heatDemand - optimalUnit.MaxHeat;
-                    if (secondUnit.MaxElectricity <= heatRemaining)
-                    {
-                        optimizationResults.ProducedElectricity = heatRemaining;
-                    }
-                    else
-                    {
-                        optimizationResults.ProducedElectricity = secondUnit.MaxElectricity;
-                    }
+                    optimizationResults.ProducedElectricity = secondUnit.CalculateElectricityProduced(heatRemaining);
                     break;
 
                 // heat only + el consuming
                 case -4:
-                    optimizationResults.ConsumedElectricity = heatDemand - optimalUnit.MaxHeat;
+                    optimizationResults.ConsumedElectricity = secondUnit.CalculateElectricityConsumed(heatRemaining);
                     break;
 
                 // el producing
                 case -5:
-                    optimizationResults.ProducedElectricity = heatDemand;
+                    optimizationResults.ProducedElectricity = optimalUnit.CalculateElectricityProduced(heatDemand);
                     break;
                 
                 // el consuming
                 case -6:
-                    optimizationResults.ConsumedElectricity = heatDemand;
+                    optimizationResults.ConsumedElectricity = optimalUnit.CalculateElectricityConsumed(heatDemand);
                     break;
 
                 default:
                     optimizationResults.ProducedElectricity = 0;
+                    optimizationResults.ConsumedElectricity = 0;
                     break;
             }
         }

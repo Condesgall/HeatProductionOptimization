@@ -161,8 +161,10 @@ public class Optimizer
                 //optimize by costs
                 case 1:
                     OptimizeByCostsHandler(resultData, sdmParameters);
-                break;
-
+                    break;
+                case 2:
+                    //OptimizeByCO2AndCostsHandler();
+                    break;
                 default:
                 break;
             }
@@ -291,32 +293,40 @@ public class Optimizer
 
     public void NetCostsForElProducingUnitsHandler(ProductionUnit productionUnit, SdmParameters sdmParameters)
     {
+        decimal expenses;
+        decimal profit;
+        decimal electricityProduced = productionUnit.CalculateElectricityProduced(sdmParameters.HeatDemand);
+
         if (productionUnit.CanReachHeatDemand(sdmParameters))
         {
-            if (productionUnit.HeatLessThanMaxElectricityProduction(sdmParameters.HeatDemand))
-            {
-                netProductionCosts = sdmParameters.HeatDemand * (productionUnit.ProductionCosts - sdmParameters.ElPrice);
-            }
-            else
-            {
-                netProductionCosts = (sdmParameters.HeatDemand * productionUnit.ProductionCosts) - (productionUnit.MaxElectricity * sdmParameters.ElPrice);
-            }
+            profit = electricityProduced * sdmParameters.ElPrice;
+            expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
+            netProductionCosts = expenses - profit;
         }
         else
         {
-            netProductionCosts = productionUnit.MaxHeat * productionUnit.ProductionCosts - productionUnit.MaxElectricity * sdmParameters.ElPrice;
+            expenses = productionUnit.MaxHeat * productionUnit.ProductionCosts;
+            profit = productionUnit.MaxElectricity * sdmParameters.ElPrice;
+            netProductionCosts = expenses - profit;
         }
     }
 
     public void NetCostsForElConsumingUnitsHandler(ProductionUnit productionUnit, SdmParameters sdmParameters)
     {
+        decimal expenses;
+        decimal extraExpenses;
+
         if (productionUnit.CanReachHeatDemand(sdmParameters))
         {
-            netProductionCosts = sdmParameters.HeatDemand * (productionUnit.ProductionCosts + sdmParameters.ElPrice);
+            expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
+            extraExpenses = sdmParameters.HeatDemand * sdmParameters.ElPrice;
+            netProductionCosts = expenses + extraExpenses;
         }
         else
         {
-            netProductionCosts = productionUnit.MaxHeat * (productionUnit.ProductionCosts + sdmParameters.ElPrice);
+            expenses = productionUnit.MaxHeat * productionUnit.ProductionCosts;
+            extraExpenses = (-productionUnit.MaxElectricity) * sdmParameters.ElPrice;
+            netProductionCosts = expenses + extraExpenses;
         }
     }
 
