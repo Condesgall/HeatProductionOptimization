@@ -351,7 +351,11 @@ public class Optimizer
         List<ProductionUnit> unitSortedList = unitPairingCandidatesNetCosts.Keys.ToList();
         List<ProductionUnit> optionsList = new List<ProductionUnit>();
 
-        if (primaryUnitIndex < unitSortedList.Count)
+        if (primaryUnitIndex == secondUnitIndex)
+        {
+            GetBestUnitCombinations(sdmParameters, primaryUnitIndex, secondUnitIndex + 1);
+        }
+        else if (primaryUnitIndex < unitSortedList.Count)
         {
             if (secondUnitIndex < unitSortedList.Count)
             {
@@ -367,8 +371,9 @@ public class Optimizer
             }
             else
             {
+                secondUnitIndex = 0;
                 // Move to the next unit when secondUnitIndex exceeds bounds
-                GetBestUnitCombinations(sdmParameters, primaryUnitIndex + 1, secondUnitIndex + 2);
+                GetBestUnitCombinations(sdmParameters, primaryUnitIndex + 1, secondUnitIndex);
             }
         }
         combinedUnitsNetCost.OrderBy(pair => pair.Value);
