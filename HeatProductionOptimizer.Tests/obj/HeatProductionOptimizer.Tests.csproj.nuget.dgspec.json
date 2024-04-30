@@ -135,9 +135,25 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Avalonia": {
+              "target": "Package",
+              "version": "[11.0.10, )"
+            },
+            "Avalonia.Themes.Fluent": {
+              "target": "Package",
+              "version": "[11.0.10, )"
+            },
+            "Avalonia.Win32": {
+              "target": "Package",
+              "version": "[11.0.10, )"
+            },
             "CsvHelper": {
               "target": "Package",
               "version": "[31.0.4, )"
+            },
+            "ReactiveUI": {
+              "target": "Package",
+              "version": "[19.6.12, )"
             },
             "xunit": {
               "target": "Package",

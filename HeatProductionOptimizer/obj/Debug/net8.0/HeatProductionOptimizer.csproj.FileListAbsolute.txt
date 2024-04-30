@@ -86,11 +86,10 @@ C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionO
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.genruntimeconfig.cache
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\ref\HeatProductionOptimizer.dll
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.AssemblyReference.cache
+C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\Avalonia\Resources.Inputs.cache
+C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\Avalonia\resources
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfoInputs.cache
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfo.cs
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.CoreCompileInputs.cache
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.sourcelink.json
-C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.dll
-C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\refint\HeatProductionOptimizer.dll
-C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb

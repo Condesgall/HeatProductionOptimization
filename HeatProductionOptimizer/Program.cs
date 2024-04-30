@@ -1,6 +1,15 @@
 using AssetManager_;
 using ResultDataManager_;
 using ResultDataStorage;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+//using Avalonia.ReactiveUI;
+using HeatingGridAvaloniaApp.Views;
+using System;
+using System.IO;
+using HeatingGridAvaloniaApp;
+using Avalonia.Win32;
+using Avalonia.UsePlatformDetect;
 
 class Program
 {
@@ -10,9 +19,16 @@ class Program
     public static AssetManager assetManager = new AssetManager();
     public static  ResultDataManager resultDataManager = new ResultDataManager();
     public static ResultDataCSV resultDataCSV = new ResultDataCSV("ResultData.csv");
-    Optimizer optimizer = new Optimizer();
-    static void Main()
+    static Optimizer optimizer = new Optimizer();
+    
+    [STAThread]
+    static void Main(string[] args)
     {
+        // Initialization code. Don't use any Avalonia, third-party APIs or any
+        // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
+        // yet and stuff might break.
+        BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+
         ResultData gbResults = new ResultData();
         gbResults.ProductionUnit = "GB";
         gbResults.OptimizationResults.ProducedHeat = 1m;
@@ -131,5 +147,15 @@ class Program
             Console.Write("> ");
         }
         return userInput_int;
+    }
+
+    // Avalonia configuration, don't remove; also used by visual designer.
+    public static AppBuilder BuildAvaloniaApp()
+    {
+        return AppBuilder.Configure<App>()
+            .UsePlatformDetect()
+            .With(new Win32PlatformOptions { AllowEglInitialization = true })
+            .LogToTrace()
+            .UseReactiveUI();
     }
 }
