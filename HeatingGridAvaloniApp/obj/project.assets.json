@@ -366,18 +366,18 @@
           }
         }
       },
-      "DynamicData/7.9.5": {
+      "DynamicData/8.4.1": {
         "type": "package",
         "dependencies": {
-          "System.Reactive": "5.0.0"
+          "System.Reactive": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/DynamicData.dll": {
+          "lib/net8.0/DynamicData.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/DynamicData.dll": {
+          "lib/net8.0/DynamicData.dll": {
             "related": ".xml"
           }
         }
@@ -814,19 +814,21 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "ReactiveUI/18.3.1": {
+      "ReactiveUI/20.0.1": {
         "type": "package",
         "dependencies": {
-          "DynamicData": "7.9.5",
-          "Splat": "14.4.1"
+          "DynamicData": "8.4.1",
+          "Splat": "15.0.1",
+          "System.ComponentModel.Annotations": "5.0.0",
+          "System.Text.Json": "8.0.3"
         },
         "compile": {
-          "lib/net6.0/ReactiveUI.dll": {
+          "lib/net8.0/ReactiveUI.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/ReactiveUI.dll": {
+          "lib/net8.0/ReactiveUI.dll": {
             "related": ".xml"
           }
         }
@@ -929,15 +931,15 @@
           }
         }
       },
-      "Splat/14.4.1": {
+      "Splat/15.0.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Splat.dll": {
+          "lib/net8.0/Splat.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Splat.dll": {
+          "lib/net8.0/Splat.dll": {
             "related": ".xml"
           }
         }
@@ -968,13 +970,17 @@
           }
         }
       },
-      "System.ComponentModel.Annotations/4.5.0": {
+      "System.ComponentModel.Annotations/5.0.0": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp2.0/_._": {}
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp2.0/_._": {}
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Diagnostics.Debug/4.3.0": {
@@ -1145,20 +1151,20 @@
           "lib/netstandard1.3/System.ObjectModel.dll": {}
         }
       },
-      "System.Reactive/5.0.0": {
+      "System.Reactive/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net5.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net5.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net5.0/_._": {}
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -1392,6 +1398,47 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.Text.Encodings.Web/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll": {
+            "assetType": "runtime",
+            "rid": "browser"
+          }
+        }
+      },
+      "System.Text.Json/8.0.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Encodings.Web": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
       },
       "System.Threading/4.3.0": {
@@ -1925,25 +1972,27 @@
         "lib/netstandard2.1/CsvHelper.xml"
       ]
     },
-    "DynamicData/7.9.5": {
-      "sha512": "xFwVha7o3qUtVYxco5p+7Urcztc/m1gmaEUxOG0i7LNe+vfCfyb0ECAsT2FLm3zOPHb0g8s9qVu5LfPKfRNVng==",
+    "DynamicData/8.4.1": {
+      "sha512": "Mn1+fU/jqxgONEJq8KLQPGWEi7g/hUVTbjZyn4QM0sWWDAVOHPO9WjXWORSykwdfg/6S3GM15qsfz+2EvO+QAQ==",
       "type": "package",
-      "path": "dynamicdata/7.9.5",
+      "path": "dynamicdata/8.4.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE/LICENSE",
-        "dynamicdata.7.9.5.nupkg.sha512",
+        "README.md",
+        "dynamicdata.8.4.1.nupkg.sha512",
         "dynamicdata.nuspec",
         "lib/net462/DynamicData.dll",
         "lib/net462/DynamicData.xml",
         "lib/net6.0/DynamicData.dll",
         "lib/net6.0/DynamicData.xml",
+        "lib/net7.0/DynamicData.dll",
+        "lib/net7.0/DynamicData.xml",
+        "lib/net8.0/DynamicData.dll",
+        "lib/net8.0/DynamicData.xml",
         "lib/netstandard2.0/DynamicData.dll",
         "lib/netstandard2.0/DynamicData.xml",
-        "lib/uap10.0.16299/DynamicData.dll",
-        "lib/uap10.0.16299/DynamicData.pri",
-        "lib/uap10.0.16299/DynamicData.xml",
         "logo.png"
       ]
     },
@@ -2566,51 +2615,61 @@
         "runtime.json"
       ]
     },
-    "ReactiveUI/18.3.1": {
-      "sha512": "0tclGtjrRPfA2gbjiM7O3DeNmo6/TpDn7CMN6jgzDrbgrnysM7oEzjGEeXbtXaOxH6kEf6RiMKWobZoSgbBXhQ==",
+    "ReactiveUI/20.0.1": {
+      "sha512": "cZ9Jlg1geg/zsEPOw1Uwe78Xkz3l5ZJbGlVamrrjNKdiS+EkJHET51JMeHZ7IPTTWsVL8ITkDGPzxF3vFrZZUw==",
       "type": "package",
-      "path": "reactiveui/18.3.1",
+      "path": "reactiveui/20.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE/LICENSE",
-        "lib/monoandroid11.0/ReactiveUI.dll",
-        "lib/monoandroid11.0/ReactiveUI.pdb",
-        "lib/monoandroid11.0/ReactiveUI.xml",
-        "lib/monoandroid12.0/ReactiveUI.dll",
-        "lib/monoandroid12.0/ReactiveUI.pdb",
-        "lib/monoandroid12.0/ReactiveUI.xml",
+        "README.md",
         "lib/net462/ReactiveUI.dll",
         "lib/net462/ReactiveUI.xml",
         "lib/net472/ReactiveUI.dll",
         "lib/net472/ReactiveUI.xml",
-        "lib/net6.0-android31.0/ReactiveUI.dll",
-        "lib/net6.0-android31.0/ReactiveUI.xml",
-        "lib/net6.0-ios15.4/ReactiveUI.dll",
-        "lib/net6.0-ios15.4/ReactiveUI.xml",
-        "lib/net6.0-maccatalyst15.4/ReactiveUI.dll",
-        "lib/net6.0-maccatalyst15.4/ReactiveUI.xml",
-        "lib/net6.0-macos12.3/ReactiveUI.dll",
-        "lib/net6.0-macos12.3/ReactiveUI.xml",
-        "lib/net6.0-tvos15.4/ReactiveUI.dll",
-        "lib/net6.0-tvos15.4/ReactiveUI.xml",
+        "lib/net6.0-windows10.0.17763/ReactiveUI.dll",
+        "lib/net6.0-windows10.0.17763/ReactiveUI.xml",
+        "lib/net6.0-windows10.0.19041/ReactiveUI.dll",
+        "lib/net6.0-windows10.0.19041/ReactiveUI.xml",
         "lib/net6.0/ReactiveUI.dll",
         "lib/net6.0/ReactiveUI.xml",
+        "lib/net7.0-android33.0/ReactiveUI.dll",
+        "lib/net7.0-android33.0/ReactiveUI.xml",
+        "lib/net7.0-ios16.1/ReactiveUI.dll",
+        "lib/net7.0-ios16.1/ReactiveUI.xml",
+        "lib/net7.0-maccatalyst16.1/ReactiveUI.dll",
+        "lib/net7.0-maccatalyst16.1/ReactiveUI.xml",
+        "lib/net7.0-macos13.0/ReactiveUI.dll",
+        "lib/net7.0-macos13.0/ReactiveUI.xml",
+        "lib/net7.0-tvos16.1/ReactiveUI.dll",
+        "lib/net7.0-tvos16.1/ReactiveUI.xml",
+        "lib/net7.0-windows10.0.17763/ReactiveUI.dll",
+        "lib/net7.0-windows10.0.17763/ReactiveUI.xml",
+        "lib/net7.0-windows10.0.19041/ReactiveUI.dll",
+        "lib/net7.0-windows10.0.19041/ReactiveUI.xml",
+        "lib/net7.0/ReactiveUI.dll",
+        "lib/net7.0/ReactiveUI.xml",
+        "lib/net8.0-android34.0/ReactiveUI.dll",
+        "lib/net8.0-android34.0/ReactiveUI.xml",
+        "lib/net8.0-ios17.2/ReactiveUI.dll",
+        "lib/net8.0-ios17.2/ReactiveUI.xml",
+        "lib/net8.0-maccatalyst17.2/ReactiveUI.dll",
+        "lib/net8.0-maccatalyst17.2/ReactiveUI.xml",
+        "lib/net8.0-macos14.2/ReactiveUI.dll",
+        "lib/net8.0-macos14.2/ReactiveUI.xml",
+        "lib/net8.0-tvos17.2/ReactiveUI.dll",
+        "lib/net8.0-tvos17.2/ReactiveUI.xml",
+        "lib/net8.0-windows10.0.17763/ReactiveUI.dll",
+        "lib/net8.0-windows10.0.17763/ReactiveUI.xml",
+        "lib/net8.0-windows10.0.19041/ReactiveUI.dll",
+        "lib/net8.0-windows10.0.19041/ReactiveUI.xml",
+        "lib/net8.0/ReactiveUI.dll",
+        "lib/net8.0/ReactiveUI.xml",
         "lib/netstandard2.0/ReactiveUI.dll",
         "lib/netstandard2.0/ReactiveUI.xml",
-        "lib/tizen40/ReactiveUI.dll",
-        "lib/tizen40/ReactiveUI.xml",
-        "lib/uap10.0.16299/ReactiveUI.dll",
-        "lib/uap10.0.16299/ReactiveUI.pri",
-        "lib/uap10.0.16299/ReactiveUI.xml",
-        "lib/xamarinios10/ReactiveUI.dll",
-        "lib/xamarinios10/ReactiveUI.xml",
-        "lib/xamarinmac20/ReactiveUI.dll",
-        "lib/xamarinmac20/ReactiveUI.xml",
-        "lib/xamarintvos10/ReactiveUI.dll",
-        "lib/xamarintvos10/ReactiveUI.xml",
         "logo.png",
-        "reactiveui.18.3.1.nupkg.sha512",
+        "reactiveui.20.0.1.nupkg.sha512",
         "reactiveui.nuspec"
       ]
     },
@@ -2788,19 +2847,23 @@
         "skiasharp.nativeassets.win32.nuspec"
       ]
     },
-    "Splat/14.4.1": {
-      "sha512": "Z1Mncnzm9pNIaIbZ/EWH6x5ESnKsmAvu8HP4StBRw+yhz0lzE7LCbt22TNTPaFrYLYbYCbGQIc/61yuSnpLidg==",
+    "Splat/15.0.1": {
+      "sha512": "jG1HhVm9aSSNdwyE3jpfzah58vCf8q0fG1jPcEhqDmZaYUgJBRr5VY4w1z4K0rof7XiprRRwzhF/17rpU3xv1Q==",
       "type": "package",
-      "path": "splat/14.4.1",
+      "path": "splat/15.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE/LICENSE",
         "lib/net6.0/Splat.dll",
         "lib/net6.0/Splat.xml",
+        "lib/net7.0/Splat.dll",
+        "lib/net7.0/Splat.xml",
+        "lib/net8.0/Splat.dll",
+        "lib/net8.0/Splat.xml",
         "lib/netstandard2.0/Splat.dll",
         "lib/netstandard2.0/Splat.xml",
-        "splat.14.4.1.nupkg.sha512",
+        "splat.15.0.1.nupkg.sha512",
         "splat.nuspec"
       ]
     },
@@ -2898,13 +2961,14 @@
         "version.txt"
       ]
     },
-    "System.ComponentModel.Annotations/4.5.0": {
-      "sha512": "UxYQ3FGUOtzJ7LfSdnYSFd7+oEv6M8NgUatatIN2HxNtDdlcvFAf+VIq4Of9cDMJEJC0aSRv/x898RYhB4Yppg==",
+    "System.ComponentModel.Annotations/5.0.0": {
+      "sha512": "dMkqfy2el8A8/I76n2Hi1oBFEbG1SfxD2l5nhwXV3XjlnOmwxJlQbYpJH4W51odnU9sARCSAgv7S3CyAFMkpYg==",
       "type": "package",
-      "path": "system.componentmodel.annotations/4.5.0",
+      "path": "system.componentmodel.annotations/5.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/MonoAndroid10/_._",
@@ -2912,11 +2976,11 @@
         "lib/net45/_._",
         "lib/net461/System.ComponentModel.Annotations.dll",
         "lib/netcore50/System.ComponentModel.Annotations.dll",
-        "lib/netcoreapp2.0/_._",
         "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
         "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.xml",
         "lib/portable-net45+win8/_._",
-        "lib/uap10.0.16299/_._",
         "lib/win8/_._",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
@@ -2938,7 +3002,6 @@
         "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
         "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
         "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
-        "ref/netcoreapp2.0/_._",
         "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
         "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
         "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
@@ -2974,14 +3037,15 @@
         "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
         "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
         "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.xml",
         "ref/portable-net45+win8/_._",
-        "ref/uap10.0.16299/_._",
         "ref/win8/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.componentmodel.annotations.4.5.0.nupkg.sha512",
+        "system.componentmodel.annotations.5.0.0.nupkg.sha512",
         "system.componentmodel.annotations.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -3596,32 +3660,31 @@
         "system.objectmodel.nuspec"
       ]
     },
-    "System.Reactive/5.0.0": {
-      "sha512": "erBZjkQHWL9jpasCE/0qKAryzVBJFxGHVBAvgRN1bzM0q2s1S4oYREEEL0Vb+1kA/6BKb5FjUZMp5VXmy+gzkQ==",
+    "System.Reactive/6.0.0": {
+      "sha512": "31kfaW4ZupZzPsI5PVe77VhnvFF55qgma7KZr/E0iFTs6fmdhhG8j0mgEx620iLTey1EynOkEfnyTjtNEpJzGw==",
       "type": "package",
-      "path": "system.reactive/5.0.0",
+      "path": "system.reactive/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "build/net5.0/_._",
-        "build/netcoreapp3.1/System.Reactive.dll",
-        "build/netcoreapp3.1/System.Reactive.targets",
-        "build/netcoreapp3.1/System.Reactive.xml",
-        "buildTransitive/net5.0/_._",
-        "buildTransitive/netcoreapp3.1/System.Reactive.targets",
+        "build/net6.0-windows10.0.19041/_._",
+        "build/net6.0/_._",
+        "buildTransitive/net6.0-windows10.0.19041/_._",
+        "buildTransitive/net6.0/_._",
+        "icon.png",
         "lib/net472/System.Reactive.dll",
         "lib/net472/System.Reactive.xml",
-        "lib/net5.0-windows10.0.19041/System.Reactive.dll",
-        "lib/net5.0-windows10.0.19041/System.Reactive.xml",
-        "lib/net5.0/System.Reactive.dll",
-        "lib/net5.0/System.Reactive.xml",
-        "lib/netcoreapp3.1/_._",
+        "lib/net6.0-windows10.0.19041/System.Reactive.dll",
+        "lib/net6.0-windows10.0.19041/System.Reactive.xml",
+        "lib/net6.0/System.Reactive.dll",
+        "lib/net6.0/System.Reactive.xml",
         "lib/netstandard2.0/System.Reactive.dll",
         "lib/netstandard2.0/System.Reactive.xml",
-        "lib/uap10.0.16299/System.Reactive.dll",
-        "lib/uap10.0.16299/System.Reactive.pri",
-        "lib/uap10.0.16299/System.Reactive.xml",
-        "system.reactive.5.0.0.nupkg.sha512",
+        "lib/uap10.0.18362/System.Reactive.dll",
+        "lib/uap10.0.18362/System.Reactive.pri",
+        "lib/uap10.0.18362/System.Reactive.xml",
+        "readme.md",
+        "system.reactive.6.0.0.nupkg.sha512",
         "system.reactive.nuspec"
       ]
     },
@@ -4518,6 +4581,114 @@
         "version.txt"
       ]
     },
+    "System.Text.Encodings.Web/8.0.0": {
+      "sha512": "yev/k9GHAEGx2Rg3/tU6MQh4HGBXJs70y7j1LaM1i/ER9po+6nnQ6RRqTJn1E7Xu0fbIFK80Nh5EoODxrbxwBQ==",
+      "type": "package",
+      "path": "system.text.encodings.web/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Text.Encodings.Web.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Text.Encodings.Web.targets",
+        "lib/net462/System.Text.Encodings.Web.dll",
+        "lib/net462/System.Text.Encodings.Web.xml",
+        "lib/net6.0/System.Text.Encodings.Web.dll",
+        "lib/net6.0/System.Text.Encodings.Web.xml",
+        "lib/net7.0/System.Text.Encodings.Web.dll",
+        "lib/net7.0/System.Text.Encodings.Web.xml",
+        "lib/net8.0/System.Text.Encodings.Web.dll",
+        "lib/net8.0/System.Text.Encodings.Web.xml",
+        "lib/netstandard2.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard2.0/System.Text.Encodings.Web.xml",
+        "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll",
+        "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.xml",
+        "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll",
+        "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.xml",
+        "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll",
+        "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.8.0.0.nupkg.sha512",
+        "system.text.encodings.web.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Text.Json/8.0.3": {
+      "sha512": "hpagS9joOwv6efWfrMmV9MjQXpiXZH72PgN067Ysfr6AWMSD1/1hEcvh/U5mUpPLezEWsOJSuVrmqDIVD958iA==",
+      "type": "package",
+      "path": "system.text.json/8.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn3.11/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn3.11/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn4.0/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn4.4/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "buildTransitive/net461/System.Text.Json.targets",
+        "buildTransitive/net462/System.Text.Json.targets",
+        "buildTransitive/net6.0/System.Text.Json.targets",
+        "buildTransitive/netcoreapp2.0/System.Text.Json.targets",
+        "buildTransitive/netstandard2.0/System.Text.Json.targets",
+        "lib/net462/System.Text.Json.dll",
+        "lib/net462/System.Text.Json.xml",
+        "lib/net6.0/System.Text.Json.dll",
+        "lib/net6.0/System.Text.Json.xml",
+        "lib/net7.0/System.Text.Json.dll",
+        "lib/net7.0/System.Text.Json.xml",
+        "lib/net8.0/System.Text.Json.dll",
+        "lib/net8.0/System.Text.Json.xml",
+        "lib/netstandard2.0/System.Text.Json.dll",
+        "lib/netstandard2.0/System.Text.Json.xml",
+        "system.text.json.8.0.3.nupkg.sha512",
+        "system.text.json.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Threading/4.3.0": {
       "sha512": "VkUS0kOBcUf3Wwm0TSbrevDDZ6BlM+b/HRiapRFWjM5O0NS0LviG0glKmFK+hhPDd1XFeSdU1GmlLhb2CoVpIw==",
       "type": "package",
@@ -4718,23 +4889,29 @@
       "Avalonia.ReactiveUI >= 11.0.10",
       "Avalonia.Themes.Fluent >= 11.0.10",
       "CsvHelper >= 32.0.1",
-      "Microsoft.Extensions.DependencyInjection >= 8.0.0"
+      "Microsoft.Extensions.DependencyInjection >= 8.0.0",
+      "ReactiveUI >= 20.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dell\\.nuget\\packages\\": {}
+    "C:\\Users\\sandr\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj",
+      "projectUniqueName": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj",
       "projectName": "HeatingGridAvaloniApp",
-      "projectPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj",
-      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\obj\\",
+      "projectPath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj",
+      "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatingGridAvaloniApp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4796,6 +4973,10 @@
           "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "ReactiveUI": {
+            "target": "Package",
+            "version": "[20.0.1, )"
           }
         },
         "imports": [

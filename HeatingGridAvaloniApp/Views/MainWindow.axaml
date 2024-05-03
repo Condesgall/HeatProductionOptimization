@@ -25,17 +25,6 @@
             Text="Danfoss Heating App">
         </TextBlock>
         </Border>
-        <StackPanel>
-            <Grid ShowGridLines="False" Margin="5"
-                    ColumnDefinitions="120, 200" 
-                    RowDefinitions="Auto, Auto, Auto">
-                <Label Grid.Row="0" Grid.Column="0" Margin="10">UserName</Label>
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="0 5" Name="userName"/>
-                <Label Grid.Row="1" Grid.Column="0" Margin="10">Password</Label>
-                <TextBox Grid.Row="1"  Grid.Column="1" Margin="0 5" Name="password"/>
-                <Button Grid.Row="2" Grid.Column="1" Margin="0 5" Click="ButtonClicked">Login</Button>
-            </Grid>
-        </StackPanel>
+        
     </StackPanel>
-    
 </Window>

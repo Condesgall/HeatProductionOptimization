@@ -1021,19 +1021,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dell\\.nuget\\packages\\": {}
+    "C:\\Users\\sandr\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
       "projectName": "HeatProductionOptimizer.Tests",
-      "projectPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
-      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatProductionOptimizer.Tests\\obj\\",
+      "projectPath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
+      "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1047,8 +1052,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
-              "projectPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
+            "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
+              "projectPath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj"
             }
           }
         }

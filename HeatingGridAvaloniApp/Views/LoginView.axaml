@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HeatingGridAvaloniApp.Views.LoginView"
+             x:DataType="vm:LoginViewModel">
+  
+
+  <StackPanel>
+    <Grid ShowGridLines="False" Margin="5"
+          ColumnDefinitions="120, 200" 
+          RowDefinitions="Auto, Auto, Auto">
+      <Label Grid.Row="0" Grid.Column="0" Margin="10" Content="{Binding NameString}"></Label>
+      <TextBox Grid.Row="0" Grid.Column="1" Margin="0 5" Name="userName"/>
+      <Label Grid.Row="1" Grid.Column="0" Margin="10">Password</Label>
+      <TextBox Grid.Row="1"  Grid.Column="1" Margin="0 5" Name="password"/>
+      <Button Grid.Row="2" Grid.Column="1" Margin="0 5" Click="">Login</Button>
+    </Grid>
+  </StackPanel>
+</UserControl>

@@ -1,5 +1,5 @@
 using System.Globalization;
-using HeatingGridAvaloniaApp.Modules;
+using HeatingGridAvaloniaApp.Models;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.IO;
@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HeatingGridAvaloniaApp.Modules;
+namespace HeatingGridAvaloniaApp.Models;
 
 public class Optimizer
 {

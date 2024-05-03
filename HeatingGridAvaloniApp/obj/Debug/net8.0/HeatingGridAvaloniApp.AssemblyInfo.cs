@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HeatingGridAvaloniApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc248cb19bd6ebc0d66936d1a9e3d3ef3c82be34")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6fe10d065afbf7faee92625ce7665d59cd9d81fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("HeatingGridAvaloniApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HeatingGridAvaloniApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

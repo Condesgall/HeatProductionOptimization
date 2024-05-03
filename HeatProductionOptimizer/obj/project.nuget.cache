@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "kfyxQUOpLl9ldGW4MEV7aRXekg3px8jCg2URkVg0IuHlutXjSDxRIyDfxQfgs4KJ9AZDeOzjmHGj0uSOJ6IWYQ==",
+  "dgSpecHash": "3p/i4F6nxsuqLpITB+z/2zIUSX4fgUGxgx2gUW14nsJNnFvVhTFoyyjd7/1zJL0UBVYSRF58L7WZQNO76fFkeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+  "projectFilePath": "C:\\Users\\sandr\\OneDrive\\Skrivebord\\HeatProductionnew\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Dell\\.nuget\\packages\\csvhelper\\31.0.4\\csvhelper.31.0.4.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit\\2.7.1\\xunit.2.7.1.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit.analyzers\\1.12.0\\xunit.analyzers.1.12.0.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit.assert\\2.7.1\\xunit.assert.2.7.1.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit.core\\2.7.1\\xunit.core.2.7.1.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit.extensibility.core\\2.7.1\\xunit.extensibility.core.2.7.1.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit.extensibility.execution\\2.7.1\\xunit.extensibility.execution.2.7.1.nupkg.sha512"
+    "C:\\Users\\sandr\\.nuget\\packages\\csvhelper\\31.0.4\\csvhelper.31.0.4.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit\\2.7.1\\xunit.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.analyzers\\1.12.0\\xunit.analyzers.1.12.0.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.assert\\2.7.1\\xunit.assert.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.core\\2.7.1\\xunit.core.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.extensibility.core\\2.7.1\\xunit.extensibility.core.2.7.1.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\xunit.extensibility.execution\\2.7.1\\xunit.extensibility.execution.2.7.1.nupkg.sha512"
   ],
   "logs": []
 }
