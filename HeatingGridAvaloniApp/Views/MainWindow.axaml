@@ -15,16 +15,16 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <StackPanel>
+    <StackPanel Background="#FFFFFF">
         <Border Margin="5" 
         CornerRadius="10"
         Background="Red">
         <TextBlock Margin="5"
             FontSize="24" 
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Center" 
             Text="Danfoss Heating App">
         </TextBlock>
         </Border>
-        
+        <UserControl Content="{Binding ContentViewModel}" />
     </StackPanel>
 </Window>

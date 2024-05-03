@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ReactiveUI;
 using Avalonia;
+using System.Dynamic;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
@@ -20,6 +21,12 @@ namespace HeatingGridAvaloniApp.ViewModels
             get => nameString;
             set => this.RaiseAndSetIfChanged(ref nameString, value);
         }
+
+        public void NameButton()
+        {
+            NameString = "Hello!";
+        }
     }
+
 
 }
