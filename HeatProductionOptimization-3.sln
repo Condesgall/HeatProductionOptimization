@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeatingGridAvaloniApp", "HeatingGridAvaloniApp\HeatingGridAvaloniApp.csproj", "{80372BB6-3864-4E72-95B0-A5D699D34167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeatProductionOptimizer", "HeatProductionOptimizer\HeatProductionOptimizer.csproj", "{57BC3BCD-7263-453A-BB70-25922A0E06ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeatProductionOptimizer.Tests", "HeatProductionOptimizer.Tests\HeatProductionOptimizer.Tests.csproj", "{B3E5FF0B-0C9F-4A2B-94D1-EE9D73078B7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80372BB6-3864-4E72-95B0-A5D699D34167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80372BB6-3864-4E72-95B0-A5D699D34167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80372BB6-3864-4E72-95B0-A5D699D34167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80372BB6-3864-4E72-95B0-A5D699D34167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57BC3BCD-7263-453A-BB70-25922A0E06ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57BC3BCD-7263-453A-BB70-25922A0E06ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57BC3BCD-7263-453A-BB70-25922A0E06ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57BC3BCD-7263-453A-BB70-25922A0E06ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3E5FF0B-0C9F-4A2B-94D1-EE9D73078B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3E5FF0B-0C9F-4A2B-94D1-EE9D73078B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3E5FF0B-0C9F-4A2B-94D1-EE9D73078B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3E5FF0B-0C9F-4A2B-94D1-EE9D73078B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

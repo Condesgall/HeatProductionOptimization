@@ -94,3 +94,12 @@ C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.dll
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\refint\HeatProductionOptimizer.dll
 C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.AssemblyReference.cache
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfoInputs.cache
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfo.cs
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.CoreCompileInputs.cache
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.sourcelink.json
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.dll
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\refint\HeatProductionOptimizer.dll
+c:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb

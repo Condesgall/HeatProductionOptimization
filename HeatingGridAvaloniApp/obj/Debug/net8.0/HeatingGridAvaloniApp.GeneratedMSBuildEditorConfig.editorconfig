@@ -13,12 +13,12 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HeatingGridAvaloniApp
-build_property.ProjectDir = C:\Users\sandr\OneDrive\Skrivebord\HeatProductionnew\HeatProductionOptimization\HeatingGridAvaloniApp\
+build_property.ProjectDir = C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatingGridAvaloniApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/sandr/OneDrive/Skrivebord/HeatProductionnew/HeatProductionOptimization/HeatingGridAvaloniApp/App.axaml]
+[C:/Users/Dell/Desktop/Semester Project 2nd semester/HeatProductionOptimization-3/HeatingGridAvaloniApp/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/sandr/OneDrive/Skrivebord/HeatProductionnew/HeatProductionOptimization/HeatingGridAvaloniApp/Views/MainWindow.axaml]
+[C:/Users/Dell/Desktop/Semester Project 2nd semester/HeatProductionOptimization-3/HeatingGridAvaloniApp/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
