@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using AssetManager_;
+using HeatingGridAvaloniaApp.Modules;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.IO;
+using System.Collections.Generic;
+using Avalonia;
 
-namespace HeatingGidAvaloniaApp.Modules
+namespace HeatingGridAvaloniaApp.Modules
 
 {
     public class AssetManager

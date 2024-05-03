@@ -1,13 +1,13 @@
-using AssetManager_;
-using ResultDataManager_;
 using System.Globalization;
-using AssetManager_;
+using HeatingGridAvaloniaApp.Modules;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.IO;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace HeatingGidAvaloniaApp.Modules;
+namespace HeatingGridAvaloniaApp.Modules;
 
 public class Optimizer
 {
