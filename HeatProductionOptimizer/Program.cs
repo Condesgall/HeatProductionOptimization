@@ -98,7 +98,7 @@ class Program
         }
         if (userChoice == 2)
         {
-            resultDataManager.DisplayResultData(ResultDataManager.Winter);
+            resultDataManager.DisplayResultData(ResultDataManager.Winter, "2/8/2023 00:00", "2/9/2023 00:00");
             resultDataCSV.Save(ResultDataManager.Winter);
         }
     }
