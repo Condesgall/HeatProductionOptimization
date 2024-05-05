@@ -1,3 +1,4 @@
+using System.Globalization;
 using AssetManager_;
 
 namespace ResultDataManager_
@@ -332,23 +333,39 @@ public class OptimizationResults
             }
         }
 
-        public void DisplayResultData(List<ResultData> list)
+
+        // Time filter is declared within function's arguments to make it optional.
+        public void DisplayResultData(List<ResultData> list, string optionalTimeFrom = "1/1/2000 00:00", string optionalTimeTo = "12/31/2100 23:59")
         {
+            // Convert provided dates to DateTime format.
+            string dateFormat = "M/d/yyyy H:m";
+            DateTime searchedTimeFrom = DateTime.ParseExact(optionalTimeFrom, dateFormat, CultureInfo.InvariantCulture);
+            DateTime searchedTimeTo = DateTime.ParseExact(optionalTimeTo, dateFormat, CultureInfo.InvariantCulture);
+
             GetFilePathAndUpdateLists();
+
             foreach (var resultData in list)
             {
-                Console.WriteLine($"Time: {resultData.TimeFrom}-{resultData.TimeTo}");
-                Console.WriteLine($"Production unit: {resultData.ProductionUnit}");
-                Console.WriteLine("");
-                Console.WriteLine($"Optimization results:");
-                Console.WriteLine("");
-                Console.WriteLine($"Produced heat: {resultData.OptimizationResults.ProducedHeat} MW");
-                Console.WriteLine($"Produced electricity: {resultData.OptimizationResults.ProducedElectricity} MW");
-                Console.WriteLine($"Consumed electricity: {resultData.OptimizationResults.ConsumedElectricity} MW");
-                Console.WriteLine($"Expenses: {resultData.OptimizationResults.Expenses} DKK");
-                Console.WriteLine($"Primary energy consumption: {resultData.OptimizationResults.PrimaryEnergyConsumption} MWh");
-                Console.WriteLine($"CO2 emissions: {resultData.OptimizationResults.Co2Emissions} kg");
-                Console.WriteLine("_____________________________");
+                // Convert resultData dates to DateTime format.
+                DateTime timeFrom = DateTime.ParseExact(resultData.TimeFrom, dateFormat, CultureInfo.InvariantCulture);
+                DateTime timeTo = DateTime.ParseExact(resultData.TimeTo, dateFormat, CultureInfo.InvariantCulture);
+
+                // Check if resultData you're on is in the scope of searched dates. If yes, proceed.
+                if(timeFrom >= searchedTimeFrom && timeTo <= searchedTimeTo)
+                { 
+                    Console.WriteLine($"Time: {resultData.TimeFrom}-{resultData.TimeTo}");
+                    Console.WriteLine($"Production unit: {resultData.ProductionUnit}");
+                    Console.WriteLine("");
+                    Console.WriteLine($"Optimization results:");
+                    Console.WriteLine("");
+                    Console.WriteLine($"Produced heat: {resultData.OptimizationResults.ProducedHeat} MW");
+                    Console.WriteLine($"Produced electricity: {resultData.OptimizationResults.ProducedElectricity} MW");
+                    Console.WriteLine($"Consumed electricity: {resultData.OptimizationResults.ConsumedElectricity} MW");
+                    Console.WriteLine($"Expenses: {resultData.OptimizationResults.Expenses} DKK");
+                    Console.WriteLine($"Primary energy consumption: {resultData.OptimizationResults.PrimaryEnergyConsumption} MWh");
+                    Console.WriteLine($"CO2 emissions: {resultData.OptimizationResults.Co2Emissions} kg");
+                    Console.WriteLine("_____________________________");
+                }
             }
         }
     }
