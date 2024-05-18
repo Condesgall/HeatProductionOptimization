@@ -103,3 +103,12 @@ C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProduc
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.genruntimeconfig.cache
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer\obj\Debug\net8.0\ref\HeatProductionOptimizer.dll
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.AssemblyInfo.cs
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.sourcelink.json
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.dll
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\refint\HeatProductionOptimizer.dll
+C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb

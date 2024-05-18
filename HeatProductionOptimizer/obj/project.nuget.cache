@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "isNb5NNNSEs0NjPXbnpTxGH59fhYwsUUUVR/nXUBTc/7cNiuhy+aJ00V7DOov6wwcl6WT95x8QcFbfVtJEsMog==",
+  "dgSpecHash": "gY7CxesGzOaJM65u2uBh+ZSgmYEiBgCU8lr2I90NBUOGvn9oV4WWLh5Y3m1d5J4z8H40jgZc4VwhMjkP4TZG6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+  "projectFilePath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-4\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Lenovo\\.nuget\\packages\\csvhelper\\31.0.3\\csvhelper.31.0.3.nupkg.sha512"
+    "C:\\Users\\Dell\\.nuget\\packages\\csvhelper\\31.0.3\\csvhelper.31.0.3.nupkg.sha512"
   ],
   "logs": []
 }

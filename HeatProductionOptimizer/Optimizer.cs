@@ -162,8 +162,11 @@ public class Optimizer
                 case 1:
                     OptimizeByCostsHandler(resultData, sdmParameters);
                     break;
-                case 2:
+                //case 2:
                     //OptimizeByCO2AndCostsHandler();
+                //optimize by just co2emission
+                case 2;
+                    OptimizeByCostsHandler(resultData, sdmParameters);
                     break;
                 default:
                 break;
@@ -198,6 +201,67 @@ public class Optimizer
 
         SaveToResultDataManager(resultData, sdmParameters);
     }
+    public void OptimizeByCO2Handler(ResultData resultData, SdmParameters sdmParameters)
+{
+    decimal lowestCO2Emissions = GetLowestCO2Emissions(sdmParameters);
+
+    // Check if the most optimal CO2 emissions are from an individual unit
+    if (DetectCO2EmissionsOrigin(lowestCO2Emissions) == -1)
+    {
+        ProductionUnit optimalUnit = bestIndividualUnits.First().Key;
+        ProductionUnit optimalUnit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+        resultData.UpdateResultData(optimalUnit, optimalUnit2, lowestCO2Emissions, sdmParameters);
+    }
+    // Or a combination of units
+    else if (DetectCO2EmissionsOrigin(lowestCO2Emissions) == -2)
+    {
+        List<ProductionUnit> firstCombination = combinedUnitsCO2Emissions.Keys.First();
+        ProductionUnit optimalUnit = firstCombination[0];
+        ProductionUnit optimalUnit2 = firstCombination[1];
+        resultData.UpdateResultData(optimalUnit, optimalUnit2, lowestCO2Emissions, sdmParameters);
+    }
+    else
+    {
+        Console.WriteLine("Error.");
+        return;
+    }
+
+    SaveToResultDataManager(resultData, sdmParameters);
+}
+
+public decimal GetLowestCO2Emissions(SdmParameters sdmParameters)
+{
+    // Find the best combinations of two units based on CO2 emissions
+    Dictionary<List<ProductionUnit>, decimal> bestUnitCombinations = GetBestUnitCombinationsCO2Emissions(sdmParameters, 0, 1);
+
+    combinedUnitsCO2EmissionsList = bestUnitCombinations.Values.ToList();
+    individualUnitsCO2EmissionsList = bestIndividualUnits.Values.ToList();
+
+    // Combine and sort CO2 emissions
+    List<decimal> sortedCO2Emissions = CombineAndSortCO2Emissions(combinedUnitsCO2EmissionsList, individualUnitsCO2EmissionsList);
+
+    // Return the lowest CO2 emissions
+    return sortedCO2Emissions[0];
+}
+
+public int DetectCO2EmissionsOrigin(decimal lowestCO2Emissions)
+{
+    if (individualUnitsCO2EmissionsList.Contains(lowestCO2Emissions))
+    {
+        return -1;
+    }
+    else if (combinedUnitsCO2EmissionsList.Contains(lowestCO2Emissions))
+    {
+        return -2;
+    }
+    else
+    {
+        return -3;
+    }
+}
+
+// Other related methods (CombineAndSortCO2Emissions, GetBestUnitCombinationsCO2Emissions) would be similar to their counterparts for net costs but focused on CO2 emissions.
+
 
 
     /*-------------------------------------------------------------------------------
