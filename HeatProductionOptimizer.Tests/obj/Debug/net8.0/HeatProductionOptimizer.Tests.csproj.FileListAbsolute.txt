@@ -639,3 +639,6 @@ C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProduc
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.pdb
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\HeatProductionOptimizer.Tests.genruntimeconfig.cache
 C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer.Tests\obj\Debug\net8.0\ref\HeatProductionOptimizer.Tests.dll
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer.Tests\bin\Debug\net8.0\Accord.dll.config
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer.Tests\bin\Debug\net8.0\Accord.dll
+C:\Users\Lenovo\Downloads\University\Semester 2\semester project\code\HeatProductionOptimization\HeatProductionOptimizer.Tests\bin\Debug\net8.0\MathNet.Numerics.dll

@@ -186,6 +186,7 @@ namespace AssetManager_
                 }
         }
 
+
         public bool CanReachHeatDemand(SdmParameters sdmParameters)
         {
             if (sdmParameters.HeatDemand > MaxHeat)

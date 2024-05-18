@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "IomNqKrLYrA6xfS9TM0z5SUWiIwC/7bn/lhn1Z7yv7eZYVj1PQgkS3DCTgxDA48jpDh+z4bAefPyl3P9z4qQSw==",
+  "dgSpecHash": "+de6HeXTiEEirUTt7nPfFlfwRfzRgV5oP6kgofe99vbx7oeTZL4doYBfHY3RxNiaDvv2oNIfnGdcpmKT+kf9Cg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer.Tests\\HeatProductionOptimizer.Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\alglib\\1.0.0\\alglib.1.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\csvhelper\\31.0.3\\csvhelper.31.0.3.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.net.test.sdk\\17.8.0\\microsoft.net.test.sdk.17.8.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.8.0\\microsoft.testplatform.objectmodel.17.8.0.nupkg.sha512",
