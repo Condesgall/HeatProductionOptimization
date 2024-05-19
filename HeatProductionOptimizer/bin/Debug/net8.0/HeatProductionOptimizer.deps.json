@@ -11,8 +11,7 @@
           "algLib": "1.0.0",
           "Accord": "3.8.0",
           "CsvHelper": "31.0.3",
-          "MathNet.Numerics": "5.0.0",
-          "alglib401gpl_net5simd": "0.0.0.0"
+          "MathNet.Numerics": "5.0.0"
         },
         "runtime": {
           "HeatProductionOptimizer.dll": {}
@@ -40,14 +39,6 @@
           "lib/net6.0/MathNet.Numerics.dll": {
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.0.0"
-          }
-        }
-      },
-      "alglib401gpl_net5simd/0.0.0.0": {
-        "runtime": {
-          "alglib401gpl_net5simd.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
           }
         }
       }
@@ -86,11 +77,6 @@
       "sha512": "sha512-pg1W2VwaEQMAiTpGK840hZgzavnqjlCMTVSbtVCXVyT+7AX4mc1o89SPv4TBlAjhgCOo9c1Y+jZ5m3ti2YgGgA==",
       "path": "mathnet.numerics/5.0.0",
       "hashPath": "mathnet.numerics.5.0.0.nupkg.sha512"
-    },
-    "alglib401gpl_net5simd/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

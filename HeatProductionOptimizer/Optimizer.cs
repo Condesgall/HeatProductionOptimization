@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using AssetManager_;
 using ResultDataManager_;
@@ -229,6 +230,34 @@ public class Optimizer
         }
     }
 
+    public void OptimizeByCO2EmissionHandler(SdmParameters sdmParameters)
+    {
+        ResultData resultData = new ResultData();
+        ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+        ProductionUnit unit1 = new ProductionUnit("", 0, 0, 0, 0, 0);
+        List<Co2AndNetCost> optimizedResults = GetOptimizedCO2(sdmParameters);
+
+        foreach (var result in optimizedResults)
+        {
+            if (result.ProductionUnits != null)
+            {
+                unit1 = result.ProductionUnits.First();
+
+                // if it's a combination of units
+                if (result.ProductionUnits.Count() == 2)
+                {
+                    unit2 = result.ProductionUnits.Last();
+                }
+                else
+                {
+                    unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+                }
+            }
+            resultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
+            SaveToResultDataManager(resultData, sdmParameters);
+        }
+    }
+
     public decimal GetOptimizedNetCosts(SdmParameters sdmParameters)
     {
         GroupUnitsByDependency(sdmParameters, AssetManager.productionUnits);
@@ -244,7 +273,17 @@ public class Optimizer
         return sortedNetCosts[0];
     }
 
+    public List<Co2AndNetCost> GetOptimizedCO2(SdmParameters sdmParameters)
+    {
+        GroupUnitsByDependency(sdmParameters, AssetManager.productionUnits);
+        CalculateCo2IndividualUnits(sdmParameters);
+        GetBestUnitCombinations(sdmParameters, 0, 0);
+        CalculateCo2CombinedUnits(sdmParameters);
+        co2AndNetCostsCandidates.OrderBy(unit => unit.Co2Emissions).ToList();
 
+        return co2AndNetCostsCandidates;
+    }
+    
     public List<decimal> CombineAndSortNetCosts(List<decimal> combinedUnits, List<decimal> individualUnits)
     {
         List<decimal> allNetCosts = new List<decimal> (combinedUnits);
@@ -455,6 +494,7 @@ public class Optimizer
         {
             combinedUnitsNetCost.Add(options, totalNetCost);
         }
+
     }
 
     public void CalculateCo2CombinedUnits(SdmParameters sdmParameters)
@@ -475,6 +515,7 @@ public class Optimizer
         }
     }
 }
+
 
 public class Co2AndNetCost
 {
@@ -524,5 +565,5 @@ public class Co2AndNetCost
         {
             return true;
         }
-    }
+    } 
 }

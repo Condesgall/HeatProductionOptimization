@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {}
+    "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-4\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
+    "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-4\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-4\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
         "projectName": "HeatProductionOptimizer",
-        "projectPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Downloads\\University\\Semester 2\\semester project\\code\\HeatProductionOptimization\\HeatProductionOptimizer\\obj\\",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-4\\HeatProductionOptimizer\\HeatProductionOptimizer.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-4\\HeatProductionOptimizer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -71,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

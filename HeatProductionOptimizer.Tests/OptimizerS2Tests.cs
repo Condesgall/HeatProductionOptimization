@@ -45,6 +45,25 @@ public class OptimizerTests
     }
 
     [Fact]
+    public void GetOptimizedCO2_ReturnsList()
+    {
+        SdmParameters sdmParameters = new SdmParameters("01", "02", 4m, 752.03m);
+        ProductionUnit productionUnit1 = new ProductionUnit("a", 4, 0, 4, 0, 0);
+        AssetManager.productionUnits = new List<ProductionUnit>() {productionUnit1};
+        Co2AndNetCost expected = new Co2AndNetCost(AssetManager.productionUnits, 0, 16, 0);
+
+        optimizer.GetOptimizedCO2(sdmParameters);
+
+        foreach (var co2AndNetCost in optimizer.co2AndNetCostsCandidates)
+        {
+            Assert.Equal(expected.ProductionUnits, co2AndNetCost.ProductionUnits);
+            Assert.Equal(expected.NetCost, co2AndNetCost.NetCost);
+            Assert.Equal(expected.Co2Emissions, co2AndNetCost.Co2Emissions);
+            Assert.Equal(expected.Result, co2AndNetCost.Result);
+        }
+    }
+
+    [Fact]
     public void CombineAndSortNetCosts__ReturnsSortedCombinedList()
     {
         // Arrange
