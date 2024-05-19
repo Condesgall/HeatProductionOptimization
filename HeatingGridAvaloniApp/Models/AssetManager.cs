@@ -5,7 +5,6 @@ using HeatingGridAvaloniaApp.Models;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.IO;
-using System.Collections.Generic;
 using Avalonia;
 
 namespace HeatingGridAvaloniaApp.Models

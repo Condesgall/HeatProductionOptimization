@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HeatingGridAvaloniaApp.Views.AM_View"
+             x:DataType="vm:AM_ViewModel">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding ProductionUnits}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Height="110">
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding MaxHeat, StringFormat='Max Heat: {0}'}" />
+                        <TextBlock Text="{Binding ProductionCosts, StringFormat='Production Costs: {0}'}" />
+                        <TextBlock Text="{Binding Co2Emissions, StringFormat='CO2 Emissions: {0}'}" />
+                        <TextBlock Text="{Binding GasConsumption, StringFormat='Gas Consumption: {0}'}" />
+                        <TextBlock Text="{Binding MaxElectricity, StringFormat='Max Electricity: {0}'}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+            <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image Source="/Assets/GB.png" Margin="5" Height="120"/>
+                <Image Source="/Assets/OB.png" Margin="5" Height="120"/>
+                <Image Source="/Assets/GM.png" Margin="5" Height="120"/>
+                <Image Source="/Assets/EK.png" Margin="5" Height="120"/>
+            </StackPanel>
+    </Grid>
+</UserControl>
+
+
+
