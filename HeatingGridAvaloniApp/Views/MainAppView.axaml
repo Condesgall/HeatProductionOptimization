@@ -6,5 +6,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HeatingGridAvaloniApp.Views.MainAppView"
              x:DataType="vm:MainAppViewModel">
-  Welcome to Avalonia!
+ 
+  <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainAppViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Background="#FFFFFF">
+      <DataGrid AutoGenerateColumns="True" Items="{Binding SourceData}">
+    </StackPanel>
 </UserControl>
