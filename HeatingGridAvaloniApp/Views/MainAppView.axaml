@@ -6,5 +6,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HeatingGridAvaloniApp.Views.MainAppView"
              x:DataType="vm:MainAppViewModel">
-  Welcome to Avalonia!
+    
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+    <Button Click="RedirectToAM">AM</Button>
+    <Button Click="RedirectToOptimizer">OPTIMIZER</Button>
+    <ContentControl Name="ContentArea"/>
+  </StackPanel>
+
 </UserControl>
