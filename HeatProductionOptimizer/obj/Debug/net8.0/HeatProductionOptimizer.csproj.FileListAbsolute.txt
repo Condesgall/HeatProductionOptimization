@@ -127,3 +127,6 @@ C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4
 C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.pdb
 C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\HeatProductionOptimizer.genruntimeconfig.cache
 C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-4\HeatProductionOptimizer\obj\Debug\net8.0\ref\HeatProductionOptimizer.dll
+C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\Accord.dll.config
+C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\Accord.dll
+C:\Users\ritab\Downloads\University\Semester Project\code\HeatProductionOptimization\HeatProductionOptimizer\bin\Debug\net8.0\MathNet.Numerics.dll

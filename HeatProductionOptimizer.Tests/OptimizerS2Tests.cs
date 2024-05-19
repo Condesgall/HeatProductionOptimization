@@ -29,19 +29,12 @@ public class OptimizerTests
     public void GetOptimizedNetCosts_ReturnsLowestNetCost()
     {
         SdmParameters sdmParameters = new SdmParameters("01", "02", 4m, 752.03m);
-
-        ProductionUnit productionUnit1 = new ProductionUnit("a", 2, 0, 0, 0, 0);
-        ProductionUnit productionUnit2 = new ProductionUnit("b", 2, 0, 0, 0, 0);
-        decimal netCost1 = 10;
-        decimal netCost2 = 15;
-
-        optimizer.unitPairingCandidates.Add(productionUnit1, netCost1);
-        optimizer.unitPairingCandidates.Add(productionUnit2, netCost2);
-        optimizer.individualUnitCandidates.Add(productionUnit1, 1);
+        ProductionUnit productionUnit1 = new ProductionUnit("a", 4, 1, 0, 0, 0);
+        AssetManager.productionUnits = new List<ProductionUnit>() { productionUnit1 };
 
         var result = optimizer.GetOptimizedNetCosts(sdmParameters);
 
-        Assert.Equal(1, result);
+        Assert.Equal(4, result);
     }
 
     [Fact]
@@ -49,7 +42,7 @@ public class OptimizerTests
     {
         SdmParameters sdmParameters = new SdmParameters("01", "02", 4m, 752.03m);
         ProductionUnit productionUnit1 = new ProductionUnit("a", 4, 0, 4, 0, 0);
-        AssetManager.productionUnits = new List<ProductionUnit>() {productionUnit1};
+        AssetManager.productionUnits = new List<ProductionUnit>() { productionUnit1 };
         Co2AndNetCost expected = new Co2AndNetCost(AssetManager.productionUnits, 0, 16, 0);
 
         optimizer.GetOptimizedCO2(sdmParameters);
@@ -182,10 +175,10 @@ public class OptimizerTests
         SdmParameters sdmParameters = new SdmParameters(timeFrom, timeTo, heatDemand, elPrice);
         ProductionUnit productionUnit = new ProductionUnit("GM", 3.6m, 1100, 640, 1.9m, 2.7m);
         decimal electricityProduced = productionUnit.CalculateElectricityProduced(sdmParameters.HeatDemand);
-        
+
         //act
         var test1 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
-        
+
         //when heatDemand <= maxEl -- heatDemand, sdmParameters
         decimal profit = electricityProduced * sdmParameters.ElPrice;
         decimal expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
@@ -229,8 +222,8 @@ public class OptimizerTests
         //act
         var test1 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
         var test2 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters2, productionUnit);
-        decimal calculations = productionUnit.ProductionCosts*sdmParameters.HeatDemand;
-        decimal calculations2 = productionUnit.ProductionCosts*productionUnit.MaxHeat;
+        decimal calculations = productionUnit.ProductionCosts * sdmParameters.HeatDemand;
+        decimal calculations2 = productionUnit.ProductionCosts * productionUnit.MaxHeat;
 
         //assert
         Assert.Equal(calculations, test1);
@@ -290,13 +283,13 @@ public class OptimizerTests
 
     [Fact]
     public void AddCombinationToDictionary_AddsCombinationToDicc()
-    {   
+    {
         // arrange
         List<ProductionUnit> options = new List<ProductionUnit>();
         ProductionUnit productionUnit = new ProductionUnit("b", 0, 0, 0, 0, 0);
         ProductionUnit productionUnit2 = new ProductionUnit("a", 1, 1, 1, 1, 1);
         decimal netCost1 = 1;
-        decimal netCost2= 2;
+        decimal netCost2 = 2;
 
         optimizer.unitPairingCandidates.Add(productionUnit, netCost1);
         optimizer.unitPairingCandidates.Add(productionUnit2, netCost2);

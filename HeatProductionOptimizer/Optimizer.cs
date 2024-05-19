@@ -166,10 +166,14 @@ public class Optimizer
                     OptimizeByCostsHandler(resultData, sdmParameters);
                     break;
                 case 2:
+                    OptimizeByCO2EmissionHandler(sdmParameters);
+                    break;
+                case 3:
                     OptimizeByCO2AndCostsHandler(sdmParameters);
                     break;
                 default:
-                break;
+                    Console.WriteLine("Please select an option.");
+                    break;
             }
         }
     }
@@ -202,6 +206,34 @@ public class Optimizer
         SaveToResultDataManager(resultData, sdmParameters);
     }
 
+    public void OptimizeByCO2EmissionHandler(SdmParameters sdmParameters)
+    {
+        ResultData resultData = new ResultData();
+        ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+        ProductionUnit unit1 = new ProductionUnit("", 0, 0, 0, 0, 0);
+        List<Co2AndNetCost> optimizedResults = GetOptimizedCO2(sdmParameters);
+
+        foreach (var result in optimizedResults)
+        {
+            if (result.ProductionUnits != null)
+            {
+                unit1 = result.ProductionUnits.First();
+
+                // if it's a combination of units
+                if (result.ProductionUnits.Count() == 2)
+                {
+                    unit2 = result.ProductionUnits.Last();
+                }
+                else
+                {
+                    unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+                }
+            }
+            resultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
+            SaveToResultDataManager(resultData, sdmParameters);
+        }
+    }
+
     public void OptimizeByCO2AndCostsHandler(SdmParameters sdmParameters)
     {
         ResultData resultData = new ResultData();
@@ -230,33 +262,6 @@ public class Optimizer
         }
     }
 
-    public void OptimizeByCO2EmissionHandler(SdmParameters sdmParameters)
-    {
-        ResultData resultData = new ResultData();
-        ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
-        ProductionUnit unit1 = new ProductionUnit("", 0, 0, 0, 0, 0);
-        List<Co2AndNetCost> optimizedResults = GetOptimizedCO2(sdmParameters);
-
-        foreach (var result in optimizedResults)
-        {
-            if (result.ProductionUnits != null)
-            {
-                unit1 = result.ProductionUnits.First();
-
-                // if it's a combination of units
-                if (result.ProductionUnits.Count() == 2)
-                {
-                    unit2 = result.ProductionUnits.Last();
-                }
-                else
-                {
-                    unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
-                }
-            }
-            resultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
-            SaveToResultDataManager(resultData, sdmParameters);
-        }
-    }
 
     public decimal GetOptimizedNetCosts(SdmParameters sdmParameters)
     {
