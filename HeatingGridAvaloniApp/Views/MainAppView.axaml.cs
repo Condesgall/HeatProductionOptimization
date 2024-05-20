@@ -15,13 +15,19 @@ public partial class MainAppView : UserControl
 
     public void RedirectToAM(object sender, RoutedEventArgs e)
     {
-        var contentArea = this.FindControl<ContentControl>("ContentArea");
-        contentArea.Content = new AM_View();
+        var buttonPanel = this.FindControl<StackPanel>("ButtonPanel");
+        var openedTab = this.FindControl<ContentControl>("OpenedTab");
+        
+        buttonPanel.IsVisible = false;
+        openedTab.Content = new AM_View();
     }
 
     public void RedirectToOptimizer(object sender, RoutedEventArgs e)
     {
-        var contentArea = this.FindControl<ContentControl>("ContentArea");
-        contentArea.Content = new AM_View();
+        var buttonPanel = this.FindControl<StackPanel>("ButtonPanel");
+        var openedTab = this.FindControl<ContentControl>("OpenedTab");
+        
+        buttonPanel.IsVisible = false;
+        openedTab.Content = new OptimizerView();
     }
 }

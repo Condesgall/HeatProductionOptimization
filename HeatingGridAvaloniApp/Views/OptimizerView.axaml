@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HeatingGridAvaloniaApp.Views.OptimizerView"
+             x:DataType="vm:OptimizerViewModel">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "*"/>
+            <RowDefinition Height = "Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Margin="10">
+        <TextBlock Text="Season:" Margin="10"/>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <CheckBox IsChecked="{Binding IsSummerChosen}"/>
+            <TextBlock Text="Summer"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <CheckBox IsChecked="{Binding IsWinterChosen}"/>
+            <TextBlock Text="Winter"/>
+        </StackPanel>
+    </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10">
+        <TextBlock Text="Optimize by:" Margin="10"/>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <CheckBox IsChecked="{Binding IsCostsChosen}"/>
+            <TextBlock Text="Costs"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <CheckBox IsChecked="{Binding IsCo2Chosen}"/>
+            <TextBlock Text="CO2 emissions"/>
+        </StackPanel>
+    </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Button Margin="10" Command="{Binding ReactiveOptimize}">Optimize!</Button>
+        </StackPanel>
+    </Grid>
+    
+</UserControl>
