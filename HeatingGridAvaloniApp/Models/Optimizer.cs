@@ -28,6 +28,7 @@ public class Optimizer
 
     public void OptimizeProduction(List<SdmParameters> sourceData, int optimizeBy)
     {
+        ResultDataManager.ResultData.Clear();
         foreach (var sdmParameters in sourceData)
         {
             ProductionUnit primaryUnit;
@@ -137,7 +138,7 @@ public class Optimizer
                 }
             }  
         }
-        ResultDataCSV resultDataCSV = new ResultDataCSV("ResultData.csv");
+        ResultDataCSV resultDataCSV = new ResultDataCSV("Assets/ResultData.csv");
         resultDataCSV.Save(ResultDataManager.ResultData);
     }
 
