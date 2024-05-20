@@ -68,5 +68,33 @@ namespace HeatingGridAvaloniApp.ViewModels
                 DataLabelsPosition = DataLabelsPosition.Middle
             }
         };
+
+        public Axis[] XAxes { get; set; }
+
+        public HeatDemandChartViewModel()
+        {
+            // Initialize X-axis with time values
+            InitializeXAxis();
+        }
+
+        private void InitializeXAxis()
+        {
+            List<string> xAxisLabels = new List<string>();
+
+            // Generate time labels from July 8th, 2023, 0:00 to July 15th, 2023, 0:00 each hour
+            for (DateTime date = new DateTime(2023, 7, 8, 0, 0, 0); date <= new DateTime(2023, 7, 15, 0, 0, 0); date = date.AddHours(1))
+            {
+                xAxisLabels.Add(date.ToString("MM/dd/yyyy HH:mm"));
+            }
+
+            XAxes = new Axis[]
+            {
+                new Axis
+                {
+                    LabelsRotation = -15,
+                    Labels = xAxisLabels.ToArray()
+                }
+            };
+        }
     }
 }
