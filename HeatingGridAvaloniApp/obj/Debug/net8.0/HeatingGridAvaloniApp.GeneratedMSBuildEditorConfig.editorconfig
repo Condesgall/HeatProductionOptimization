@@ -13,18 +13,27 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HeatingGridAvaloniApp
-build_property.ProjectDir = C:\Users\Dell\Desktop\Semester Project 2nd semester\HeatProductionOptimization-3\HeatingGridAvaloniApp\
+build_property.ProjectDir = /Users/hubert/Desktop/c#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/Dell/Desktop/Semester Project 2nd semester/HeatProductionOptimization-3/HeatingGridAvaloniApp/App.axaml]
+[/Users/hubert/Desktop/c\#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Dell/Desktop/Semester Project 2nd semester/HeatProductionOptimization-3/HeatingGridAvaloniApp/Views/LoginView.axaml]
+[/Users/hubert/Desktop/c\#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/Views/AM_View.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Dell/Desktop/Semester Project 2nd semester/HeatProductionOptimization-3/HeatingGridAvaloniApp/Views/MainAppView.axaml]
+[/Users/hubert/Desktop/c\#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/Views/HeatDemandChartView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Dell/Desktop/Semester Project 2nd semester/HeatProductionOptimization-3/HeatingGridAvaloniApp/Views/MainWindow.axaml]
+[/Users/hubert/Desktop/c\#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/Views/LoginView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/Users/hubert/Desktop/c\#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/Views/MainAppView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/Users/hubert/Desktop/c\#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/Users/hubert/Desktop/c\#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/Views/OptimizerView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

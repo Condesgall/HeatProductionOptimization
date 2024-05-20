@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj": {}
+    "/Users/hubert/Desktop/c#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/HeatingGridAvaloniApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj": {
+    "/Users/hubert/Desktop/c#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/HeatingGridAvaloniApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj",
+        "projectUniqueName": "/Users/hubert/Desktop/c#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/HeatingGridAvaloniApp.csproj",
         "projectName": "HeatingGridAvaloniApp",
-        "projectPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\HeatingGridAvaloniApp.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Desktop\\Semester Project 2nd semester\\HeatProductionOptimization-3\\HeatingGridAvaloniApp\\obj\\",
+        "projectPath": "/Users/hubert/Desktop/c#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/HeatingGridAvaloniApp.csproj",
+        "packagesPath": "/Users/hubert/.nuget/packages/",
+        "outputPath": "/Users/hubert/Desktop/c#/DanfossProj/HeatProductionOptimization/HeatingGridAvaloniApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/hubert/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -98,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
