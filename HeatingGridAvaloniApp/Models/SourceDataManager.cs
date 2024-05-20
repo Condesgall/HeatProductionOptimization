@@ -11,8 +11,7 @@ namespace HeatingGridAvaloniaApp.Models;
 public interface IFileLoading
 {
     void Load();
-    void DisplayWinterData();
-    void DisplaySummerData();
+    void DisplayData();
 }
 
 public class SdmParameters
@@ -33,15 +32,13 @@ public class SdmParameters
 
 public class ParameterLoader : IFileLoading
 {
-    public List<SdmParameters> Winter { get; private set; }
-    public List<SdmParameters> Summer { get; private set; }
+    public List<SdmParameters> SDMParameters { get; private set; }
     
     private string FilePath;
 
     public ParameterLoader(string filePath)
     {
-        Winter = new List<SdmParameters>();
-        Summer = new List<SdmParameters>();
+        SDMParameters = new List<SdmParameters>();
         FilePath = filePath;
     }
 
@@ -76,32 +73,18 @@ public class ParameterLoader : IFileLoading
                         decimal.Parse(lineParts[7], CultureInfo.InvariantCulture),
                         decimal.Parse(lineParts[8], CultureInfo.InvariantCulture));
 
-                    Winter.Add(currentWinterParameters);
-                    Summer.Add(currentSummerParameters);
+                    SDMParameters.Add(currentWinterParameters);
+                    SDMParameters.Add(currentSummerParameters);
                 }
             }
         }  
     }
 
-    public void DisplaySummerData()
+    public void DisplayData()
     {
         Console.WriteLine("\n\n\n\t -----------\n\t|SUMMER DATA|\n\t -----------");
         Console.WriteLine();
-        foreach(SdmParameters param in Summer)
-        {
-            Console.WriteLine($"Time from: {param.TimeFrom}");
-            Console.WriteLine($"Time to: {param.TimeTo}");
-            Console.WriteLine($"Heat demand: {param.HeatDemand}");
-            Console.WriteLine($"Electricity price: {param.ElPrice}");
-            Console.WriteLine();
-        }
-    }
-
-    public void DisplayWinterData()
-    {
-        Console.WriteLine("\t -----------\n\t|WINTER DATA|\n\t -----------");
-        Console.WriteLine();
-        foreach(SdmParameters param in Winter)
+        foreach(SdmParameters param in SDMParameters)
         {
             Console.WriteLine($"Time from: {param.TimeFrom}");
             Console.WriteLine($"Time to: {param.TimeTo}");
