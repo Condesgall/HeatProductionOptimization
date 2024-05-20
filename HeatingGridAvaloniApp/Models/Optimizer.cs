@@ -138,8 +138,6 @@ public class Optimizer
                 }
             }  
         }
-        ResultDataCSV resultDataCSV = new ResultDataCSV("Assets/ResultData.csv");
-        resultDataCSV.Save(ResultDataManager.ResultData);
     }
 
     public void SaveToResultDataManager(ResultData resultData, SdmParameters sdmParameters)

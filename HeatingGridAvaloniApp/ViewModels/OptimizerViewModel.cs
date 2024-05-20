@@ -20,6 +20,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         
         // ReactiveCommand to make Optimization accessible from UI
         public ReactiveCommand<Unit, Unit> ReactiveOptimize { get; }
+        public ReactiveCommand<Unit, Unit> ReactiveSaveCSV { get; }
         public OptimizerViewModel()
         {
             VMOptimizer = new Optimizer();
@@ -28,6 +29,8 @@ namespace HeatingGridAvaloniApp.ViewModels
 
             // Constructing that ReactiveCommand (basically converting the normal command to it)
             ReactiveOptimize = ReactiveCommand.Create(OptimizeApplyFilters);
+            ReactiveSaveCSV = ReactiveCommand.Create(SaveToCSV);
+            OptimizationSuccessful=false;
         }
 
         // Optimization settings (entered by buttons in the UI)
@@ -59,15 +62,20 @@ namespace HeatingGridAvaloniApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isCo2Chosen, value);
         }
 
+        private bool _optimizationSuccessful;
+        public bool OptimizationSuccessful
+        {
+            get => _optimizationSuccessful;
+            set => this.RaiseAndSetIfChanged(ref _optimizationSuccessful, value);
+        }
 
-        
         public void OptimizeApplyFilters()
         {
             // Declares a list to hold filtered data.
             filteredSourceData = new List<SdmParameters>();
             
             // Filters the chosen season.
-            string chosenSeason="x";
+            string chosenSeason;
             if(_isWinterChosen && _isSummerChosen)
             {
                 chosenSeason="Both";
@@ -94,10 +102,14 @@ namespace HeatingGridAvaloniApp.ViewModels
                         filteredSourceData.Add(parameters);
                 }
             }
-            else chosenSeason = "x";
+            else 
+            {
+                chosenSeason = "x";
+                OptimizationSuccessful=false;
+            }
 
             // Filters the chosen optimization way
-            string chosenOptimizeBy = "x";
+            string chosenOptimizeBy;
             if(_isCostsChosen && !_isCo2Chosen)
             {
                 chosenOptimizeBy = "1";
@@ -110,7 +122,11 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 chosenOptimizeBy = "3";
             }
-            else chosenOptimizeBy = "x";
+            else 
+            {
+                chosenOptimizeBy = "x";
+                OptimizationSuccessful=false;
+            }
 
             Console.WriteLine($"Chosen Season: {chosenSeason}, Chosen OptimizeBy: {chosenOptimizeBy}");
             
@@ -119,11 +135,18 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
                 System.Console.WriteLine("Optimizing happens.");
+                OptimizationSuccessful=true;
             }
             else
             {
-                System.Console.WriteLine("Optimizing don't happen.");
+                System.Console.WriteLine("Optimizing doesn't happen.");
             }
+        }
+
+        public void SaveToCSV()
+        {
+            ResultDataCSV resultDataCSV = new ResultDataCSV("Assets/ResultData.csv");
+            resultDataCSV.Save(ResultDataManager.ResultData);
         }
     }
 }

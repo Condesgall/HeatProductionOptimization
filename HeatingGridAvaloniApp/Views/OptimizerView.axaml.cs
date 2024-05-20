@@ -12,5 +12,11 @@ namespace HeatingGridAvaloniaApp.Views
             InitializeComponent();
             DataContext = new OptimizerViewModel();
         }
+
+        public void SaveClicked(object sender, RoutedEventArgs e)
+        {
+            var saveButton = this.FindControl<Button>("SaveButton");
+            saveButton.Content = "Saved";
+        }
     }
 }

@@ -7,40 +7,76 @@
              x:Class="HeatingGridAvaloniaApp.Views.OptimizerView"
              x:DataType="vm:OptimizerViewModel">
 
-    <Grid>
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height = "*"/>
-            <RowDefinition Height = "Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <StackPanel Grid.Column="0" Margin="10">
-        <TextBlock Text="Season:" Margin="10"/>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <CheckBox IsChecked="{Binding IsSummerChosen}"/>
-            <TextBlock Text="Summer"/>
+            <TextBlock Text="Season:" Margin="10"/>
+            
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsSummerChosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="Summer"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsWinterChosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="Winter"/>
+            </StackPanel>
+
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <CheckBox IsChecked="{Binding IsWinterChosen}"/>
-            <TextBlock Text="Winter"/>
-        </StackPanel>
-    </StackPanel>
+        
         <StackPanel Grid.Column="1" Margin="10">
-        <TextBlock Text="Optimize by:" Margin="10"/>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <CheckBox IsChecked="{Binding IsCostsChosen}"/>
-            <TextBlock Text="Costs"/>
+            <TextBlock Text="Optimize by:" Margin="10"/>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsCostsChosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="Costs"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsCo2Chosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="CO2 emissions"/>
+            </StackPanel>
+
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <CheckBox IsChecked="{Binding IsCo2Chosen}"/>
-            <TextBlock Text="CO2 emissions"/>
-        </StackPanel>
-    </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Button Margin="10" Command="{Binding ReactiveOptimize}">Optimize!</Button>
+
+        <Button Grid.Row="1" Grid.ColumnSpan="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            Width="260"
+            Margin="10"
+            Command="{Binding ReactiveOptimize}">
+            Optimize!
+        </Button>
+
+
+        <TextBlock IsVisible="{Binding OptimizationSuccessful}" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10" Grid.Row="2" Text="Optimization successful!"/>
+
+        <StackPanel IsVisible="{Binding OptimizationSuccessful}" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            
+            <Button x:Name="SaveButton"
+                    Width="120" 
+                    HorizontalContentAlignment="Center" 
+                    Margin="5"
+                    Command="{Binding ReactiveSaveCSV}"
+                    Click="SaveClicked"
+                    Content="Save to CSV">
+            </Button>
+
+            <Button Width="120" HorizontalContentAlignment="Center" Margin="5">Visualize</Button>
         </StackPanel>
     </Grid>
+
+
     
 </UserControl>
