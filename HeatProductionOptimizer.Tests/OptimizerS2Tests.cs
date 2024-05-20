@@ -10,18 +10,12 @@ public class OptimizerTests
     [Fact]
     public void OptimizeByCostsHandler_WhenIndividualUnit_UpdatesResultData()
     {
-        ProductionUnit optimalUnit1 = new ProductionUnit("Unit1", 0, 0, 0, 0, 0);
-        optimizer.individualUnitCandidates = new Dictionary<ProductionUnit, decimal>
-        {
-            { optimalUnit1, 10.0m }
-        };
-        optimizer.combinedUnitsNetCostsResult = new List<decimal> { 20.0m, 15.0m };
+        SdmParameters sdmParameters = new SdmParameters("01", "02", 1m, 1m);
+        ProductionUnit productionUnit = new ProductionUnit("", 1, 1, 1, 1, 1);
+        AssetManager.productionUnits = new List<ProductionUnit>() { productionUnit };
 
-        // Act
         optimizer.OptimizeByCostsHandler(resultData, sdmParameters);
 
-        // Assert
-        Assert.Equal("Unit1", resultData.ProductionUnit);
         Assert.Contains(resultData, ResultDataManager.Summer);
     }
 
@@ -33,8 +27,14 @@ public class OptimizerTests
         AssetManager.productionUnits = new List<ProductionUnit>() { productionUnit1 };
 
         var result = optimizer.GetOptimizedNetCosts(sdmParameters);
+        Dictionary<List<ProductionUnit>, decimal> expected = new Dictionary<List<ProductionUnit>, decimal>()
+        {
+            { AssetManager.productionUnits, 4}
+        };
 
-        Assert.Equal(4, result);
+        Assert.Equal(expected.Values, result.Values);
+        Assert.Equal(expected.Keys, result.Keys);
+        
     }
 
     [Fact]
@@ -54,64 +54,6 @@ public class OptimizerTests
             Assert.Equal(expected.Co2Emissions, co2AndNetCost.Co2Emissions);
             Assert.Equal(expected.Result, co2AndNetCost.Result);
         }
-    }
-
-    [Fact]
-    public void CombineAndSortNetCosts__ReturnsSortedCombinedList()
-    {
-        // Arrange
-        List<decimal> combinedUnits = new List<decimal> { 5.5m, 7.0m, 9.5m };
-        List<decimal> individualUnits = new List<decimal> { 3.0m, 4.0m, 8.0m };
-        List<decimal> expectedSortedNetCosts = new List<decimal> { 3.0m, 4.0m, 5.5m, 7.0m, 8.0m, 9.5m };
-
-        // Act
-        List<decimal> sortedNetCosts = optimizer.CombineAndSortNetCosts(combinedUnits, individualUnits);
-
-        // Assert
-        Assert.Equal(expectedSortedNetCosts.Count, sortedNetCosts.Count);
-
-        Assert.Equal(expectedSortedNetCosts, sortedNetCosts);
-    }
-
-    [Fact]
-    public void DetectNetCostOrigin_IndividualUnitCostExists_ReturnsMinusOne()
-    {
-        // Arrange
-        decimal bestNetCost = 10.5m;
-        optimizer.individualUnitsNetCostsResult.Add(10.5m); // Adding the test value to the list
-
-        // Act
-        int result = optimizer.DetectNetCostOrigin(bestNetCost);
-
-        // Assert
-        Assert.Equal(-1, result);
-    }
-
-    [Fact]
-    public void DetectNetCostOrigin_CombinedUnitCostExists_ReturnsMinusTwo()
-    {
-        // Arrange
-        decimal bestNetCost = 15.75m; // Sample value
-        optimizer.combinedUnitsNetCostsResult.Add(15.75m); // Adding the test value to the list
-
-        // Act
-        int result = optimizer.DetectNetCostOrigin(bestNetCost);
-
-        // Assert
-        Assert.Equal(-2, result);
-    }
-
-    [Fact]
-    public void DetectNetCostOrigin_UnitCostDoesNotExist_ReturnsMinusThree()
-    {
-        // Arrange
-        decimal bestNetCost = 20.0m; // Sample value
-
-        // Act
-        int result = optimizer.DetectNetCostOrigin(bestNetCost);
-
-        // Assert
-        Assert.Equal(-3, result);
     }
 
     [Fact]
@@ -140,20 +82,23 @@ public class OptimizerTests
     ---------------------------------------------------------------------------------*/
 
     [Fact]
-    public void GroupUnitsByDependency_OrderesDictionaries()
+    public void GroupUnitsByDependency_OrdersDictionaries()
     {
-        ProductionUnit productionUnit = new ProductionUnit("b", 0, 0, 0, 0, 0);
+        ProductionUnit productionUnit = new ProductionUnit("b", 0.5m, 1, 0, 0, 0);
         ProductionUnit productionUnit2 = new ProductionUnit("a", 1, 1, 1, 1, 1);
         List<ProductionUnit> productionUnits = new List<ProductionUnit>() { productionUnit, productionUnit2 };
 
-        SdmParameters sdmParameters = new SdmParameters("01", "02", 0.9m, 752.03m);
+        SdmParameters sdmParameters = new SdmParameters("01", "02", 1m, 752.03m);
 
         optimizer.GroupUnitsByDependency(sdmParameters, productionUnits);
         var result1 = optimizer.individualUnitCandidates.OrderBy(key => key.Value);
         var result2 = optimizer.unitPairingCandidates.OrderBy(key => key.Value);
-
-        Assert.True(optimizer.individualUnitCandidates.ContainsKey(productionUnit2));
-        Assert.True(optimizer.unitPairingCandidates.ContainsKey(productionUnit));
+        List<ProductionUnit> expectedList = new List<ProductionUnit>() { productionUnit2 };
+        
+        foreach (var key in optimizer.individualUnitCandidates.Keys)
+        {
+            Assert.Equal(key, expectedList);
+        }
         Assert.Equal(result1, optimizer.individualUnitCandidates);
         foreach (var pair in result2)
         {
@@ -235,9 +180,9 @@ public class OptimizerTests
     {
         ProductionUnit productionUnit = new ProductionUnit("a", 2, 0, 2, 0, 0);
         List<ProductionUnit> productionUnits = new List<ProductionUnit>() { productionUnit };
-        optimizer.individualUnitCandidates = new Dictionary<ProductionUnit, decimal>
+        optimizer.individualUnitCandidates = new Dictionary<List<ProductionUnit>, decimal>
         {
-            { productionUnit, 10 }
+            { productionUnits, 10 }
         };
 
         optimizer.CalculateCo2IndividualUnits(sdmParameters);

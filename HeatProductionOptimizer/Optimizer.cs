@@ -5,12 +5,10 @@ using ResultDataManager_;
 
 public class Optimizer
 {
-    public  Dictionary<ProductionUnit, decimal> individualUnitCandidates = new Dictionary<ProductionUnit, decimal>();
+    public  Dictionary<List<ProductionUnit>, decimal> individualUnitCandidates = new Dictionary<List<ProductionUnit>, decimal>();
     public  Dictionary<ProductionUnit, decimal> unitPairingCandidates = new Dictionary<ProductionUnit, decimal>();
     public  Dictionary<List<ProductionUnit>, decimal> combinedUnitsNetCost = new Dictionary<List<ProductionUnit>, decimal>();
     public List<Co2AndNetCost> co2AndNetCostsCandidates = new List<Co2AndNetCost>();
-    public List<decimal> combinedUnitsNetCostsResult = new List<decimal>();
-    public List<decimal> individualUnitsNetCostsResult = new List<decimal>();
     
     private decimal netProductionCosts;
 
@@ -179,30 +177,24 @@ public class Optimizer
     }
 
     public void OptimizeByCostsHandler(ResultData resultData, SdmParameters sdmParameters)
-    {        
-        decimal bestNetCost = GetOptimizedNetCosts(sdmParameters);
-        
-        //checks if the most optimal net cost is from an individual unit
-        if (DetectNetCostOrigin(bestNetCost) == -1)
-        {
-            ProductionUnit optimalUnit = individualUnitCandidates.First().Key;
-            ProductionUnit optimalUnit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
-            resultData.UpdateResultData(optimalUnit, optimalUnit2, bestNetCost, sdmParameters);
-        }
-        //or a combination of units
-        else if (DetectNetCostOrigin(bestNetCost) == -2)
-        {
-            List<ProductionUnit> firstCombination = combinedUnitsNetCost.Keys.First();
-            ProductionUnit optimalUnit = firstCombination[0];
-            ProductionUnit optimalUnit2 = firstCombination[1];
-            resultData.UpdateResultData(optimalUnit, optimalUnit2, bestNetCost, sdmParameters);
-        }
-        else
-        {
-            Console.WriteLine("Error.");
-            return;
-        }
+    {
+        Dictionary<List<ProductionUnit>, decimal> results = GetOptimizedNetCosts(sdmParameters);
+        ProductionUnit optimalUnit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
 
+        foreach (var result in results)
+        {
+            ProductionUnit optimalUnit = result.Key.First();
+            if (result.Key.Count == 1)
+            {
+                optimalUnit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
+            }
+            else
+            {
+                optimalUnit2 = result.Key.Last();
+            }
+            decimal netCost = result.Value;
+            resultData.UpdateResultData(optimalUnit, optimalUnit2, netCost, sdmParameters);
+        }
         SaveToResultDataManager(resultData, sdmParameters);
     }
 
@@ -262,20 +254,18 @@ public class Optimizer
         }
     }
 
-
-    public decimal GetOptimizedNetCosts(SdmParameters sdmParameters)
+    public Dictionary<List<ProductionUnit>, decimal> GetOptimizedNetCosts(SdmParameters sdmParameters)
     {
         GroupUnitsByDependency(sdmParameters, AssetManager.productionUnits);
 
         // best combinations of two units
-        Dictionary<List<ProductionUnit>, decimal> bestUnitCombinations = GetBestUnitCombinations(sdmParameters, 0, 1);
-
-        combinedUnitsNetCostsResult = bestUnitCombinations.Values.ToList();
-        individualUnitsNetCostsResult = individualUnitCandidates.Values.ToList();
+        GetBestUnitCombinations(sdmParameters, 0, 1); //combinedUnitsNetCosts
+        var result = individualUnitCandidates
+            .Concat(combinedUnitsNetCost)
+            .ToDictionary(pair => pair.Key, pair => pair.Value);
         
-        List<decimal> sortedNetCosts = CombineAndSortNetCosts(combinedUnitsNetCostsResult, individualUnitsNetCostsResult);
-        
-        return sortedNetCosts[0];
+        result.OrderBy(unit => unit.Value).ToList();
+        return result;
     }
 
     public List<Co2AndNetCost> GetOptimizedCO2(SdmParameters sdmParameters)
@@ -287,31 +277,6 @@ public class Optimizer
         co2AndNetCostsCandidates.OrderBy(unit => unit.Co2Emissions).ToList();
 
         return co2AndNetCostsCandidates;
-    }
-    
-    public List<decimal> CombineAndSortNetCosts(List<decimal> combinedUnits, List<decimal> individualUnits)
-    {
-        List<decimal> allNetCosts = new List<decimal> (combinedUnits);
-        allNetCosts.AddRange(individualUnits);
-        allNetCosts.Sort();
-
-        return allNetCosts;
-    }
-
-    public int DetectNetCostOrigin(decimal bestNetCost)
-    {
-        if (individualUnitsNetCostsResult.Contains(bestNetCost))
-        {
-            return -1;
-        }
-        else if (combinedUnitsNetCostsResult.Contains(bestNetCost))
-        {
-            return -2;
-        }
-        else
-        {
-            return -3;
-        }
     }
 
     public List<Co2AndNetCost> GetOptimizedCo2AndNet(SdmParameters sdmParameters, List<ProductionUnit> productionUnits)
@@ -351,7 +316,8 @@ public class Optimizer
 
             if (productionUnit.CanReachHeatDemand(sdmParameters))
             {
-                individualUnitCandidates.Add(productionUnit, netCost);
+                List<ProductionUnit> units = new List<ProductionUnit>() { productionUnit };
+                individualUnitCandidates.Add(units, netCost);
             }
             unitPairingCandidates.Add(productionUnit, netCost);
         }
@@ -362,14 +328,17 @@ public class Optimizer
 
     public void CalculateCo2IndividualUnits(SdmParameters sdmParameters)
     {
-        foreach (var productionUnit in individualUnitCandidates.Keys)
+        foreach (var units in individualUnitCandidates.Keys)
         {
-            decimal co2Emissions = sdmParameters.HeatDemand * productionUnit.Co2Emissions;
-            decimal netCost = individualUnitCandidates[productionUnit];
-            List<ProductionUnit> productionUnits = new List<ProductionUnit>() {productionUnit};
+            foreach (var productionUnit in units)
+            {
+                decimal co2Emissions = sdmParameters.HeatDemand * productionUnit.Co2Emissions;
+                decimal netCost = individualUnitCandidates[units];
+                List<ProductionUnit> productionUnits = new List<ProductionUnit>() {productionUnit};
 
-            Co2AndNetCost co2AndNetCostOfUnit = new Co2AndNetCost(productionUnits, netCost, co2Emissions, 0);
-            co2AndNetCostsCandidates.Add(co2AndNetCostOfUnit);
+                Co2AndNetCost co2AndNetCostOfUnit = new Co2AndNetCost(productionUnits, netCost, co2Emissions, 0);
+                co2AndNetCostsCandidates.Add(co2AndNetCostOfUnit);
+            }
         }
     }
 
