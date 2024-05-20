@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.ComponentModel;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
@@ -59,17 +60,17 @@ namespace HeatingGridAvaloniApp.ViewModels
         }
 
 
-        private string chosenSeason="x";
-        private string chosenOptimizeBy="x";
         
         public void OptimizeApplyFilters()
         {
             // Declares a list to hold filtered data.
             filteredSourceData = new List<SdmParameters>();
-
+            
             // Filters the chosen season.
+            string chosenSeason="x";
             if(_isWinterChosen && _isSummerChosen)
             {
+                chosenSeason="Both";
                 foreach(var parameters in VMParameterLoader.SDMParameters)
                 {
                     filteredSourceData.Add(parameters);
@@ -77,6 +78,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             }
             else if(!_isWinterChosen && _isSummerChosen)
             {
+                chosenSeason="Summer";
                 foreach(var parameters in VMParameterLoader.SDMParameters)
                 {
                     if(parameters.HeatDemand<4)
@@ -85,14 +87,17 @@ namespace HeatingGridAvaloniApp.ViewModels
             }
             else if(_isWinterChosen && !_isSummerChosen)
             {
+                chosenSeason="Winter";
                 foreach(var parameters in VMParameterLoader.SDMParameters)
                 {
                     if(parameters.HeatDemand>4)
                         filteredSourceData.Add(parameters);
                 }
             }
+            else chosenSeason = "x";
 
             // Filters the chosen optimization way
+            string chosenOptimizeBy = "x";
             if(_isCostsChosen && !_isCo2Chosen)
             {
                 chosenOptimizeBy = "1";
@@ -105,10 +110,20 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 chosenOptimizeBy = "3";
             }
+            else chosenOptimizeBy = "x";
+
+            Console.WriteLine($"Chosen Season: {chosenSeason}, Chosen OptimizeBy: {chosenOptimizeBy}");
             
-            //Finally, the optimization.
+            //Finally, the optimization.)
             if(chosenOptimizeBy != "x" && chosenSeason != "x")
+            {
                 VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
+                System.Console.WriteLine("Optimizing happens.");
+            }
+            else
+            {
+                System.Console.WriteLine("Optimizing don't happen.");
+            }
         }
     }
 }
