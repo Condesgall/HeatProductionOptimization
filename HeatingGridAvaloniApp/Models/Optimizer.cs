@@ -137,20 +137,14 @@ public class Optimizer
                 }
             }  
         }
-    }
-
-    public string GetSeason(SdmParameters sdmParameters)
-    {
-        // In given data set, summer has values around 1.5 and winter has values around 6.5
-        if(sdmParameters.HeatDemand > 4) return "winter";
-        else return "summer";
+        ResultDataCSV resultDataCSV = new ResultDataCSV("ResultData.csv");
+        resultDataCSV.Save(ResultDataManager.ResultData);
     }
 
     public void SaveToResultDataManager(ResultData resultData, SdmParameters sdmParameters)
     {
         // Check the source data and add result data to the right list.
-        if(GetSeason(sdmParameters)=="winter") ResultDataManager.Winter.Add(resultData);
-        if(GetSeason(sdmParameters)=="summer") ResultDataManager.Summer.Add(resultData);
+        ResultDataManager.ResultData.Add(resultData);
     }
     
     /*_____________________________________________________________________________________________________________
