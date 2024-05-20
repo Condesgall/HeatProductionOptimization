@@ -21,7 +21,7 @@
 
         <StackPanel Grid.Column="0" Margin="10">
             <TextBlock Text="Season:" Margin="10"/>
-            
+
             <StackPanel Orientation="Horizontal" Margin="10">
                 <CheckBox IsChecked="{Binding IsSummerChosen}"/>
                 <TextBlock VerticalAlignment="Center" Text="Summer"/>
@@ -73,10 +73,12 @@
                     Content="Save to CSV">
             </Button>
 
-            <Button Width="120" HorizontalContentAlignment="Center" Margin="5">Visualize</Button>
+            <Button Width="120" 
+                    HorizontalContentAlignment="Center" 
+                    Margin="5">
+                    Visualize
+            </Button>
         </StackPanel>
     </Grid>
-
-
     
 </UserControl>

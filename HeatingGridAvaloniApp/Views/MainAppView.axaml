@@ -7,7 +7,7 @@
              x:Class="HeatingGridAvaloniApp.Views.MainAppView"
              x:DataType="vm:MainAppViewModel">
   <Grid>
-    <StackPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
+    <StackPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10">
       <Button Click="RedirectToAM">AM</Button>
       <Button Click="RedirectToOptimizer">OPTIMIZER</Button>
     </StackPanel>
