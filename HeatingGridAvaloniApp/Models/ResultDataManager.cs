@@ -59,11 +59,10 @@ public class OptimizationResults
 
     public class ResultDataManager
     {
-        Optimizer optimizer = new Optimizer();
-        public static List<ResultData> Winter = new List<ResultData>();
-        public static List<ResultData> Summer = new List<ResultData>();
+        // Optimizer optimizer = new Optimizer();
+        public static List<ResultData> ResultData = new List<ResultData>();
 
-        public void GetFilePathAndUpdateLists()
+        /*public void GetFilePathAndUpdateLists()
         {
             if (File.Exists("SourceData.csv"))
             {
@@ -71,14 +70,12 @@ public class OptimizationResults
                 string fullPath = Path.GetFullPath("SourceData.csv");
                 ParameterLoader parameterLoader = new ParameterLoader(fullPath);
                 parameterLoader.Load();
-                optimizer.OptimizeProduction(parameterLoader.Summer, 2);
-                optimizer.OptimizeProduction(parameterLoader.Winter, 2);
+                optimizer.OptimizeProduction(parameterLoader.SDMParameters, 2);
             }
-        }
+        }*/
 
         public void DisplayResultData(List<ResultData> list)
         {
-            GetFilePathAndUpdateLists();
             foreach (var resultData in list)
             {
                 Console.WriteLine($"Time: {resultData.TimeFrom}-{resultData.TimeTo}");
