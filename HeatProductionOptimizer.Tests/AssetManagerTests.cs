@@ -1,4 +1,4 @@
-using AssetManager_;
+using HeatingGridAvaloniaApp.Models;
 namespace HeatProductionOptimizer.Tests;
 public class AssetManagerTests
 {

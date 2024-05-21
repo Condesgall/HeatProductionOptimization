@@ -20,6 +20,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         
         // ReactiveCommand to make Optimization accessible from UI
         public ReactiveCommand<Unit, Unit> ReactiveOptimize { get; }
+        public ReactiveCommand<Unit, Unit> ReactiveOptimizeSc2 { get; }
         public ReactiveCommand<Unit, Unit> ReactiveSaveCSV { get; }
         public OptimizerViewModel()
         {
@@ -34,6 +35,20 @@ namespace HeatingGridAvaloniApp.ViewModels
         }
 
         // Optimization settings (entered by buttons in the UI)
+        private bool isScenario1Chosen;
+        public bool IsScenario1Chosen
+        {
+            get => isScenario1Chosen;
+            set => this.RaiseAndSetIfChanged(ref isScenario1Chosen, value);
+        }
+
+        private bool isScenario2Chosen;
+        public bool IsScenario2Chosen
+        {
+            get => isScenario2Chosen;
+            set => this.RaiseAndSetIfChanged(ref isScenario2Chosen, value);
+        }
+
         private bool _isSummerChosen;
         public bool IsSummerChosen
         {
@@ -73,8 +88,81 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
             // Declares a list to hold filtered data.
             filteredSourceData = new List<SdmParameters>();
+            string chosenSeason = GetSeason();
+            // Filters the chosen optimization way
+            string chosenOptimizeBy = GetOptimizationOption();
+            string chosenScenario;
+
+            if (isScenario1Chosen && isScenario2Chosen)
+            {
+                OptimizationSuccessful = false;
+            }
+            else if (isScenario1Chosen && !isScenario2Chosen)
+            {
+                Scenario1Filters(chosenSeason, chosenOptimizeBy);
+            }
+            else if (isScenario2Chosen && !isScenario1Chosen)
+            {
+                Scenario2Filters(chosenSeason, chosenOptimizeBy);
+            }
+        }
+
+        public void Scenario1Filters(string chosenSeason, string chosenOptimizeBy)
+        {
+            Console.WriteLine($"Chosen Season: {chosenSeason}, Chosen OptimizeBy: {chosenOptimizeBy}");
             
-            // Filters the chosen season.
+            //Finally, the optimization.)
+            if(chosenOptimizeBy != "x" && chosenSeason != "x")
+            {
+                VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
+                Console.WriteLine("Optimizing happens.");
+                OptimizationSuccessful=true;
+            }
+            else
+            {
+                Console.WriteLine("Optimizing doesn't happen.");
+            }
+        }
+
+        public void Scenario2Filters(string chosenSeason, string optimizationChoice)
+        {
+            if(optimizationChoice != "x" && chosenSeason != "x")
+            {
+                VMOptimizer.OptimizeResultsSc2(filteredSourceData, int.Parse(optimizationChoice));
+                Console.WriteLine("Optimization successful.");
+                OptimizationSuccessful=true;
+            }
+            else
+            {
+                Console.WriteLine("Failed to optimize.");
+            } 
+        }
+
+        public string GetOptimizationOption()
+        {
+            string optimizationChoice;
+            if (_isCostsChosen && !_isCo2Chosen)
+            {
+                optimizationChoice = "1";
+            }
+            else if (!_isCostsChosen && _isCo2Chosen)
+            {
+                optimizationChoice = "2";
+            }
+            else if (_isCostsChosen && _isCo2Chosen)
+            {
+                optimizationChoice = "3";
+            }
+            else 
+            {
+                optimizationChoice = "x";
+                OptimizationSuccessful=false;
+            }
+            return optimizationChoice;
+        }
+
+        public string GetSeason()
+        {
             string chosenSeason;
             if(_isWinterChosen && _isSummerChosen)
             {
@@ -107,40 +195,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                 chosenSeason = "x";
                 OptimizationSuccessful=false;
             }
-
-            // Filters the chosen optimization way
-            string chosenOptimizeBy;
-            if(_isCostsChosen && !_isCo2Chosen)
-            {
-                chosenOptimizeBy = "1";
-            }
-            else if(!_isCostsChosen && _isCo2Chosen)
-            {
-                chosenOptimizeBy = "2";
-            }
-            else if(_isCostsChosen && _isCo2Chosen)
-            {
-                chosenOptimizeBy = "3";
-            }
-            else 
-            {
-                chosenOptimizeBy = "x";
-                OptimizationSuccessful=false;
-            }
-
-            Console.WriteLine($"Chosen Season: {chosenSeason}, Chosen OptimizeBy: {chosenOptimizeBy}");
-            
-            //Finally, the optimization.)
-            if(chosenOptimizeBy != "x" && chosenSeason != "x")
-            {
-                VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
-                System.Console.WriteLine("Optimizing happens.");
-                OptimizationSuccessful=true;
-            }
-            else
-            {
-                System.Console.WriteLine("Optimizing doesn't happen.");
-            }
+            return chosenSeason;
         }
 
         public void SaveToCSV()

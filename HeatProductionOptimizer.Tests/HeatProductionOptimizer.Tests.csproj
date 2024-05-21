@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Avalonia.Headless.XUnit" Version="11.0.10" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="xunit" Version="2.7.1" />
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HeatProductionOptimizer\HeatProductionOptimizer.csproj" />
+    <ProjectReference Include="..\HeatingGridAvaloniApp\HeatingGridAvaloniApp.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,9 +6,9 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.IO;
 using Avalonia;
+using System.Reflection;
 
 namespace HeatingGridAvaloniaApp.Models
-
 {
     public class AssetManager
     {
@@ -122,6 +122,126 @@ namespace HeatingGridAvaloniaApp.Models
             GasConsumption = 0;
             MaxElectricity = 0;
         }
+
+        /// <summary>
+        /// Checks if the unit is electricity producing, consuming, or neither.
+        /// </summary>
+        /// <remarks>
+        /// Usage Codes:
+        /// -1: Electricity producing
+        /// -2: Electricity consuming.
+        /// -3: Doesn't use electricity.
+        /// </remarks>
+        public int GetProductionUnitType()
+        {
+            if (MaxElectricity > 0)
+            {
+                return -1;
+            }
+            else if (MaxElectricity < 0)
+            {
+                return -2;
+            }
+            else if (MaxElectricity == 0)
+            {
+                return -3;
+            }
+            else 
+            {
+                bool allZero = true; // Flag to track if all properties are zero
+                PropertyInfo[] properties = typeof(ProductionUnit).GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    object? value = property.GetValue(this);
+                    if (value != null && (int)value != 0)
+                    {
+                        allZero = false; 
+                        break; 
+                    }
+                }
+                if (allZero)
+                {
+                    return -4; // Return -4 if all properties are zero
+                }
+            }
+            return -5;
+        }
+
+        public decimal CalculateElectricityProduced(decimal heatDemand)
+        {
+            decimal electricityProduced = (heatDemand/MaxHeat) * MaxElectricity;
+            if (electricityProduced <= MaxElectricity)
+            {
+                return electricityProduced;
+            }
+            else
+            {
+                return MaxElectricity;
+            }
+        }
+
+        public decimal CalculateElectricityConsumed(decimal heatDemand)
+        {
+                decimal electricityConsumed = (heatDemand / MaxHeat) * MaxElectricity;
+            
+                if (electricityConsumed > MaxElectricity)
+                {
+                    return MaxElectricity;
+                }
+                else
+                {
+                    return electricityConsumed;
+                }
+        }
+
+
+        public bool CanReachHeatDemand(SdmParameters sdmParameters)
+        {
+            if (sdmParameters.HeatDemand > MaxHeat)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool CombinedUnitsReachHeatDemand(SdmParameters sdmParameters, ProductionUnit unit1, ProductionUnit unit2)
+        {
+            if (sdmParameters.HeatDemand > unit1.MaxHeat + unit2.MaxHeat)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool IsElectricBoiler()
+        {
+            if (GasConsumption == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IfThereIsASecondUnit()
+        {
+            if (Name == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 
     public class HeatingGrid
@@ -158,3 +278,4 @@ namespace HeatingGridAvaloniaApp.Models
         }
     }
 }
+
