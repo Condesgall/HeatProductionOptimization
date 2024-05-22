@@ -6,7 +6,7 @@ using ReactiveUI;
 using Avalonia;
 using System.Dynamic;
 
-namespace HeatingGridAvaloniApp.ViewModels 
+namespace HeatingGridAvaloniApp.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {

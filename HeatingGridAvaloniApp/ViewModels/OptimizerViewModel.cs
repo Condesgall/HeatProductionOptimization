@@ -10,7 +10,6 @@ using System.ComponentModel;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 
-
 namespace HeatingGridAvaloniApp.ViewModels
 {
     public class OptimizerViewModel : ReactiveObject

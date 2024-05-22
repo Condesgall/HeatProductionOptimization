@@ -3,8 +3,6 @@ using Avalonia.Interactivity;
 using HeatingGridAvaloniApp.ViewModels;
 using System.Diagnostics;
 using ReactiveUI;
-using LiveCharts;
-using LiveCharts.Wpf;
 
 namespace HeatingGridAvaloniApp.Views;
 
