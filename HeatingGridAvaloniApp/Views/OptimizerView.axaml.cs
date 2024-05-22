@@ -15,10 +15,17 @@ namespace HeatingGridAvaloniApp.Views
             DataContext = new OptimizerViewModel();
         }
 
-        public void SaveClicked(object sender, RoutedEventArgs e)
+        public void Save(object sender, RoutedEventArgs e)
         {
             var saveButton = this.FindControl<Button>("SaveButton");
             saveButton.Content = "Saved";
+        }
+
+        public void Visualize(object sender, RoutedEventArgs e)
+        {
+            var openedTab = this.FindControl<ContentControl>("OpenedTab");
+        
+            openedTab.Content = new VisualizerView();
         }
     }
 }

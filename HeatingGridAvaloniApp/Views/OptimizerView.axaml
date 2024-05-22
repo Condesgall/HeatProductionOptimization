@@ -96,20 +96,20 @@
                     HorizontalContentAlignment="Center" 
                     Margin="5"
                     Command="{Binding ReactiveSaveCSV}"
-                    Click="SaveClicked"
+                    Click="Save"
                     Content="Save to CSV">
             </Button>
 
             <Button Width="120" 
                     HorizontalContentAlignment="Center" 
                     Margin="5"
+                    Click="Visualize"
                     Content="Visualize">
             </Button>
         </StackPanel>
         </StackPanel>
-        </Border>
-
-
+        </Border>  
+    <ContentControl Name="OpenedTab" Grid.Row="2"/>
     </Grid>
     
 </UserControl>

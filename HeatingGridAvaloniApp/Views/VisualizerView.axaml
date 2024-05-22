@@ -1,21 +1,22 @@
-<UserControl x:Class="HeatingGridAvaloniApp.Views.VisualizerView"
-    xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="using:HeatingGridAvaloniApp.Views"
-    xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
-    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-    mc:Ignorable="d"
-    x:DataType="vm:VisualizerViewModel">
+<UserControl xmlns="https://github.com/avaloniaui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
+            mc:Ignorable="d"
+            xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+            x:Class="HeatingGridAvaloniApp.Views.VisualizerView"
+            x:DataType="vm:VisualizerViewModel">
 
 
     <UserControl.DataContext>
         <vm:VisualizerViewModel />
     </UserControl.DataContext>
 
-    <lvc:CartesianChart
-        Series="{Binding Series}">
-    </lvc:CartesianChart>
+    <Grid>
+        <lvc:CartesianChart
+            Series="{Binding Series}">
+        </lvc:CartesianChart>
+    </Grid>
 
 </UserControl>
