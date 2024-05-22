@@ -31,7 +31,7 @@
         Click="RedirectToOptimizer">Optimizer
         </Button>
     </StackPanel>
-    <ContentControl Name="OpenedTab"/>
+    <ContentControl Name="OpenedTab" Grid.Row="2"/>
   </Grid>
 
 </UserControl>
