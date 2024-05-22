@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="900"
              x:Class="HeatingGridAvaloniApp.Views.MainAppView"
              x:DataType="vm:MainAppViewModel">
   <Grid>
@@ -18,7 +18,7 @@
         Width="400"
         Height="50"
         HorizontalContentAlignment="Center"
-        VerticalAlignment="Center"
+        VerticalContentAlignment="Center"
         FontSize="18"
         Click="RedirectToAM">Production Units
         </Button>
@@ -26,7 +26,7 @@
         Width="400"
         Height="50"
         HorizontalContentAlignment="Center"
-        VerticalAlignment="Center"
+        VerticalContentAlignment="Center"
         FontSize="18"
         Click="RedirectToOptimizer">Optimizer
         </Button>

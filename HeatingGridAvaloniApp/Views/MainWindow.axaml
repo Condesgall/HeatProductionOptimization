@@ -3,7 +3,7 @@
         xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="HeatingGridAvaloniApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -15,28 +15,32 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <StackPanel Margin="5" VerticalAlignment="Top">
-        <StackPanel Grid.Row="0">
-            <Border Background="#ABAAAA" CornerRadius ="0" BorderBrush="#979595" Padding="10" Width="1930" Height="80">
-                <Image Source="/Assets/danfossLogo.png" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150" Height="100"/>
-            </Border>
+    <Viewbox Stretch="Uniform">
+        <Grid Width="1920" Height="1080">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="5" VerticalAlignment="Top">
+            <StackPanel Grid.Row="0">
+                <Border Grid.Row="0" Background="#ABAAAA" BorderBrush="#979595" BorderThickness="2">
+                    <DockPanel>
+                        <Image Source="/Assets/danfossLogo.png" Margin="10" Width="150" Height="60" HorizontalAlignment="Right" VerticalAlignment="Center" DockPanel.Dock="Right"/>
+                    </DockPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Border CornerRadius="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/> 
+                        </Grid.RowDefinitions>
+                        <UserControl Grid.Row="1" Content="{Binding ContentViewModel}"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Border CornerRadius="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/> 
-                    </Grid.RowDefinitions>
-                    <UserControl Grid.Row="1" Content="{Binding ContentViewModel}"/>
-                </Grid>
-            </Border>
-        </StackPanel>
-    </StackPanel>
-    </Grid>
+        </Grid>
+    </Viewbox>
 </Window>

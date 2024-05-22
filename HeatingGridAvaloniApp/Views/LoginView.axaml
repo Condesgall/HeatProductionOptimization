@@ -7,47 +7,47 @@
              x:Class="HeatingGridAvaloniApp.Views.LoginView"
              x:DataType="vm:LoginViewModel">
   
-  <Grid Background="White">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="200"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="100"/>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="550"/>
-      <ColumnDefinition Width="300"/>
-      <ColumnDefinition Width="595"/>
-      <ColumnDefinition Width="250"/>
-    </Grid.ColumnDefinitions>
+    <Grid Background="White">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="200"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="100"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="550"/>
+        <ColumnDefinition Width="300"/>
+        <ColumnDefinition Width="595"/>
+        <ColumnDefinition Width="250"/>
+      </Grid.ColumnDefinitions>
 
-  <Border Background="#ABAAAA" CornerRadius ="1" Grid.Row="1" Grid.Column="1" BorderBrush="#979595" BorderThickness="8" Padding="30" Width="300">
-            <StackPanel VerticalAlignment="Center">
-                <!-- LOGIN -->
-                <Label Margin="0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="25"/>
+    <Border Background="#ABAAAA" CornerRadius ="1" Grid.Row="1" Grid.Column="1" BorderBrush="#979595" BorderThickness="8" Padding="30" Width="300">
+              <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                  <!-- LOGIN -->
+                  <Label Margin="0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="25"/>
 
-                <!-- Username Section -->
-                <Label Margin="0,50,0,0" Content="Username"/>
-                <TextBox Margin="0 5" Name="userName"/>
-                
-                <!-- Password Section -->
-                <Label Margin="0" Content="Password"/>
-                <TextBox Margin="0 5" PasswordChar="*" Name="password"/>
-                
-                <!-- Login Button -->
-                <Button Margin="0,30,0,0" Width="235" HorizontalAlignment="Right" CornerRadius="10"
-                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                  Content="Login"
-                  Background="#FA2929"
-                  Foreground="White"
-                  Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).LoginButtonCommand}"/>
-            </StackPanel>
-    </Border>
+                  <!-- Username Section -->
+                  <Label Margin="0,50,0,0" Content="Username"/>
+                  <TextBox Margin="0 5" Name="userName"/>
+                  
+                  <!-- Password Section -->
+                  <Label Margin="0" Content="Password"/>
+                  <TextBox Margin="0 5" PasswordChar="*" Name="password"/>
+                  
+                  <!-- Login Button -->
+                  <Button Margin="0,30,0,0" Width="235" HorizontalAlignment="Right" CornerRadius="10"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    Content="Login"
+                    Background="#FA2929"
+                    Foreground="White"
+                    Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).LoginButtonCommand}"/>
+              </StackPanel>
+      </Border>
 
-      <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
-          <Border CornerRadius ="1" BorderBrush="#979595" BorderThickness="10" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-          <Image Source="/Assets/heater.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-          </Border>
-      </StackPanel>
-  </Grid>
+        <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Border CornerRadius ="1" BorderBrush="#979595" BorderThickness="10" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Assets/heater.jpg" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Border>
+        </StackPanel>
+    </Grid>
 </UserControl>
