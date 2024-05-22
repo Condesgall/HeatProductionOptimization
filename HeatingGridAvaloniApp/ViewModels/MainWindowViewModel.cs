@@ -23,4 +23,9 @@ public class MainWindowViewModel : ViewModelBase
     {
         ContentViewModel = MainApp;
     }
+
+    public string ImagePath
+    {
+        get => "/Assets/danfossLogo.png";
+    }
 }

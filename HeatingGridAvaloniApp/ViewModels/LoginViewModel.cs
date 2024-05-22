@@ -14,19 +14,9 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
 
         }
-        private string nameString = "test";
-
-        public string NameString 
+        public string ImagePath
         {
-            get => nameString;
-            set => this.RaiseAndSetIfChanged(ref nameString, value);
-        }
-
-        public void NameButton()
-        {
-            NameString = "Hello!";
+            get => "/Assets/heater.jpg";
         }
     }
-
-
 }

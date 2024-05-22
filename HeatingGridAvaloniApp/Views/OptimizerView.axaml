@@ -7,52 +7,61 @@
              x:Class="HeatingGridAvaloniaApp.Views.OptimizerView"
              x:DataType="vm:OptimizerViewModel">
 
-        <Grid>
+    <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <StackPanel Grid.Column="0" Margin="10">
-            <TextBlock Text="Season:" Margin="10"/>
-
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <CheckBox IsChecked="{Binding IsSummerChosen}"/>
-                <TextBlock VerticalAlignment="Center" Text="Summer"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <CheckBox IsChecked="{Binding IsWinterChosen}"/>
-                <TextBlock VerticalAlignment="Center" Text="Winter"/>
-            </StackPanel>
-
-        </StackPanel>
         
-        <StackPanel Grid.Column="1" Margin="10">
-            <TextBlock Text="Optimize by:" Margin="10"/>
+        <Border Grid.Row="2" Grid.Column="2" Margin="10" Background="White" BorderBrush="#979595" BorderThickness="8" CornerRadius="10" Padding="10">
+        <StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row ="2" Margin="10">
+                <Border Background="#FA2929" CornerRadius="10">
+                    <TextBlock Text="Season:" Foreground="White" Margin="10"/>
+                </Border>
+                
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <CheckBox IsChecked="{Binding IsSummerChosen}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Summer"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <CheckBox IsChecked="{Binding IsCostsChosen}"/>
-                <TextBlock VerticalAlignment="Center" Text="Costs"/>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <CheckBox IsChecked="{Binding IsWinterChosen}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Winter"/>
+                </StackPanel>
+
+            </StackPanel>
+            
+            <StackPanel Grid.Column="2" Grid.Row="2" Margin="10">
+                <Border Background="#FA2929" CornerRadius="10">
+                    <TextBlock Text="Optimize by:" Foreground="White" Margin="10"/>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <CheckBox IsChecked="{Binding IsCostsChosen}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Costs"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <CheckBox IsChecked="{Binding IsCo2Chosen}"/>
+                    <TextBlock VerticalAlignment="Center" Text="CO2 emissions"/>
+                </StackPanel>
+
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <CheckBox IsChecked="{Binding IsCo2Chosen}"/>
-                <TextBlock VerticalAlignment="Center" Text="CO2 emissions"/>
-            </StackPanel>
-
-        </StackPanel>
-
-        <StackPanel Grid.Column="2" Margin="10">
-            <TextBlock Text="Scenario:" Margin="10"/>
+        <StackPanel Grid.Column="3" Grid.Row="2" Margin="10">
+            <Border Background="#FA2929" CornerRadius="10">
+                <TextBlock Text="Scenario:" Foreground="White" Margin="10"/>
+            </Border>
 
             <StackPanel Orientation="Horizontal" Margin="10">
                 <CheckBox IsChecked="{Binding IsScenario1Chosen}"/>
@@ -66,17 +75,18 @@
 
         </StackPanel>
 
-        <Button Grid.Row="1" Grid.ColumnSpan="2"
+        <Button Grid.Row="3" Grid.ColumnSpan="10"
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
-            Width="260"
+            Width="400"
             Margin="10"
+            Background="#FA2929"
+            CornerRadius="10"
+            Foreground="White"
             Command="{Binding ReactiveOptimize}">
-            Optimize!
+            Optimize
         </Button>
-
-
         <TextBlock IsVisible="{Binding OptimizationSuccessful}" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10" Grid.Row="2" Text="Optimization successful!"/>
 
         <StackPanel IsVisible="{Binding OptimizationSuccessful}" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
@@ -96,6 +106,10 @@
                     Visualize
             </Button>
         </StackPanel>
+        </StackPanel>
+        </Border>
+
+
     </Grid>
     
 </UserControl>
