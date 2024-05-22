@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="HeatingGridAvaloniaApp.Views.OptimizerView"
+             x:Class="HeatingGridAvaloniApp.Views.OptimizerView"
              x:DataType="vm:OptimizerViewModel">
 
     <Grid>
@@ -102,8 +102,8 @@
 
             <Button Width="120" 
                     HorizontalContentAlignment="Center" 
-                    Margin="5">
-                    Visualize
+                    Margin="5"
+                    Content="Visualize">
             </Button>
         </StackPanel>
         </StackPanel>

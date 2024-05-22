@@ -1,8 +1,10 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using HeatingGridAvaloniaApp.Views;
+using HeatingGridAvaloniaApp.Models;
+using HeatingGridAvaloniApp.Views;
 
 namespace HeatingGridAvaloniApp.Views;
 
