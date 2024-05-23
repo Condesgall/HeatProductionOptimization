@@ -151,7 +151,8 @@ public class Optimizer
    _______________________________________________________________________________________________________________*/
 
     public void OptimizeResultsSc2(List<SdmParameters> sourceData, int optimizeBy)
-    {        
+    {
+        ResultDataManager.ResultData.Clear();
         ResultData resultData = new ResultData();
         foreach (var sdmParameters in sourceData)
         {
@@ -159,13 +160,13 @@ public class Optimizer
             {
                 //optimize by costs
                 case 1:
-                    OptimizeByCostsHandler(resultData, sdmParameters);
+                    OptimizeByCostsHandler(sdmParameters);
                     break;
                 case 2:
-                    OptimizeByCO2EmissionHandler(resultData, sdmParameters);
+                    OptimizeByCO2EmissionHandler(sdmParameters);
                     break;
                 case 3:
-                    OptimizeByCO2AndCostsHandler(resultData, sdmParameters);
+                    OptimizeByCO2AndCostsHandler(sdmParameters);
                     break;
                 default:
                     Console.WriteLine("Please select an option.");
@@ -174,15 +175,16 @@ public class Optimizer
         }
     }
 
-    public void OptimizeByCostsHandler(ResultData resultData, SdmParameters sdmParameters)
+    public void OptimizeByCostsHandler(SdmParameters sdmParameters)
     {
         Dictionary<List<ProductionUnit>, decimal> netCostResults = GetOptimizedNetCosts(sdmParameters);
-        ProductionUnit optimalUnit2;
         List<ResultData> top3Results = new List<ResultData>();
 
         foreach (var result in netCostResults)
         {
             ProductionUnit optimalUnit = result.Key.First();
+            ProductionUnit optimalUnit2;
+
             if (result.Key.Count == 1)
             {
                 optimalUnit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
@@ -191,11 +193,16 @@ public class Optimizer
             {
                 optimalUnit2 = result.Key.Last();
             }
+
             decimal netCost = result.Value;
-            resultData.UpdateResultData(optimalUnit, optimalUnit2, netCost, sdmParameters);
-            if (top3Results.Count() <= 3)
+            ResultData newResultData = new ResultData();
+            newResultData.UpdateResultData(optimalUnit, optimalUnit2, netCost, sdmParameters);
+
+            top3Results.Add(newResultData);
+
+            if (top3Results.Count() >= 3)
             {
-                top3Results.Add(resultData);
+                break;
             }
         }
         foreach (var result in top3Results)
@@ -204,7 +211,7 @@ public class Optimizer
         }
     }
 
-    public void OptimizeByCO2EmissionHandler(ResultData resultData, SdmParameters sdmParameters)
+    public void OptimizeByCO2EmissionHandler(SdmParameters sdmParameters)
     {
         ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
         ProductionUnit unit1 = new ProductionUnit("", 0, 0, 0, 0, 0);
@@ -227,10 +234,14 @@ public class Optimizer
                     unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
                 }
             }
-            resultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
-            if (top3Results.Count() <= 3)
+            ResultData newResultData = new ResultData();
+            newResultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
+            
+            top3Results.Add(newResultData);
+            
+            if (top3Results.Count() >= 3)
             {
-                top3Results.Add(resultData);
+                break;
             }
         }
         foreach (var result in top3Results)
@@ -239,7 +250,7 @@ public class Optimizer
         }
     }
 
-    public void OptimizeByCO2AndCostsHandler(ResultData resultData, SdmParameters sdmParameters)
+    public void OptimizeByCO2AndCostsHandler(SdmParameters sdmParameters)
     {
         ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
         ProductionUnit unit1 = new ProductionUnit("", 0, 0, 0, 0, 0);
@@ -262,10 +273,15 @@ public class Optimizer
                     unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
                 }
             }
-            resultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
-            if (top3Results.Count() <= 3)
+
+            ResultData newResultData = new ResultData();
+            newResultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
+
+            top3Results.Add(newResultData);
+            
+            if (top3Results.Count() >= 3)
             {
-                top3Results.Add(resultData);
+                break;
             }
         }
         foreach (var result in top3Results)
@@ -273,6 +289,7 @@ public class Optimizer
             SaveToResultDataManager(result, sdmParameters);
         }
     }
+
 
     public Dictionary<List<ProductionUnit>, decimal> GetOptimizedNetCosts(SdmParameters sdmParameters)
     {
@@ -443,22 +460,26 @@ public class Optimizer
 
     public Dictionary<List<ProductionUnit>, decimal> GetBestUnitCombinations(SdmParameters sdmParameters, int primaryUnitIndex, int secondUnitIndex)
     {
-        List<ProductionUnit> unitSortedList = unitPairingCandidates.Keys.ToList();
+        List<ProductionUnit> unitCandidates = unitPairingCandidates.Keys.ToList();
 
-        if (primaryUnitIndex < unitSortedList.Count)
+        if (primaryUnitIndex < unitCandidates.Count)
         {
-            if (secondUnitIndex < unitSortedList.Count)
+            if (secondUnitIndex < unitCandidates.Count)
             {
                 if (primaryUnitIndex != secondUnitIndex)
                 {
-                    ProductionUnit optimalUnit = unitSortedList[primaryUnitIndex];
-                    ProductionUnit optimalUnit2 = unitSortedList[secondUnitIndex];
+                    ProductionUnit optimalUnit = unitCandidates[primaryUnitIndex];
+                    ProductionUnit optimalUnit2 = unitCandidates[secondUnitIndex];
 
                     if (ProductionUnit.CombinedUnitsReachHeatDemand(sdmParameters, optimalUnit, optimalUnit2))
                     {
                         AddCombinationToDictionary(optimalUnit, optimalUnit2);
                     }
                     // Recursively call the method with updated indices
+                    return GetBestUnitCombinations(sdmParameters, primaryUnitIndex, secondUnitIndex + 1);
+                }
+                else
+                {
                     return GetBestUnitCombinations(sdmParameters, primaryUnitIndex, secondUnitIndex + 1);
                 }
             }
@@ -475,14 +496,17 @@ public class Optimizer
     {
         List<ProductionUnit> options = new List<ProductionUnit> { optimalUnit, unit2 };
 
+        options.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase)); 
+
         decimal netCost1 = unitPairingCandidates[optimalUnit];
         decimal netCost2 = unitPairingCandidates[unit2];
 
-        // Calculate total net cost
         decimal totalNetCost = netCost1 + netCost2;
 
-        // Add to unit options
-        if (!combinedUnitsNetCost.ContainsKey(options))
+        bool combinationExists = combinedUnitsNetCost.Keys.Any(key => key.SequenceEqual(options));
+
+        // Add to unit options if it doesn't already exist
+        if (!combinationExists)
         {
             combinedUnitsNetCost.Add(options, totalNetCost);
         }

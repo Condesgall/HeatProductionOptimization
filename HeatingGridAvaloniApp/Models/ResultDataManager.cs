@@ -79,7 +79,8 @@ public class OptimizationResults
         private string timeTo;
         private string productionUnit;
         private OptimizationResults optimizationResults;
-        
+        private ResultData resultData;
+
         public string TimeFrom
         {
             get { return timeFrom; }
@@ -119,6 +120,16 @@ public class OptimizationResults
             TimeTo = timeTo;
             ProductionUnit = productionUnit;
             OptimizationResults = optimizationResults;
+        }
+
+        public ResultData(ResultData resultData)
+        {
+            this.resultData = resultData;
+        }
+
+        public ResultData Clone()
+        {
+            return new ResultData(this);
         }
 
         public void UpdateResultData(ProductionUnit optimalUnit, ProductionUnit secondUnit, decimal netCost, SdmParameters sdmParameters)
@@ -191,7 +202,7 @@ public class OptimizationResults
         {
             if (secondUnit.IfThereIsASecondUnit())
             {
-                ProductionUnit = optimalUnit.Name + ", " + secondUnit.Name;
+                ProductionUnit = optimalUnit.Name + "+" + secondUnit.Name;
             }
             else
             {

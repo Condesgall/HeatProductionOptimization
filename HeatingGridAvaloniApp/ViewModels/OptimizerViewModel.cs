@@ -30,6 +30,7 @@ namespace HeatingGridAvaloniApp.ViewModels
 
             // Constructing that ReactiveCommand (basically converting the normal command to it)
             ReactiveOptimize = ReactiveCommand.Create(OptimizeApplyFilters);
+            ReactiveOptimize = ReactiveCommand.Create(OptimizeApplyFiltersSc2);
             ReactiveSaveCSV = ReactiveCommand.Create(SaveToCSV);
             OptimizationSuccessful=false;
         }
@@ -85,6 +86,10 @@ namespace HeatingGridAvaloniApp.ViewModels
         }
 
         public void OptimizeApplyFilters()
+        {
+            
+        }
+        public void OptimizeApplyFiltersSc2()
         {
             try
             {
