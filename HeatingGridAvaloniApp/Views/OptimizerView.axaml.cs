@@ -1,8 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using HeatingGridAvaloniApp.ViewModels;
 using HeatingGridAvaloniApp.Views;
+using LiveChartsCore.Kernel.Sketches;
 
 namespace HeatingGridAvaloniaApp.Views
 {
@@ -11,7 +13,8 @@ namespace HeatingGridAvaloniaApp.Views
         public OptimizerView()
         {
             InitializeComponent();
-            DataContext = new OptimizerViewModel();
+            var mainWindow = Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop ? desktop.MainWindow as MainWindow : null;
+            DataContext = new OptimizerViewModel(mainWindow?.DataContext as MainWindowViewModel ?? new MainWindowViewModel());
         }
 
         public void SaveClicked(object sender, RoutedEventArgs e)
@@ -19,12 +22,5 @@ namespace HeatingGridAvaloniaApp.Views
             var saveButton = this.FindControl<Button>("SaveButton");
             saveButton.Content = "Saved";
         }
-
-        /*public void VisualizeClicked(object sender, RoutedEventArgs e)
-        {
-            var openedTab = this.FindControl<ContentControl>("OpenedTab");
-        
-            openedTab.Content = new HeatDemandChartView();
-        }*/
     }
 }

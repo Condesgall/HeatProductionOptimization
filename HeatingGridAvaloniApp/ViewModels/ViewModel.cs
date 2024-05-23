@@ -1,9 +1,10 @@
+using HeatingGridAvaloniApp.ViewModels;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 
-namespace AvaloniaSample
+namespace HeatingGridAvaloniApp.ViewModels
 {
-    public class ViewModel
+    public class ViewModel : ViewModelBase
     {
         public ISeries[] Series { get; set; }
         = new ISeries[]

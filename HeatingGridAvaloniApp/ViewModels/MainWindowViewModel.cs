@@ -1,6 +1,6 @@
 ﻿using System;
+using HeatingGridAvaloniaApp.Models;
 using ReactiveUI;
-using AvaloniaSample;
 
 namespace HeatingGridAvaloniApp.ViewModels;
 
@@ -10,24 +10,35 @@ public class MainWindowViewModel : ViewModelBase
     {
         Login = new LoginViewModel();
         MainApp = new MainAppViewModel();
-        _contentViewModel = Login;
-
-        // Initialize the chart ViewModel
         ChartData = new ViewModel();
+        Optimizer = new OptimizerViewModel(this);
+
+        _contentViewModel = Login;
     }
 
     public LoginViewModel Login { get; } 
     public MainAppViewModel MainApp { get; }
+    public ViewModel ChartData { get; }
+    public OptimizerViewModel Optimizer { get; }
     private ViewModelBase _contentViewModel;
-    public ViewModelBase ContentViewModel { 
+    public ViewModelBase ContentViewModel 
+    { 
         get => _contentViewModel;
         set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
     }
 
-    //Property for the chart ViewModel
-    public ViewModel ChartData { get; }
     public void LoginButtonCommand()
     {
         ContentViewModel = MainApp;
+    }
+
+    public void ShowChartView()
+    {
+        ContentViewModel = new ViewModel();
+    }
+
+    public void ShowOptimizerView()
+    {
+        ContentViewModel = Optimizer as ViewModelBase;
     }
 }

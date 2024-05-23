@@ -60,9 +60,19 @@
         </Button>
 
 
-        <TextBlock IsVisible="{Binding OptimizationSuccessful}" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10" Grid.Row="2" Text="Optimization successful!"/>
+        <TextBlock IsVisible="{Binding OptimizationSuccessful}" 
+                   Grid.ColumnSpan="2" 
+                   HorizontalAlignment="Center" 
+                   Margin="10" 
+                   Grid.Row="2" 
+                   Text="Optimization successful!"/>
 
-        <StackPanel IsVisible="{Binding OptimizationSuccessful}" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+        <StackPanel IsVisible="{Binding OptimizationSuccessful}" 
+                    Grid.Row="3" 
+                    Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Spacing="10">
             
             <Button x:Name="SaveButton"
                     Width="120" 
@@ -70,14 +80,14 @@
                     Margin="5"
                     Command="{Binding ReactiveSaveCSV}"
                     Click="SaveClicked"
-                    Content="Save to CSV">
-            </Button>
+                    Content="Save to CSV"/>
 
-            <Button Width="120" 
+            <Button x:Name="ChartButton"
+                    Width="120" 
                     HorizontalContentAlignment="Center" 
-                    Margin="5">
-                    Visualize
-            </Button>
+                    Margin="5"
+                    Command="{Binding ReactiveVisualize}"
+                    Content="Visualize"/>
         </StackPanel>
     </Grid>
     

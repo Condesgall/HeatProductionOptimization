@@ -12,17 +12,13 @@ using System;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
-    public class OptimizerViewModel : ReactiveObject
+    public class OptimizerViewModel : ViewModelBase
     {
-        public Optimizer VMOptimizer{get;}
-        public ParameterLoader VMParameterLoader{get;}
-        private List<SdmParameters> filteredSourceData;
-        
-        // ReactiveCommand to make Optimization accessible from UI
-        public ReactiveCommand<Unit, Unit> ReactiveOptimize { get; }
-        public ReactiveCommand<Unit, Unit> ReactiveSaveCSV { get; }
-        public OptimizerViewModel()
+        private readonly MainWindowViewModel _mainWindowViewModel;
+
+        public OptimizerViewModel(MainWindowViewModel mainWindowViewModel)
         {
+            _mainWindowViewModel = mainWindowViewModel;
             VMOptimizer = new Optimizer();
             VMParameterLoader = new ParameterLoader("Assets/SourceData.csv");
             VMParameterLoader.Load();
@@ -30,8 +26,18 @@ namespace HeatingGridAvaloniApp.ViewModels
             // Constructing that ReactiveCommand (basically converting the normal command to it)
             ReactiveOptimize = ReactiveCommand.Create(OptimizeApplyFilters);
             ReactiveSaveCSV = ReactiveCommand.Create(SaveToCSV);
+            ReactiveVisualize = ReactiveCommand.Create(Visualize);
             OptimizationSuccessful=false;
+
         }
+        public Optimizer VMOptimizer{get;}
+        public ParameterLoader VMParameterLoader{get;}
+        private List<SdmParameters> filteredSourceData;
+        
+        // ReactiveCommand to make Optimization accessible from UI
+        public ReactiveCommand<Unit, Unit> ReactiveOptimize { get; }
+        public ReactiveCommand<Unit, Unit> ReactiveSaveCSV { get; }
+        public ReactiveCommand<Unit, Unit> ReactiveVisualize { get; }
 
         // Optimization settings (entered by buttons in the UI)
         private bool _isSummerChosen;
@@ -134,15 +140,19 @@ namespace HeatingGridAvaloniApp.ViewModels
             if(chosenOptimizeBy != "x" && chosenSeason != "x")
             {
                 VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
-                System.Console.WriteLine("Optimizing happens.");
+                Console.WriteLine("Optimizing happens.");
                 OptimizationSuccessful=true;
             }
             else
             {
-                System.Console.WriteLine("Optimizing doesn't happen.");
+                Console.WriteLine("Optimizing doesn't happen.");
             }
         }
 
+        private void Visualize()
+        {
+            _mainWindowViewModel.ShowChartView();
+        }
         public void SaveToCSV()
         {
             ResultDataCSV resultDataCSV = new ResultDataCSV("Assets/ResultData.csv");
