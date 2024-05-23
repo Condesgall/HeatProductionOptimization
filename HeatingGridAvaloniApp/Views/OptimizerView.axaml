@@ -23,45 +23,49 @@
         </Grid.RowDefinitions>
         
         <Border Grid.Row="2" Grid.Column="2" Margin="10" Background="White" BorderBrush="#979595" BorderThickness="8" CornerRadius="10" Padding="10">
+            <StackPanel>
         <StackPanel>
             <StackPanel Grid.Column="1" Grid.Row ="2" Margin="10">
                 <Border Background="#FA2929" CornerRadius="10">
                     <TextBlock Text="Season:" Foreground="White" Margin="10"/>
                 </Border>
-                
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <CheckBox IsChecked="{Binding IsSummerChosen}"/>
-                    <TextBlock VerticalAlignment="Center" Text="Summer"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <CheckBox IsChecked="{Binding IsWinterChosen}"/>
-                    <TextBlock VerticalAlignment="Center" Text="Winter"/>
-                </StackPanel>
-
             </StackPanel>
-            
+                
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsSummerChosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="Summer"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsWinterChosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="Winter"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="2" Margin="10">
                 <Border Background="#FA2929" CornerRadius="10">
                     <TextBlock Text="Optimize by:" Foreground="White" Margin="10"/>
                 </Border>
-
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <CheckBox IsChecked="{Binding IsCostsChosen}"/>
-                    <TextBlock VerticalAlignment="Center" Text="Costs"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <CheckBox IsChecked="{Binding IsCo2Chosen}"/>
-                    <TextBlock VerticalAlignment="Center" Text="CO2 emissions"/>
-                </StackPanel>
-
             </StackPanel>
 
-        <StackPanel Grid.Column="3" Grid.Row="2" Margin="10">
-            <Border Background="#FA2929" CornerRadius="10">
-                <TextBlock Text="Scenario:" Foreground="White" Margin="10"/>
-            </Border>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsCostsChosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="Costs"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <CheckBox IsChecked="{Binding IsCo2Chosen}"/>
+                <TextBlock VerticalAlignment="Center" Text="CO2 emissions"/>
+            </StackPanel>
+        </StackPanel>
+
+
+        <StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="2" Margin="10">
+                <Border Background="#FA2929" CornerRadius="10">
+                    <TextBlock Text="Scenario:" Foreground="White" Margin="10"/>
+                </Border>
 
             <StackPanel Orientation="Horizontal" Margin="10">
                 <CheckBox IsChecked="{Binding IsScenario1Chosen}"/>
@@ -108,7 +112,8 @@
             </Button>
         </StackPanel>
         </StackPanel>
-        </Border>  
+    </StackPanel>
+    </Border>  
     <ContentControl Name="OpenedTab" Grid.Row="2"/>
     </Grid>
     

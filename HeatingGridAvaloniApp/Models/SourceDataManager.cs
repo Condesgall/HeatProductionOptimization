@@ -11,7 +11,6 @@ namespace HeatingGridAvaloniaApp.Models;
 public interface IFileLoading
 {
     void Load();
-    void DisplayData();
 }
 
 public class SdmParameters
@@ -78,19 +77,5 @@ public class ParameterLoader : IFileLoading
                 }
             }
         }  
-    }
-
-    public void DisplayData()
-    {
-        Console.WriteLine("\n\n\n\t -----------\n\t|SUMMER DATA|\n\t -----------");
-        Console.WriteLine();
-        foreach(SdmParameters param in SDMParameters)
-        {
-            Console.WriteLine($"Time from: {param.TimeFrom}");
-            Console.WriteLine($"Time to: {param.TimeTo}");
-            Console.WriteLine($"Heat demand: {param.HeatDemand}");
-            Console.WriteLine($"Electricity price: {param.ElPrice}");
-            Console.WriteLine();
-        }
     }
 }

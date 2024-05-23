@@ -86,24 +86,32 @@ namespace HeatingGridAvaloniApp.ViewModels
 
         public void OptimizeApplyFilters()
         {
-            // Declares a list to hold filtered data.
-            filteredSourceData = new List<SdmParameters>();
-            string chosenSeason = GetSeason();
-            // Filters the chosen optimization way
-            string chosenOptimizeBy = GetOptimizationOption();
-            string chosenScenario;
+            try
+            {
+                // Declares a list to hold filtered data.
+                filteredSourceData = new List<SdmParameters>();
+                string chosenSeason = GetSeason();
+                // Filters the chosen optimization way
+                string chosenOptimizeBy = GetOptimizationOption();
+                string chosenScenario;
 
-            if (isScenario1Chosen && isScenario2Chosen)
+                if (isScenario1Chosen && isScenario2Chosen)
+                {
+                    OptimizationSuccessful = false;
+                }
+                else if (isScenario1Chosen && !isScenario2Chosen)
+                {
+                    Scenario1Filters(chosenSeason, chosenOptimizeBy);
+                }
+                else if (isScenario2Chosen && !isScenario1Chosen)
+                {
+                    Scenario2Filters(chosenSeason, chosenOptimizeBy);
+                }
+            }
+            catch (Exception ex)
             {
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 OptimizationSuccessful = false;
-            }
-            else if (isScenario1Chosen && !isScenario2Chosen)
-            {
-                Scenario1Filters(chosenSeason, chosenOptimizeBy);
-            }
-            else if (isScenario2Chosen && !isScenario1Chosen)
-            {
-                Scenario2Filters(chosenSeason, chosenOptimizeBy);
             }
         }
 
@@ -111,24 +119,23 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
             Console.WriteLine($"Chosen Season: {chosenSeason}, Chosen OptimizeBy: {chosenOptimizeBy}");
             
-            //Finally, the optimization.)
             if(chosenOptimizeBy != "x" && chosenSeason != "x")
             {
                 VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
-                Console.WriteLine("Optimizing happens.");
+                Console.WriteLine("Optimization successful.");
                 OptimizationSuccessful=true;
             }
             else
             {
-                Console.WriteLine("Optimizing doesn't happen.");
+                Console.WriteLine("Failed to optimize.");
             }
         }
 
-        public void Scenario2Filters(string chosenSeason, string optimizationChoice)
+        public void Scenario2Filters(string chosenSeason, string chosenOptimizeBy)
         {
-            if(optimizationChoice != "x" && chosenSeason != "x")
+            if(chosenOptimizeBy != "x" && chosenSeason != "x")
             {
-                VMOptimizer.OptimizeResultsSc2(filteredSourceData, int.Parse(optimizationChoice));
+                VMOptimizer.OptimizeResultsSc2(filteredSourceData, int.Parse(chosenOptimizeBy));
                 Console.WriteLine("Optimization successful.");
                 OptimizationSuccessful=true;
             }
