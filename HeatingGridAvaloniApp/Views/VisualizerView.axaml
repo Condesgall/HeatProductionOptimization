@@ -13,10 +13,14 @@
         <vm:VisualizerViewModel />
     </UserControl.DataContext>
 
-    <Grid>
-        <lvc:CartesianChart
-            Series="{Binding Series}">
-        </lvc:CartesianChart>
-    </Grid>
+   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <lvc:CartesianChart 
+    Series="{Binding Series}" ZoomMode="X">
+    </lvc:CartesianChart>
+  </Grid>  
 
 </UserControl>
+
