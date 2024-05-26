@@ -8,12 +8,12 @@
              x:DataType="vm:MainAppViewModel">
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="25"/>
+      <RowDefinition Height="5"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
-    <StackPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
+    <StackPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10">
       <Button 
         Width="400"
         Height="50"

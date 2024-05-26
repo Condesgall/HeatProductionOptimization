@@ -27,5 +27,11 @@ namespace HeatingGridAvaloniApp.Views
         
             openedTab.Content = new VisualizerView();
         }
+
+        public void SaveWeights(object sender, RoutedEventArgs e)
+        {
+            var saveButton = this.FindControl<Button>("SaveWeightsButton");
+            saveButton.Content = "Saved";
+        }
     }
 }

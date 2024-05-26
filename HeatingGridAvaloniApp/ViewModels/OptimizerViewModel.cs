@@ -9,11 +9,13 @@ using System.IO;
 using System.ComponentModel;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
     public class OptimizerViewModel : ReactiveObject
     {
+        
         public Optimizer VMOptimizer{get;}
         public ParameterLoader VMParameterLoader{get;}
         private List<SdmParameters> filteredSourceData;
@@ -22,6 +24,8 @@ namespace HeatingGridAvaloniApp.ViewModels
         public ReactiveCommand<Unit, Unit> ReactiveOptimize { get; }
         public ReactiveCommand<Unit, Unit> ReactiveOptimizeSc2 { get; }
         public ReactiveCommand<Unit, Unit> ReactiveSaveCSV { get; }
+        public ReactiveCommand<Unit, Unit> ReactiveSaveWeights { get; }
+
         public OptimizerViewModel()
         {
             VMOptimizer = new Optimizer();
@@ -30,8 +34,8 @@ namespace HeatingGridAvaloniApp.ViewModels
 
             // Constructing that ReactiveCommand (basically converting the normal command to it)
             ReactiveOptimize = ReactiveCommand.Create(OptimizeApplyFilters);
-            ReactiveOptimize = ReactiveCommand.Create(OptimizeApplyFiltersSc2);
             ReactiveSaveCSV = ReactiveCommand.Create(SaveToCSV);
+            ReactiveSaveWeights = ReactiveCommand.Create(SaveWeights);
             OptimizationSuccessful=false;
         }
 
@@ -49,6 +53,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             get => isScenario2Chosen;
             set => this.RaiseAndSetIfChanged(ref isScenario2Chosen, value);
         }
+        
 
         private bool _isSummerChosen;
         public bool IsSummerChosen
@@ -68,14 +73,29 @@ namespace HeatingGridAvaloniApp.ViewModels
         public bool IsCostsChosen
         {
             get => _isCostsChosen;
-            set => this.RaiseAndSetIfChanged(ref _isCostsChosen, value);
+            set 
+            {
+                this.RaiseAndSetIfChanged(ref _isCostsChosen, value);
+                UpdateOptimizationChoice3();
+            }
         }
 
         private bool _isCo2Chosen;
         public bool IsCo2Chosen
         {
             get => _isCo2Chosen;
-            set => this.RaiseAndSetIfChanged(ref _isCo2Chosen, value);
+            set 
+            {
+                this.RaiseAndSetIfChanged(ref _isCo2Chosen, value);
+                UpdateOptimizationChoice3();
+            }
+        }
+
+        private bool isOptimizationChoice3;
+        public bool IsOptimizationChoice3
+        {
+            get => isOptimizationChoice3;
+            set => this.RaiseAndSetIfChanged(ref isOptimizationChoice3, value);
         }
 
         private bool _optimizationSuccessful;
@@ -85,11 +105,22 @@ namespace HeatingGridAvaloniApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _optimizationSuccessful, value);
         }
 
-        public void OptimizeApplyFilters()
+        private decimal netWeight;
+        public decimal NetWeight
+        {
+            get => netWeight;
+            set => this.RaiseAndSetIfChanged(ref netWeight, value);           
+        }
+
+        private decimal co2Weight;
+        public decimal Co2Weight
         {
             
+            get => co2Weight;
+            set => this.RaiseAndSetIfChanged(ref co2Weight, value); 
         }
-        public void OptimizeApplyFiltersSc2()
+
+        public void OptimizeApplyFilters()
         {
             try
             {
@@ -214,6 +245,17 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
             ResultDataCSV resultDataCSV = new ResultDataCSV("Assets/ResultData.csv");
             resultDataCSV.Save(ResultDataManager.ResultData);
+        }
+
+        public void SaveWeights()
+        {
+            VMOptimizer.Co2Weight = Co2Weight;
+            VMOptimizer.NetWeight = NetWeight;
+        }
+
+        public void UpdateOptimizationChoice3()
+        {
+            IsOptimizationChoice3 = IsCo2Chosen && IsCostsChosen;
         }
     }
 }

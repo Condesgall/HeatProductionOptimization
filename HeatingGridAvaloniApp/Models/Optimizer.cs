@@ -17,12 +17,26 @@ public class Optimizer
     public List<Co2AndNetCost> co2AndNetCostsCandidates = new List<Co2AndNetCost>();
 
     private decimal netProductionCosts;
+    private decimal netWeight;
+    private decimal co2Weight;
 
     //properties
-    public decimal GetNetProductionCosts
+    public decimal NetProductionCosts
     {
         get { return netProductionCosts; }
         set { netProductionCosts = value; }
+    }
+
+    public decimal NetWeight
+    {
+        get { return netWeight; }
+        set { netWeight = value; }
+    }
+
+    public decimal Co2Weight
+    {
+        get { return co2Weight; }
+        set { co2Weight = value; }
     }
 
 
@@ -68,7 +82,7 @@ public class Optimizer
                 case 3:
                     // This checks expenses * co2 emissions, i.e. rate of both cost
                     // and co2 emissions when producing a MWh of heat.
-                    decimal coefficient0 = AssetManager.productionUnits[0].ProductionCosts * AssetManager.productionUnits[0].Co2Emissions;
+                    decimal coefficient0 = (NetWeight * AssetManager.productionUnits[0].ProductionCosts) * (AssetManager.productionUnits[0].Co2Emissions * Co2Weight);
                     decimal coefficient1 = AssetManager.productionUnits[1].ProductionCosts * AssetManager.productionUnits[1].Co2Emissions;
                     if (coefficient0 < coefficient1)
                     {
@@ -236,9 +250,9 @@ public class Optimizer
             }
             ResultData newResultData = new ResultData();
             newResultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
-            
+
             top3Results.Add(newResultData);
-            
+
             if (top3Results.Count() >= 3)
             {
                 break;
@@ -278,7 +292,7 @@ public class Optimizer
             newResultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
 
             top3Results.Add(newResultData);
-            
+
             if (top3Results.Count() >= 3)
             {
                 break;
@@ -289,7 +303,6 @@ public class Optimizer
             SaveToResultDataManager(result, sdmParameters);
         }
     }
-
 
     public Dictionary<List<ProductionUnit>, decimal> GetOptimizedNetCosts(SdmParameters sdmParameters)
     {
@@ -332,7 +345,7 @@ public class Optimizer
             {
                 units.Co2Emissions = 1;
             }
-            decimal result = units.NetCost * units.Co2Emissions;
+            decimal result = (NetWeight * units.NetCost) * (Co2Weight * units.Co2Emissions);
             units.Result = result;
             co2AndNetCostsResults.Add(units);
         }
@@ -400,7 +413,7 @@ public class Optimizer
         {
             NetCostsForHeatOnlyUnitsHandler(productionUnit, sdmParameters);
         }
-        return netProductionCosts;
+        return NetProductionCosts;
     }
 
     public void NetCostsForElProducingUnitsHandler(ProductionUnit productionUnit, SdmParameters sdmParameters)
@@ -413,13 +426,13 @@ public class Optimizer
         {
             profit = electricityProduced * sdmParameters.ElPrice;
             expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
-            netProductionCosts = expenses - profit;
+            NetProductionCosts = expenses - profit;
         }
         else
         {
             expenses = productionUnit.MaxHeat * productionUnit.ProductionCosts;
             profit = productionUnit.MaxElectricity * sdmParameters.ElPrice;
-            netProductionCosts = expenses - profit;
+            NetProductionCosts = expenses - profit;
         }
     }
 
@@ -432,13 +445,13 @@ public class Optimizer
         {
             expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
             extraExpenses = sdmParameters.HeatDemand * sdmParameters.ElPrice;
-            netProductionCosts = expenses + extraExpenses;
+            NetProductionCosts = expenses + extraExpenses;
         }
         else
         {
             expenses = productionUnit.MaxHeat * productionUnit.ProductionCosts;
             extraExpenses = (-productionUnit.MaxElectricity) * sdmParameters.ElPrice;
-            netProductionCosts = expenses + extraExpenses;
+            NetProductionCosts = expenses + extraExpenses;
         }
     }
 
@@ -446,11 +459,11 @@ public class Optimizer
     {
         if (productionUnit.CanReachHeatDemand(sdmParameters))
         {
-            netProductionCosts = productionUnit.ProductionCosts * sdmParameters.HeatDemand;
+            NetProductionCosts = productionUnit.ProductionCosts * sdmParameters.HeatDemand;
         }
         else
         {
-            netProductionCosts = productionUnit.ProductionCosts * productionUnit.MaxHeat;
+            NetProductionCosts = productionUnit.ProductionCosts * productionUnit.MaxHeat;
         }
     }
 
@@ -496,7 +509,7 @@ public class Optimizer
     {
         List<ProductionUnit> options = new List<ProductionUnit> { optimalUnit, unit2 };
 
-        options.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase)); 
+        options.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
 
         decimal netCost1 = unitPairingCandidates[optimalUnit];
         decimal netCost2 = unitPairingCandidates[unit2];

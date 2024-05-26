@@ -1,8 +1,6 @@
-﻿using System;
+﻿﻿using System;
 using ReactiveUI;
-
 namespace HeatingGridAvaloniApp.ViewModels;
-
 public class MainWindowViewModel : ViewModelBase
 {
     public MainWindowViewModel()
@@ -11,7 +9,6 @@ public class MainWindowViewModel : ViewModelBase
         MainApp = new MainAppViewModel();
         _contentViewModel = Login;
     }
-
     public LoginViewModel Login { get; } 
     public MainAppViewModel MainApp { get; }
     private ViewModelBase _contentViewModel;

@@ -44,13 +44,13 @@ namespace HeatingGridAvaloniApp.ViewModels
             set => _productionUnit.MaxHeat = value;
         }
 
-        public int ProductionCosts
+        public decimal ProductionCosts
         {
             get => _productionUnit.ProductionCosts;
             set => _productionUnit.ProductionCosts = value;
         }
 
-        public int Co2Emissions
+        public decimal Co2Emissions
         {
             get => _productionUnit.Co2Emissions;
             set => _productionUnit.Co2Emissions = value;

@@ -60,14 +60,14 @@ namespace HeatingGridAvaloniaApp.Models
     {
         private string name;
         private decimal maxHeat;
-        private int productionCosts;
-        private int co2Emissions;
+        private decimal productionCosts;
+        private decimal co2Emissions;
         private decimal gasConsumption;
         private decimal maxElectricity;
 
         //todo add image
         //constructor for the production unit class
-        public ProductionUnit(string name_, decimal maxHeat_, int productionCosts_, int co2Emissions_, decimal gasConsumption_, decimal maxElectricity_)
+        public ProductionUnit(string name_, decimal maxHeat_, decimal productionCosts_, decimal co2Emissions_, decimal gasConsumption_, decimal maxElectricity_)
         {
             name = name_;
             maxHeat = maxHeat_;
@@ -90,13 +90,13 @@ namespace HeatingGridAvaloniaApp.Models
             set {maxHeat = value;}
         }
 
-        public int ProductionCosts
+        public decimal ProductionCosts
         {
             get {return productionCosts; }
             set {productionCosts = value;}
         }
 
-        public int Co2Emissions
+        public decimal Co2Emissions
         {
             get {return co2Emissions; }
             set {co2Emissions = value;}
