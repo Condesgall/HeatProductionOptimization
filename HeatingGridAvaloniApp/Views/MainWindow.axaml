@@ -15,7 +15,8 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-     <Grid>
+    <Viewbox Stretch="Uniform">
+        <Grid Width="1920" Height="1080">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
@@ -38,5 +39,6 @@
             </Border>
         </StackPanel>
         </StackPanel>
-        </Grid>
+    </Grid>
+    </Viewbox>
 </Window>
