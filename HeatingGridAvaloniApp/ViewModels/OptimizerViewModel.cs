@@ -249,8 +249,8 @@ namespace HeatingGridAvaloniApp.ViewModels
 
         public void SaveWeights()
         {
-            VMOptimizer.Co2Weight = Co2Weight;
-            VMOptimizer.NetWeight = NetWeight;
+            VMOptimizer.Co2Weight = co2Weight;
+            VMOptimizer.NetWeight = netWeight;
         }
 
         public void UpdateOptimizationChoice3()

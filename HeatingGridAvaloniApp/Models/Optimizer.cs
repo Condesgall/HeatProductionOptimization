@@ -82,7 +82,7 @@ public class Optimizer
                 case 3:
                     // This checks expenses * co2 emissions, i.e. rate of both cost
                     // and co2 emissions when producing a MWh of heat.
-                    decimal coefficient0 = (NetWeight * AssetManager.productionUnits[0].ProductionCosts) * (AssetManager.productionUnits[0].Co2Emissions * Co2Weight);
+                    decimal coefficient0 = (netWeight * AssetManager.productionUnits[0].ProductionCosts) * (AssetManager.productionUnits[0].Co2Emissions * co2Weight);
                     decimal coefficient1 = AssetManager.productionUnits[1].ProductionCosts * AssetManager.productionUnits[1].Co2Emissions;
                     if (coefficient0 < coefficient1)
                     {
@@ -345,7 +345,7 @@ public class Optimizer
             {
                 units.Co2Emissions = 1;
             }
-            decimal result = (NetWeight * units.NetCost) * (Co2Weight * units.Co2Emissions);
+            decimal result = netWeight * units.NetCost * co2Weight * units.Co2Emissions;
             units.Result = result;
             co2AndNetCostsResults.Add(units);
         }
