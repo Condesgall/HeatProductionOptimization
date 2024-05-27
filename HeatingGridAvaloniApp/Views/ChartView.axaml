@@ -6,10 +6,10 @@
              xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HeatingGridAvaloniApp.Views.ChartView"
-             x:DataType="vm:ViewModel">
+             x:DataType="vm:ChartViewModel">
     
     <UserControl.DataContext>
-        <vm:ViewModel/>
+        <vm:ChartViewModel/>
     </UserControl.DataContext>
 
     <StackPanel>

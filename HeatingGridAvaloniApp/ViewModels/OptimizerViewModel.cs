@@ -9,16 +9,19 @@ using System.IO;
 using System.ComponentModel;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using System.Linq;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
     public class OptimizerViewModel : ViewModelBase
     {
-        private readonly MainWindowViewModel _mainWindowViewModel;
+        private readonly ChartViewModel _chartViewModel;
+        //private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public OptimizerViewModel(MainWindowViewModel mainWindowViewModel)
+        public OptimizerViewModel(MainWindowViewModel mainWindowViewModel, ChartViewModel chartViewModel)
         {
-            _mainWindowViewModel = mainWindowViewModel;
+           // _mainWindowViewModel = mainWindowViewModel;
+            _chartViewModel = chartViewModel;
             VMOptimizer = new Optimizer();
             VMParameterLoader = new ParameterLoader("Assets/SourceData.csv");
             VMParameterLoader.Load();
@@ -151,12 +154,33 @@ namespace HeatingGridAvaloniApp.ViewModels
 
         private void Visualize()
         {
-            _mainWindowViewModel.ShowChartView();
+            //Call method to apply and obtain filtered data
+            OptimizeApplyFilters();
+
+            if (OptimizationSuccessful)
+            {
+                //convert filterd data to Resultdata (maybe necessary)
+                List<ResultData> filteredResultData = ConvertToResultData(filteredSourceData);
+
+                _chartViewModel.UpdateChartData(filteredResultData);
+            }          
         }
+
         public void SaveToCSV()
         {
             ResultDataCSV resultDataCSV = new ResultDataCSV("Assets/ResultData.csv");
             resultDataCSV.Save(ResultDataManager.ResultData);
+        }
+
+        private List<ResultData> ConvertToResultData(List<SdmParameters> sourcesData)
+        {
+            return sourcesData.Select(s => new ResultData
+            {
+                OptimizationResults = new OptimizationResults
+                {
+                    ProducedHeat = s.HeatDemand
+                }
+            }).ToList();
         }
     }
 }

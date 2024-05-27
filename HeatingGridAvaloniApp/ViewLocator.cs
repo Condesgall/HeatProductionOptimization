@@ -1,7 +1,9 @@
 using System;
+using System.Runtime.CompilerServices;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using HeatingGridAvaloniApp.ViewModels;
+using HeatingGridAvaloniApp.Views;
 
 namespace HeatingGridAvaloniApp;
 
@@ -22,7 +24,7 @@ public class ViewLocator : IDataTemplate
             control.DataContext = data;
             return control;
         }
-        
+
         return new TextBlock { Text = "Not Found: " + name };
     }
 

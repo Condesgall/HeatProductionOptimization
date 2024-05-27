@@ -7,7 +7,7 @@
              x:Class="HeatingGridAvaloniaApp.Views.OptimizerView"
              x:DataType="vm:OptimizerViewModel">
 
-        <Grid>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -87,6 +87,7 @@
                     HorizontalContentAlignment="Center" 
                     Margin="5"
                     Command="{Binding ReactiveVisualize}"
+                    Click="VisualizeClicked"
                     Content="Visualize"/>
         </StackPanel>
     </Grid>

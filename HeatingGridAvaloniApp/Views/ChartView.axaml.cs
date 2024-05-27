@@ -4,6 +4,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using HeatingGridAvaloniApp.ViewModels;
 using HeatingGridAvaloniApp.Views;
+using HeatingGridAvaloniaApp.Views;
 using LiveChartsCore.Kernel.Sketches;
 
 namespace HeatingGridAvaloniApp.Views
@@ -13,7 +14,7 @@ namespace HeatingGridAvaloniApp.Views
         public ChartView()
         {
             InitializeComponent();
-            DataContext = new ViewModel();
+            DataContext = new ChartViewModel();
         }
     }
 }
