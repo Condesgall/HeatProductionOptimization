@@ -113,6 +113,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref netWeight, value);
                 AdjustWeights();
+                SaveWeights();
             }   
         }
 
@@ -125,6 +126,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref co2Weight, value);
                 AdjustWeights();
+                SaveWeights();
             } 
         }
         
@@ -151,6 +153,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                 {
                     Scenario2Filters(chosenSeason, chosenOptimizeBy);
                 }
+                SaveToCSV();
             }
             catch (Exception ex)
             {
