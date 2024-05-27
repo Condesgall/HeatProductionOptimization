@@ -62,6 +62,9 @@ namespace HeatingGridAvaloniaApp.Models
 
         public void Save(List<ResultData> rdm)
         {
+            // Sorts resultData by dateFrom
+            rdm.Sort(new ResultDataComparer());
+            
             using (var writer = new StreamWriter(FilePath))
             {
                 //header
@@ -87,7 +90,20 @@ namespace HeatingGridAvaloniaApp.Models
                 }
 
             }
+
         }
     }
+
+    public class ResultDataComparer : IComparer<ResultData>
+    {
+        public int Compare(ResultData x, ResultData y)
+        {
+            DateTime dateTime1 = DateTime.ParseExact(x.TimeFrom, "M/d/yyyy H:mm", CultureInfo.InvariantCulture);
+            DateTime dateTime2 = DateTime.ParseExact(y.TimeFrom, "M/d/yyyy H:mm", CultureInfo.InvariantCulture);
+
+            return dateTime1.CompareTo(dateTime2);
+        }
+    }
+
 }
 
