@@ -7,7 +7,7 @@
              x:Class="HeatingGridAvaloniApp.Views.OptimizerView"
              x:DataType="vm:OptimizerViewModel">
 
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -83,19 +83,6 @@
             <TextBlock Text="{Binding Co2Weight, StringFormat='CO2 Weight: {0:F2}'}" 
               HorizontalAlignment="Center"/>
             <Slider x:Name="co2Slider" Minimum="0.1" Maximum="1" TickFrequency="0.01" IsSnapToTickEnabled="True" Value="{Binding Co2Weight, Mode=TwoWay}"/>
-
-            <Button x:Name="SaveWeightsButton"
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Center"
-            HorizontalContentAlignment="Center"
-            Width="110"
-            Margin="10"
-            CornerRadius="10"
-            Click="SaveWeights"
-            Command="{Binding ReactiveSaveWeights}">
-            Save weights
-        </Button>
-
         </StackPanel>
 
         <Button Grid.Row="3" Grid.ColumnSpan="10"
@@ -107,29 +94,11 @@
             Background="#FA2929"
             CornerRadius="10"
             Foreground="White"
-            Command="{Binding ReactiveOptimize}">
+            Command="{Binding ReactiveOptimize}"
+            Click="Visualize">
             Optimize
         </Button>
-        <TextBlock IsVisible="{Binding OptimizationSuccessful}" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10" Grid.Row="2" Text="Optimization successful!"/>
-
-        <StackPanel IsVisible="{Binding OptimizationSuccessful}" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
-            
-            <Button x:Name="SaveButton"
-                    Width="120" 
-                    HorizontalContentAlignment="Center" 
-                    Margin="5"
-                    Command="{Binding ReactiveSaveCSV}"
-                    Click="Save"
-                    Content="Save to CSV">
-            </Button>
-
-            <Button Width="120" 
-                    HorizontalContentAlignment="Center" 
-                    Margin="5"
-                    Click="Visualize"
-                    Content="Visualize">
-            </Button>
-        </StackPanel>
+        <TextBlock IsVisible="{Binding OptimizationSuccessful}" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10" Grid.Row="2" Text="Optimization successful."/>
         </StackPanel>
     </StackPanel>
     </Border>

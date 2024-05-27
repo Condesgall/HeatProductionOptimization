@@ -9,6 +9,7 @@ namespace HeatingGridAvaloniApp.Views
 {
     public partial class OptimizerView : UserControl
     {
+        OptimizerViewModel optimizerViewModel = new OptimizerViewModel();
         public OptimizerView()
         {
             InitializeComponent();
@@ -24,7 +25,6 @@ namespace HeatingGridAvaloniApp.Views
         public void Visualize(object sender, RoutedEventArgs e)
         {
             var openedTab = this.FindControl<ContentControl>("OpenedTab");
-        
             openedTab.Content = new VisualizerView();
         }
 
