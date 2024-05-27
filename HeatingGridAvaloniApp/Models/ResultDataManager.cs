@@ -5,6 +5,7 @@ using CsvHelper.Configuration;
 using System.IO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HeatingGridAvaloniaApp.Models
 
@@ -323,5 +324,35 @@ public class OptimizationResults
     public class ResultDataManager
     {
         public static List<ResultData> ResultData = new List<ResultData>();
+
+        public decimal GetAverageNetCost()
+        {
+            List<decimal> netCosts = new List<decimal>();
+            foreach (var resultData in ResultData)
+            {
+                decimal profit = resultData.OptimizationResults.Profit;
+                decimal expenses = resultData.OptimizationResults.Expenses;
+                if (profit == 0)
+                {
+                    netCosts.Add(expenses);
+                }
+                else if (expenses == 0)
+                {
+                    netCosts.Add(profit);
+                }
+            }
+            return netCosts.Average();
+        }
+
+        public decimal GetAverageCo2()
+        {
+            List<decimal> co2 = new List<decimal>();
+            foreach (var resultData in ResultData)
+            {
+                decimal co2Emissions = resultData.OptimizationResults.Co2Emissions;
+                co2.Add(co2Emissions);
+            }
+            return co2.Average();
+        }
     }
 }

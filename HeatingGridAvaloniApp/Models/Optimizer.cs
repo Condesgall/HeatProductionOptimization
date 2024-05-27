@@ -82,8 +82,8 @@ public class Optimizer
                 case 3:
                     // This checks expenses * co2 emissions, i.e. rate of both cost
                     // and co2 emissions when producing a MWh of heat.
-                    decimal coefficient0 = (netWeight * AssetManager.productionUnits[0].ProductionCosts) * (AssetManager.productionUnits[0].Co2Emissions * co2Weight);
-                    decimal coefficient1 = AssetManager.productionUnits[1].ProductionCosts * AssetManager.productionUnits[1].Co2Emissions;
+                    decimal coefficient0 = (netWeight * AssetManager.productionUnits[0].ProductionCosts) + (AssetManager.productionUnits[0].Co2Emissions * co2Weight);
+                    decimal coefficient1 = (netWeight * AssetManager.productionUnits[1].ProductionCosts) + (AssetManager.productionUnits[1].Co2Emissions * co2Weight);
                     if (coefficient0 < coefficient1)
                     {
                         primaryUnit = AssetManager.productionUnits[0];
@@ -167,7 +167,7 @@ public class Optimizer
     public void OptimizeResultsSc2(List<SdmParameters> sourceData, int optimizeBy)
     {
         ResultDataManager.ResultData.Clear();
-        ResultData resultData = new ResultData();
+        Console.WriteLine($"{netWeight}");
         foreach (var sdmParameters in sourceData)
         {
             switch (optimizeBy)
@@ -192,7 +192,7 @@ public class Optimizer
     public void OptimizeByCostsHandler(SdmParameters sdmParameters)
     {
         Dictionary<List<ProductionUnit>, decimal> netCostResults = GetOptimizedNetCosts(sdmParameters);
-        List<ResultData> top3Results = new List<ResultData>();
+        List<ResultData> topResults = new List<ResultData>();
 
         foreach (var result in netCostResults)
         {
@@ -212,14 +212,15 @@ public class Optimizer
             ResultData newResultData = new ResultData();
             newResultData.UpdateResultData(optimalUnit, optimalUnit2, netCost, sdmParameters);
 
-            top3Results.Add(newResultData);
+            topResults.Add(newResultData);
 
-            if (top3Results.Count() >= 3)
+            if (topResults.Count() >= 1)
             {
                 break;
             }
         }
-        foreach (var result in top3Results)
+
+        foreach (var result in topResults)
         {
             SaveToResultDataManager(result, sdmParameters);
         }
@@ -230,7 +231,7 @@ public class Optimizer
         ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
         ProductionUnit unit1 = new ProductionUnit("", 0, 0, 0, 0, 0);
         List<Co2AndNetCost> optimizedResults = GetOptimizedCO2(sdmParameters);
-        List<ResultData> top3Results = new List<ResultData>();
+        List<ResultData> topResults = new List<ResultData>();
 
         foreach (var result in optimizedResults)
         {
@@ -251,14 +252,14 @@ public class Optimizer
             ResultData newResultData = new ResultData();
             newResultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
 
-            top3Results.Add(newResultData);
+            topResults.Add(newResultData);
 
-            if (top3Results.Count() >= 3)
+            if (topResults.Count() >= 1)
             {
                 break;
             }
         }
-        foreach (var result in top3Results)
+        foreach (var result in topResults)
         {
             SaveToResultDataManager(result, sdmParameters);
         }
@@ -269,7 +270,7 @@ public class Optimizer
         ProductionUnit unit2 = new ProductionUnit("", 0, 0, 0, 0, 0);
         ProductionUnit unit1 = new ProductionUnit("", 0, 0, 0, 0, 0);
         List<Co2AndNetCost> optimizedResults = GetOptimizedCo2AndNet(sdmParameters, AssetManager.productionUnits);
-        List<ResultData> top3Results = new List<ResultData>();
+        List<ResultData> topResults = new List<ResultData>();
 
         foreach (var result in optimizedResults)
         {
@@ -291,14 +292,14 @@ public class Optimizer
             ResultData newResultData = new ResultData();
             newResultData.UpdateResultData(unit1, unit2, result.NetCost, sdmParameters);
 
-            top3Results.Add(newResultData);
+            topResults.Add(newResultData);
 
-            if (top3Results.Count() >= 3)
+            if (topResults.Count() >= 1)
             {
                 break;
             }
         }
-        foreach (var result in top3Results)
+        foreach (var result in topResults)
         {
             SaveToResultDataManager(result, sdmParameters);
         }
@@ -314,7 +315,7 @@ public class Optimizer
             .Concat(combinedUnitsNetCost)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
-        result.OrderBy(unit => unit.Value).ToList();
+        result = result.OrderBy(key => key.Value).ToDictionary(x => x.Key, x => x.Value);
         return result;
     }
 
@@ -324,7 +325,7 @@ public class Optimizer
         CalculateCo2IndividualUnits(sdmParameters);
         GetBestUnitCombinations(sdmParameters, 0, 1);
         CalculateCo2CombinedUnits(sdmParameters);
-        co2AndNetCostsCandidates.OrderBy(unit => unit.Co2Emissions).ToList();
+        co2AndNetCostsCandidates = co2AndNetCostsCandidates.OrderBy(unit => unit.Co2Emissions).ToList();
 
         return co2AndNetCostsCandidates;
     }
@@ -345,11 +346,11 @@ public class Optimizer
             {
                 units.Co2Emissions = 1;
             }
-            decimal result = netWeight * units.NetCost * co2Weight * units.Co2Emissions;
+            decimal result = (NetWeight * units.NetCost) + (Co2Weight * units.Co2Emissions);
             units.Result = result;
             co2AndNetCostsResults.Add(units);
         }
-        co2AndNetCostsResults.OrderBy(unit => unit.Result).ToList();
+        co2AndNetCostsResults = co2AndNetCostsResults.OrderBy(unit => unit.Result).ToList();
         return co2AndNetCostsResults;
     }
 
@@ -376,8 +377,8 @@ public class Optimizer
             }
         }
         //orders the values (ascending)
-        individualUnitCandidates.OrderBy(key => key.Value).ToList();
-        unitPairingCandidates.OrderBy(key => key.Value).ToList();
+        individualUnitCandidates = individualUnitCandidates.OrderBy(key => key.Value).ToDictionary(x => x.Key, x => x.Value);
+        unitPairingCandidates = unitPairingCandidates.OrderBy(key => key.Value).ToDictionary(x => x.Key, x => x.Value);
     }
 
     public void CalculateCo2IndividualUnits(SdmParameters sdmParameters)

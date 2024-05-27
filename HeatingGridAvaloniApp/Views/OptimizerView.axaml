@@ -82,7 +82,7 @@
               HorizontalAlignment="Center"/>
             <Slider x:Name="costsSlider" Minimum="0.1" Maximum="1" TickFrequency="0.01" IsSnapToTickEnabled="True" Value="{Binding NetWeight, Mode=TwoWay}"/>
 
-            <TextBlock Text="{Binding Co2Weight, StringFormat='CO2 Weight: {0:F2}'}" 
+            <TextBlock Text="{Binding Co2WeightOp, StringFormat='CO2 Weight: {0:F2}'}" 
               HorizontalAlignment="Center"/>
             <Slider x:Name="co2Slider" Minimum="0.1" Maximum="1" TickFrequency="0.01" IsSnapToTickEnabled="True" Value="{Binding Co2Weight, Mode=TwoWay}"/>
 

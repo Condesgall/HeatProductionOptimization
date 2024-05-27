@@ -16,7 +16,7 @@ namespace HeatingGridAvaloniApp.ViewModels
     public class OptimizerViewModel : ReactiveObject
     {
         
-        public Optimizer VMOptimizer{get;}
+        public Optimizer VMOptimizer = new Optimizer();
         public ParameterLoader VMParameterLoader{get;}
         private List<SdmParameters> filteredSourceData;
         
@@ -109,17 +109,35 @@ namespace HeatingGridAvaloniApp.ViewModels
         public decimal NetWeight
         {
             get => netWeight;
-            set => this.RaiseAndSetIfChanged(ref netWeight, value);           
+            set
+            {
+                this.RaiseAndSetIfChanged(ref netWeight, value);
+                AdjustWeights();
+            }   
         }
 
-        private decimal co2Weight;
+        private decimal co2Weight = 0.1m;
         public decimal Co2Weight
         {
             
             get => co2Weight;
-            set => this.RaiseAndSetIfChanged(ref co2Weight, value); 
+            set
+            {
+                this.RaiseAndSetIfChanged(ref co2Weight, value);
+                AdjustWeights();
+            } 
         }
 
+        public decimal Co2WeightOp
+        {
+            get => VMOptimizer.Co2Weight;
+            set
+            {
+                // Assign the incoming value to VMOptimizer.Co2Weight
+                VMOptimizer.Co2Weight = value;
+            }
+        }
+        
         public void OptimizeApplyFilters()
         {
             try
@@ -249,13 +267,28 @@ namespace HeatingGridAvaloniApp.ViewModels
 
         public void SaveWeights()
         {
-            VMOptimizer.Co2Weight = co2Weight;
+            VMOptimizer.Co2Weight = Convert.ToDecimal(co2Weight);
             VMOptimizer.NetWeight = netWeight;
         }
 
         public void UpdateOptimizationChoice3()
         {
             IsOptimizationChoice3 = IsCo2Chosen && IsCostsChosen;
+        }
+
+        private void AdjustWeights()
+        {
+            if (netWeight + co2Weight > 1)
+            {
+                if (netWeight > co2Weight)
+                {
+                    Co2Weight = 1 - netWeight;
+                }
+                else
+                {
+                    NetWeight = 1 - co2Weight;
+                }
+            }
         }
     }
 }
