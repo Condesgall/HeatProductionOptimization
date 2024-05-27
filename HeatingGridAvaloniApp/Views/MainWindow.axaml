@@ -15,29 +15,29 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <Viewbox Stretch="Uniform">
-        <Grid Width="1920" Height="1080">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+<Viewbox>
+    <Grid Width="1920" Height="1080">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="50"/>
+        <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
-    <StackPanel Margin="5" VerticalAlignment="Top">
-        <StackPanel Grid.Row="0">
-            <Border Background="#ABAAAA" CornerRadius ="0" BorderBrush="#979595" Padding="10" Width="1930" Height="80">
-                <Image Source="/Assets/danfossLogo.png" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150" Height="100"/>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Border CornerRadius="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/> 
-                    </Grid.RowDefinitions>
-                    <UserControl Grid.Row="1" Content="{Binding ContentViewModel}"/>
-                </Grid>
-            </Border>
-        </StackPanel>
+        <StackPanel Margin="5" VerticalAlignment="Top">
+            <StackPanel Grid.Row="0">
+                <Border Background="#ABAAAA" CornerRadius ="0" BorderBrush="#979595" Padding="10" Width="1930" Height="80">
+                    <Image Source="/Assets/danfossLogo.png" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150" Height="100"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Border CornerRadius="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/> 
+                        </Grid.RowDefinitions>
+                        <UserControl Grid.Row="1" Content="{Binding ContentViewModel}"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
         </StackPanel>
     </Grid>
     </Viewbox>

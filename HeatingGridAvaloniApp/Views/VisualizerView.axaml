@@ -13,14 +13,37 @@
         <vm:VisualizerViewModel />
     </UserControl.DataContext>
 
-   <Grid>
+   <Grid ShowGridLines="True">
     <Grid.RowDefinitions>
-      <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
-    <lvc:CartesianChart 
-    Series="{Binding Series}" ZoomMode="X">
-    </lvc:CartesianChart>
-  </Grid>  
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
 
+    <!-- Border with TextBlocks -->
+    <Border Grid.Column="0" Grid.Row="0" Background="LightGray" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10" Width="500">
+      <StackPanel>
+        <!-- Text on top -->
+        <TextBlock Text="Average Net Cost" HorizontalAlignment="Center" Margin="0,0,0,10" FontSize="23"/>
+        <!-- Value inside the box -->
+        <TextBlock Text="{Binding NetCostAverage, StringFormat={}{0:F2}}" HorizontalAlignment="Center" FontSize="20"/>
+      </StackPanel>
+    </Border>
+    <Border Grid.Column="1" Grid.Row="0" Background="LightGray" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10" Width="500">
+      <StackPanel>
+        <!-- Text on top -->
+        <TextBlock Text="Average CO2 Emissions" HorizontalAlignment="Center" Margin="0,0,0,10" FontSize="23"/>
+        <!-- Value inside the box -->
+        <TextBlock Text="{Binding Co2Average, StringFormat={}{0:F2}}" HorizontalAlignment="Center" FontSize="20"/>
+      </StackPanel>
+    </Border>
+
+    <!-- CartesianChart -->
+    <lvc:CartesianChart Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Series="{Binding Series}" ZoomMode="X">
+    </lvc:CartesianChart>
+</Grid>
 </UserControl>
 

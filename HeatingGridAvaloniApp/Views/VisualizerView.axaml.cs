@@ -7,6 +7,7 @@ using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView; 
 using SkiaSharp;
 using HeatingGridAvaloniApp.ViewModels;
+using HeatingGridAvaloniaApp.Models;
 
 namespace HeatingGridAvaloniApp.Views
 {

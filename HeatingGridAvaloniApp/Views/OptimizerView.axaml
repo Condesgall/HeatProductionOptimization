@@ -9,22 +9,20 @@
 
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="65"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <Border Grid.Row="2" Grid.Column="1" Margin="10" Background="White" BorderBrush="#979595" BorderThickness="8" CornerRadius="10" Padding="10">
+        <Border Grid.Row="2" Grid.Column="0" Margin="10" Background="White" BorderBrush="#979595" BorderThickness="8" CornerRadius="10" Padding="10">
             <StackPanel>
-        <StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row ="2" Margin="10">
+        <StackPanel Grid.Column="0">
+            <StackPanel Grid.Row ="2" Margin="10">
                 <Border Background="#FA2929" CornerRadius="10">
                     <TextBlock Text="Season:" Foreground="White" Margin="10"/>
                 </Border>
@@ -42,7 +40,7 @@
         </StackPanel>
 
         <StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="2" Margin="10">
+            <StackPanel Grid.Row="2" Margin="10">
                 <Border Background="#FA2929" CornerRadius="10">
                     <TextBlock Text="Optimize by:" Foreground="White" Margin="10"/>
                 </Border>
@@ -61,7 +59,7 @@
 
 
         <StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="2" Margin="10">
+            <StackPanel Grid.Row="2" Margin="10">
                 <Border Background="#FA2929" CornerRadius="10">
                     <TextBlock Text="Scenario:" Foreground="White" Margin="10"/>
                 </Border>
@@ -77,12 +75,12 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel IsVisible="{Binding IsOptimizationChoice3}">
+        <StackPanel IsEnabled="{Binding IsOptimizationChoice3}">
             <TextBlock Text="{Binding NetWeight, StringFormat='NetCost Weight: {0:F2}'}" 
               HorizontalAlignment="Center"/>
             <Slider x:Name="costsSlider" Minimum="0.1" Maximum="1" TickFrequency="0.01" IsSnapToTickEnabled="True" Value="{Binding NetWeight, Mode=TwoWay}"/>
 
-            <TextBlock Text="{Binding Co2WeightOp, StringFormat='CO2 Weight: {0:F2}'}" 
+            <TextBlock Text="{Binding Co2Weight, StringFormat='CO2 Weight: {0:F2}'}" 
               HorizontalAlignment="Center"/>
             <Slider x:Name="co2Slider" Minimum="0.1" Maximum="1" TickFrequency="0.01" IsSnapToTickEnabled="True" Value="{Binding Co2Weight, Mode=TwoWay}"/>
 
@@ -136,7 +134,7 @@
     </StackPanel>
     </Border>
     
-    <ContentControl Name="OpenedTab" Grid.Row="2"/>
+    <ContentControl Name="OpenedTab" Grid.Row="2" Grid.Column="1"/>
     </Grid>
 
 </UserControl>

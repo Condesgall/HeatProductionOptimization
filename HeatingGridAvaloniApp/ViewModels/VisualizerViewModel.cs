@@ -7,11 +7,14 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using HeatingGridAvaloniaApp.Models;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
     public class VisualizerViewModel
     {
+        ResultDataManager resultDataManager = new ResultDataManager();
+
         // Returns the maximum heat data for a given unit
         public static double GetValues(string unitName)
         {
@@ -124,6 +127,18 @@ namespace HeatingGridAvaloniApp.ViewModels
                     CrosshairSnapEnabled = true // Enable snapping for Y-axis
                 }
             };
+        }
+
+        public decimal NetCostAverage
+        {
+            get => resultDataManager.AverageNetCost;
+            set => resultDataManager.AverageNetCost = Math.Round(value, 2);
+        }
+
+        public decimal Co2Average
+        {
+            get => resultDataManager.AverageCo2;
+            set => resultDataManager.AverageCo2 = Math.Round(value, 2);
         }
     }
 }

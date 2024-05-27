@@ -324,7 +324,40 @@ public class OptimizationResults
     public class ResultDataManager
     {
         public static List<ResultData> ResultData = new List<ResultData>();
+        private decimal averageNetCost;
+        private decimal averageCo2;
+        public decimal AverageNetCost
+        {
+            get
+            {
+                if (averageNetCost == 0)
+                {
+                    averageNetCost = GetAverageNetCost();
+                }
+                return averageNetCost;
+            }
+            set
+            {
+                averageNetCost = value;
+            }
+        }
 
+        public decimal AverageCo2
+        {
+            get
+            {
+                if (averageCo2 == 0)
+                {
+                    averageCo2 = GetAverageCo2();
+                }
+                return averageCo2;
+            }
+            set
+            {
+                averageCo2 = value;
+            }
+        }
+        
         public decimal GetAverageNetCost()
         {
             List<decimal> netCosts = new List<decimal>();

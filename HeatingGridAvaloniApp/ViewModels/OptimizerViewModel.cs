@@ -127,16 +127,6 @@ namespace HeatingGridAvaloniApp.ViewModels
                 AdjustWeights();
             } 
         }
-
-        public decimal Co2WeightOp
-        {
-            get => VMOptimizer.Co2Weight;
-            set
-            {
-                // Assign the incoming value to VMOptimizer.Co2Weight
-                VMOptimizer.Co2Weight = value;
-            }
-        }
         
         public void OptimizeApplyFilters()
         {
