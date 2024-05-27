@@ -39,7 +39,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             }
         }
 
-        // Reads data for the graph
+       // Reads data for the graph
         static List<double> ReadProducedHeat(string filename, string unitname)
         {
             List<double> producedHeat = new List<double>();
@@ -66,9 +66,21 @@ namespace HeatingGridAvaloniApp.ViewModels
                         producedHeat.Add(GetValues(unitname)); // Add the maximum heat value for the unit
                     }
                     // Check if the unit name is combined with another unit (e.g., "GB+EK")
-                    else if (values[2] == $"GB+{unitname}" || values[2] == $"OB+{unitname}" || values[2] == $"EK+{unitname}" || values[2] == $"GM+{unitname}")
+                    else if (values[2] == $"GB+{unitname}")
                     {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues(unitname)); // Subtract the maximum heat value for the unit
+                        producedHeat.Add(double.Parse(values[3]) - GetValues("GB")); // Subtract the maximum heat value for the unit
+                    }
+                    else if (values[2] == $"OB+{unitname}")
+                    {
+                        producedHeat.Add(double.Parse(values[3]) - GetValues("OB")); // Subtract the maximum heat value for the unit 
+                    }
+                    else if (values[2] == $"EK+{unitname}")
+                    {
+                        producedHeat.Add(double.Parse(values[3]) - GetValues("EK")); // Subtract the maximum heat value for the unit
+                    }
+                    else if (values[2] == $"GM+{unitname}")
+                    {
+                        producedHeat.Add(double.Parse(values[3]) - GetValues("GM")); // Subtract the maximum heat value for the unit
                     }
                 }
             }
@@ -82,19 +94,23 @@ namespace HeatingGridAvaloniApp.ViewModels
             // Initialize the series with the produced heat data for each unit
             new StackedAreaSeries<double>
             {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "GB") // Produced heat data for GB
+                Values = ReadProducedHeat("Assets/ResultData.csv", "GB"), // Produced heat data for GB
+                Fill = new SolidColorPaint(SKColors.Blue) // Set color for GB
             },
             new StackedAreaSeries<double>
             {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "OB") // Produced heat data for OB
+                Values = ReadProducedHeat("Assets/ResultData.csv", "OB"), // Produced heat data for OB
+                Fill = new SolidColorPaint(SKColors.Orange) // Set color for OB
             },
             new StackedAreaSeries<double>
             {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "GM") // Produced heat data for GM
+                Values = ReadProducedHeat("Assets/ResultData.csv", "GM"), // Produced heat data for GM
+                Fill = new SolidColorPaint(SKColors.Red) // Set color for GM
             },
             new StackedAreaSeries<double>
             {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "EK") // Produced heat data for EK
+                Values = ReadProducedHeat("Assets/ResultData.csv", "EK"), // Produced heat data for EK
+                Fill = new SolidColorPaint(SKColors.Green) // Set color for EK
             }
         };
 
