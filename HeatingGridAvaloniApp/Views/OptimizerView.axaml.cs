@@ -25,6 +25,7 @@ namespace HeatingGridAvaloniApp.Views
         public void Visualize(object sender, RoutedEventArgs e)
         {
             var openedTab = this.FindControl<ContentControl>("OpenedTab");
+            optimizerViewModel.OptimizeApplyFilters();
             openedTab.Content = new VisualizerView();
         }
 

@@ -22,9 +22,6 @@ namespace HeatingGridAvaloniApp.ViewModels
         
         // ReactiveCommand to make Optimization accessible from UI
         public ReactiveCommand<Unit, Unit> ReactiveOptimize { get; }
-        public ReactiveCommand<Unit, Unit> ReactiveOptimizeSc2 { get; }
-        public ReactiveCommand<Unit, Unit> ReactiveSaveCSV { get; }
-        public ReactiveCommand<Unit, Unit> ReactiveSaveWeights { get; }
 
         public OptimizerViewModel()
         {
@@ -34,8 +31,6 @@ namespace HeatingGridAvaloniApp.ViewModels
 
             // Constructing that ReactiveCommand (basically converting the normal command to it)
             ReactiveOptimize = ReactiveCommand.Create(OptimizeApplyFilters);
-            ReactiveSaveCSV = ReactiveCommand.Create(SaveToCSV);
-            ReactiveSaveWeights = ReactiveCommand.Create(SaveWeights);
             OptimizationSuccessful=false;
         }
 

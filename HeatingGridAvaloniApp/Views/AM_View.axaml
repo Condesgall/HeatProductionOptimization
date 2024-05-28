@@ -7,42 +7,83 @@
              x:Class="HeatingGridAvaloniApp.Views.AM_View"
              x:DataType="vm:AM_ViewModel">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
     <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="450" />
-        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
         <RowDefinition Height="60" />
         <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    
-    <!-- ListBox positioned in the first column and second row -->
-    <ListBox ItemsSource="{Binding ProductionUnits}" Grid.Row="1" Grid.Column="1">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding Name}" />
-                    <TextBlock Text="{Binding MaxHeat, StringFormat='Max Heat: {0}'}" />
-                    <TextBlock Text="{Binding ProductionCosts, StringFormat='Production Costs: {0}'}" />
-                    <TextBlock Text="{Binding Co2Emissions, StringFormat='CO2 Emissions: {0}'}" />
-                    <TextBlock Text="{Binding GasConsumption, StringFormat='Gas Consumption: {0}'}" />
-                    <TextBlock Text="{Binding MaxElectricity, StringFormat='Max Electricity: {0}'}" />
-                </StackPanel>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
-    
-    <!-- StackPanel positioned in the second column and second row -->
-    <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
-        <Image Source="/Assets/GB.png" Margin="5" Height="113"/>
-        <Image Source="/Assets/OB.png" Margin="5" Height="113"/>
-        <Image Source="/Assets/GM.png" Margin="5" Height="113"/>
-        <Image Source="/Assets/EK.png" Margin="5" Height="113"/>
-    </StackPanel>
+   
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Background="#ABAAAA" CornerRadius ="1" BorderBrush="#979595" BorderThickness="8">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                <Image Source="/Assets/GB.png" Grid.Row="1" Grid.Column="0" Width="600"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="40,0,0,0">
+                <TextBlock Text="GB" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Max Heat: 5.0" FontSize="20"/>
+                <TextBlock Text="Production Costs: 500" FontSize="20"/>
+                <TextBlock Text="CO2 Emissions: 215" FontSize="20"/>
+                <TextBlock Text="Gas Consumption: 1.1" FontSize="20"/>
+                <TextBlock Text="Max Electricity: 0" FontSize="20"/>    
+            </StackPanel>
+        </StackPanel>
+        </Border>
+
+
+        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Background="#ABAAAA" CornerRadius ="1" BorderBrush="#979595" BorderThickness="8" Padding="30">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Grid.Column="2" HorizontalAlignment="Left">
+                <Image Source="/Assets/OB.png" Grid.Row="1" Grid.Column="2" Width="565"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="40,0,0,0">
+                <TextBlock Text="OB" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Max Heat: 4.0" FontSize="20"/>
+                <TextBlock Text="Production Costs: 700" FontSize="20"/>
+                <TextBlock Text="CO2 Emissions: 265" FontSize="20"/>
+                <TextBlock Text="Gas Consumption: 1.2" FontSize="20"/>
+                <TextBlock Text="Max Electricity: 0" FontSize="20"/> 
+            </StackPanel>
+        </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Background="#ABAAAA" CornerRadius ="1" BorderBrush="#979595" BorderThickness="8" Padding="30">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Grid.Column="0">
+                <Image Source="/Assets/GM.png" Grid.Column="2" Width="565"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="40,0,0,0">
+                <TextBlock Text="GM" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Max Heat: 3.6" FontSize="20"/>
+                <TextBlock Text="Production Costs: 1100" FontSize="20"/>
+                <TextBlock Text="CO2 Emissions: 640" FontSize="20"/>
+                <TextBlock Text="Gas Consumption: 1.0" FontSize="20"/>
+                <TextBlock Text="Max Electricity: 2.7" FontSize="20"/> 
+            </StackPanel>
+        </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Background="#ABAAAA" CornerRadius ="1" BorderBrush="#979595" BorderThickness="8" Padding="30">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Grid.Column="0">
+                <Image Source="/Assets/EK.png" Grid.Column="2" Width="600" Height="300"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0">
+                <TextBlock Text="EK" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Max Heat: 8.0" FontSize="20"/>
+                <TextBlock Text="Production Costs: 50" FontSize="20"/>
+                <TextBlock Text="CO2 Emissions: 0" FontSize="20"/>
+                <TextBlock Text="Gas Consumption: 0" FontSize="20"/>
+                <TextBlock Text="Max Electricity: -8.0" FontSize="20"/> 
+            </StackPanel>
+        </StackPanel>
+        </Border>
 </Grid>
 </UserControl>
-
-
-
