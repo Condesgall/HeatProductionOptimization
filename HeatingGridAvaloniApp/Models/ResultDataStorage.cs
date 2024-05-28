@@ -96,10 +96,18 @@ namespace HeatingGridAvaloniaApp.Models
 
     public class ResultDataComparer : IComparer<ResultData>
     {
-        public int Compare(ResultData x, ResultData y)
+        public int Compare(ResultData? x, ResultData? y)
         {
-            DateTime dateTime1 = DateTime.ParseExact(x.TimeFrom, "M/d/yyyy H:mm", CultureInfo.InvariantCulture);
-            DateTime dateTime2 = DateTime.ParseExact(y.TimeFrom, "M/d/yyyy H:mm", CultureInfo.InvariantCulture);
+            DateTime dateTime1 = new DateTime();
+            DateTime dateTime2 = new DateTime();
+            if (x != null && y != null)
+            {
+                if (x.TimeFrom != null && y.TimeFrom != null)
+                {
+                    dateTime1 = DateTime.ParseExact(x.TimeFrom, "M/d/yyyy H:mm", CultureInfo.InvariantCulture);
+                    dateTime2 = DateTime.ParseExact(y.TimeFrom, "M/d/yyyy H:mm", CultureInfo.InvariantCulture);
+                }
+            }
 
             return dateTime1.CompareTo(dateTime2);
         }

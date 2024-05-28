@@ -76,34 +76,29 @@ public class OptimizationResults
 
     public class ResultData
     {
-        private string timeFrom;
-        private string timeTo;
-        private string productionUnit;
-        private OptimizationResults optimizationResults;
+        private string? timeFrom;
+        private string? timeTo;
+        private string? productionUnit;
 
-        public string TimeFrom
+        public string? TimeFrom
         {
             get { return timeFrom; }
             set { timeFrom = value; }
         }
 
-        public string TimeTo
+        public string? TimeTo
         {
             get { return timeTo; }
             set { timeTo = value; }
         }
 
-        public string ProductionUnit
+        public string? ProductionUnit
         {
             get { return productionUnit; }
             set { productionUnit = value; }
         }
 
-        public OptimizationResults OptimizationResults
-        {
-            get { return optimizationResults; }
-            set { optimizationResults = value; }
-        }
+        public OptimizationResults OptimizationResults { get; set; }
 
         // Parameterless constructor for Optimizer.OptimizeProduction();
         public ResultData()
@@ -217,42 +212,42 @@ public class OptimizationResults
                     decimal totalElectricity = electricityProduced - electricityConsumed;
                     if (totalElectricity > 0)
                     {
-                        optimizationResults.ProducedElectricity = totalElectricity;
+                        OptimizationResults.ProducedElectricity = totalElectricity;
                     }
                     else
                     {
-                        optimizationResults.ConsumedElectricity = totalElectricity;
+                        OptimizationResults.ConsumedElectricity = totalElectricity;
                     }
                     break;
 
                 // El producing + heat only
                 case -2:
-                    optimizationResults.ProducedElectricity = optimalUnit.CalculateElectricityProduced(heatDemand);
+                    OptimizationResults.ProducedElectricity = optimalUnit.CalculateElectricityProduced(heatDemand);
                     break;
 
                 // heat only + el producing
                 case -3:
-                    optimizationResults.ProducedElectricity = secondUnit.CalculateElectricityProduced(heatRemaining);
+                    OptimizationResults.ProducedElectricity = secondUnit.CalculateElectricityProduced(heatRemaining);
                     break;
 
                 // heat only + el consuming
                 case -4:
-                    optimizationResults.ConsumedElectricity = secondUnit.CalculateElectricityConsumed(heatRemaining);
+                    OptimizationResults.ConsumedElectricity = secondUnit.CalculateElectricityConsumed(heatRemaining);
                     break;
 
                 // el producing
                 case -5:
-                    optimizationResults.ProducedElectricity = optimalUnit.CalculateElectricityProduced(heatDemand);
+                    OptimizationResults.ProducedElectricity = optimalUnit.CalculateElectricityProduced(heatDemand);
                     break;
                 
                 // el consuming
                 case -6:
-                    optimizationResults.ConsumedElectricity = optimalUnit.CalculateElectricityConsumed(heatDemand);
+                    OptimizationResults.ConsumedElectricity = optimalUnit.CalculateElectricityConsumed(heatDemand);
                     break;
 
                 default:
-                    optimizationResults.ProducedElectricity = 0;
-                    optimizationResults.ConsumedElectricity = 0;
+                    OptimizationResults.ProducedElectricity = 0;
+                    OptimizationResults.ConsumedElectricity = 0;
                     break;
             }
         }

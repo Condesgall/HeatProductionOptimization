@@ -52,36 +52,40 @@ namespace HeatingGridAvaloniApp.ViewModels
                 // Read each line of the CSV file
                 while (!reader.EndOfStream)
                 {
+                    
                     var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    if (line != null)
+                    {
+                        var values = line.Split(',');
+                        // Check if the unit name matches
+                        if (values[2] == unitname)
+                        {
+                            producedHeat.Add(double.Parse(values[3])); // Add the produced heat value
+                        }
+                        // Check if the unit name is combined with another unit (e.g., "GB+OB")
+                        else if (values[2] == $"{unitname}+GB" || values[2] == $"{unitname}+OB" || values[2] == $"{unitname}+EK" || values[2] == $"{unitname}+GM")
+                        {
+                            producedHeat.Add(GetValues(unitname)); // Add the maximum heat value for the unit
+                        }
+                        // Check if the unit name is combined with another unit (e.g., "GB+EK")
+                        else if (values[2] == $"GB+{unitname}")
+                        {
+                            producedHeat.Add(double.Parse(values[3]) - GetValues("GB")); // Subtract the maximum heat value for the unit
+                        }
+                        else if (values[2] == $"OB+{unitname}")
+                        {
+                            producedHeat.Add(double.Parse(values[3]) - GetValues("OB")); // Subtract the maximum heat value for the unit 
+                        }
+                        else if (values[2] == $"EK+{unitname}")
+                        {
+                            producedHeat.Add(double.Parse(values[3]) - GetValues("EK")); // Subtract the maximum heat value for the unit
+                        }
+                        else if (values[2] == $"GM+{unitname}")
+                        {
+                            producedHeat.Add(double.Parse(values[3]) - GetValues("GM")); // Subtract the maximum heat value for the unit
+                        }
+                    }
 
-                    // Check if the unit name matches
-                    if (values[2] == unitname)
-                    {
-                        producedHeat.Add(double.Parse(values[3])); // Add the produced heat value
-                    }
-                    // Check if the unit name is combined with another unit (e.g., "GB+OB")
-                    else if (values[2] == $"{unitname}+GB" || values[2] == $"{unitname}+OB" || values[2] == $"{unitname}+EK" || values[2] == $"{unitname}+GM")
-                    {
-                        producedHeat.Add(GetValues(unitname)); // Add the maximum heat value for the unit
-                    }
-                    // Check if the unit name is combined with another unit (e.g., "GB+EK")
-                    else if (values[2] == $"GB+{unitname}")
-                    {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("GB")); // Subtract the maximum heat value for the unit
-                    }
-                    else if (values[2] == $"OB+{unitname}")
-                    {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("OB")); // Subtract the maximum heat value for the unit 
-                    }
-                    else if (values[2] == $"EK+{unitname}")
-                    {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("EK")); // Subtract the maximum heat value for the unit
-                    }
-                    else if (values[2] == $"GM+{unitname}")
-                    {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("GM")); // Subtract the maximum heat value for the unit
-                    }
                 }
             }
 
@@ -122,8 +126,8 @@ namespace HeatingGridAvaloniApp.ViewModels
         public VisualizerViewModel()
         {
             // Initialize X and Y axes
-            XAxes = new Axis[]
-            {
+            XAxes =
+            [
                 new Axis
                 {
                     CrosshairLabelsBackground = SKColors.DarkOrange.AsLvcColor(),
@@ -131,7 +135,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                     CrosshairPaint = new SolidColorPaint(SKColors.DarkOrange, 1),
                     Labeler = value => value.ToString("N2") // Labeler function to format X-axis labels
                 }
-            };
+            ];
 
             YAxes = new Axis[]
             {

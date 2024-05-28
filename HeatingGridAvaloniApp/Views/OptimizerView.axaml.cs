@@ -11,7 +11,6 @@ namespace HeatingGridAvaloniApp.Views
 {
     public partial class OptimizerView : UserControl
     {
-        OptimizerViewModel optimizerViewModel = new OptimizerViewModel();
         public OptimizerView()
         {
             InitializeComponent();
@@ -21,7 +20,10 @@ namespace HeatingGridAvaloniApp.Views
         public void Save(object sender, RoutedEventArgs e)
         {
             var saveButton = this.FindControl<Button>("SaveButton");
-            saveButton.Content = "Saved";
+            if (saveButton != null)
+            {
+                saveButton.Content = "Saved";
+            }
         }
 
         public void Visualize(object sender, RoutedEventArgs e)
@@ -33,9 +35,12 @@ namespace HeatingGridAvaloniApp.Views
             {
                 await Task.Delay(100); // Add a delay of 1 second (1000 milliseconds)
 
-                Dispatcher.UIThread.InvokeAsync(() =>
+                _ = Dispatcher.UIThread.InvokeAsync(() =>
                 {
-                    openedTab.Content = new VisualizerView();
+                    if (openedTab != null)
+                    {
+                        openedTab.Content = new VisualizerView();
+                    }
                 });
             });
         }
@@ -43,7 +48,10 @@ namespace HeatingGridAvaloniApp.Views
         public void SaveWeights(object sender, RoutedEventArgs e)
         {
             var saveButton = this.FindControl<Button>("SaveWeightsButton");
-            saveButton.Content = "Saved";
+            if (saveButton != null)
+            {
+                saveButton.Content = "Saved"; 
+            }
         }
     }
 }
