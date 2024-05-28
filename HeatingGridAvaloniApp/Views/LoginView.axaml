@@ -16,7 +16,7 @@
     <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="200"/>
+        <RowDefinition Height="100"/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
@@ -26,13 +26,13 @@
     </Grid.ColumnDefinitions>
 
     <!-- Login Panel -->
-    <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#ABAAAA" CornerRadius="1" BorderBrush="#979595" BorderThickness="8" Padding="30" Height ="600" Opacity="0.9">
+    <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#ABAAAA" CornerRadius="1" BorderBrush="#979595" BorderThickness="8" Padding="30" Height ="755" Opacity="0.9">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="500">
             <!-- LOGIN -->
-            <Label Margin="0,50,0,0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="25"/>
+            <Label Margin="0,60,0,0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="25"/>
 
             <!-- Username Section -->
-            <Label Foreground="Black" Margin="0,50,0,0" Content="Username"/>
+            <Label Foreground="Black" Margin="0,100,0,0" Content="Username"/>
             <TextBox Margin="0 5" Name="userName"/>
 
             <!-- Password Section -->
@@ -40,9 +40,9 @@
             <TextBox Margin="0 5" PasswordChar="*" Name="password"/>
 
             <!-- Login Button -->
-            <Button Margin="0,40,0,0" Width="235" HorizontalAlignment="Right" CornerRadius="10"
+            <Button Margin="0,70,0,0" Width="500" Height="50" HorizontalAlignment="Center" CornerRadius="10"
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    Content="Login"
+                    Content="LOGIN"
                     Background="#FA2929"
                     Foreground="White"
                     Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).LoginButtonCommand}"/>
@@ -52,7 +52,7 @@
     <!-- Image Panel -->
     <StackPanel Grid.Row="1" Grid.Column="2" >
         <Border CornerRadius="1" BorderBrush="#979595" BorderThickness="10" VerticalAlignment="Center">
-            <Image Source="/Assets/heater.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="872" Opacity="0.9"/>
+            <Image Source="/Assets/heater.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1100" Opacity="0.9"/>
         </Border>
     </StackPanel>
 </Grid>

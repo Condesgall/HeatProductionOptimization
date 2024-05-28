@@ -84,9 +84,6 @@ namespace HeatingGridAvaloniApp.ViewModels
                         {
                             producedHeat.Add(double.Parse(values[3]) - GetValues("GM")); // Subtract the maximum heat value for the unit
                         }
-                    }
-
-                    // Check if the unit name matches
                     if (values[2] == unitname)
                     {
                         producedHeat.Add(double.Parse(values[3])); // Add the produced heat value
@@ -150,6 +147,9 @@ namespace HeatingGridAvaloniApp.ViewModels
                         {
                             continue;
                         }
+                    }
+
+                    // Check if the unit name matches
                     }
                 }
             }
