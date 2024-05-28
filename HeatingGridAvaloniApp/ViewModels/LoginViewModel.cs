@@ -21,7 +21,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         }
         public string ImagePath
         {
-            get => "/Assets/heater.jpg";
+            get => "/Assets/danfossLogin.jpg";
         }
         public string ImagePath2
         {

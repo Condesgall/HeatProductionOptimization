@@ -13,7 +13,7 @@
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
-    <StackPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10">
+    <StackPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10">
       <Button 
         Width="400"
         Height="50"
