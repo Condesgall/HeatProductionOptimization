@@ -18,7 +18,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         
         public Optimizer VMOptimizer = new Optimizer();
         public ParameterLoader VMParameterLoader{get;}
-        private List<SdmParameters> filteredSourceData;
+        private List<SdmParameters>? filteredSourceData;
         
         // ReactiveCommand to make Optimization accessible from UI
         public ReactiveCommand<Unit, Unit> ReactiveOptimize { get; }
@@ -134,7 +134,6 @@ namespace HeatingGridAvaloniApp.ViewModels
                 string chosenSeason = GetSeason();
                 // Filters the chosen optimization way
                 string chosenOptimizeBy = GetOptimizationOption();
-                string chosenScenario;
 
                 if (isScenario1Chosen && isScenario2Chosen)
                 {
@@ -161,7 +160,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
             Console.WriteLine($"Chosen Season: {chosenSeason}, Chosen OptimizeBy: {chosenOptimizeBy}");
             
-            if(chosenOptimizeBy != "x" && chosenSeason != "x")
+            if(chosenOptimizeBy != "x" && chosenSeason != "x" && filteredSourceData != null)
             {
                 VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
                 Console.WriteLine("Optimization successful.");
@@ -175,7 +174,7 @@ namespace HeatingGridAvaloniApp.ViewModels
 
         public void Scenario2Filters(string chosenSeason, string chosenOptimizeBy)
         {
-            if(chosenOptimizeBy != "x" && chosenSeason != "x")
+            if(chosenOptimizeBy != "x" && chosenSeason != "x" && filteredSourceData != null)
             {
                 VMOptimizer.OptimizeResultsSc2(filteredSourceData, int.Parse(chosenOptimizeBy));
                 Console.WriteLine("Optimization successful.");
@@ -218,7 +217,10 @@ namespace HeatingGridAvaloniApp.ViewModels
                 chosenSeason="Both";
                 foreach(var parameters in VMParameterLoader.SDMParameters)
                 {
-                    filteredSourceData.Add(parameters);
+                    if (filteredSourceData != null)
+                    {
+                        filteredSourceData.Add(parameters);
+                    }
                 }
             }
             else if(!_isWinterChosen && _isSummerChosen)
@@ -226,7 +228,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                 chosenSeason="Summer";
                 foreach(var parameters in VMParameterLoader.SDMParameters)
                 {
-                    if(parameters.HeatDemand<4)
+                    if(parameters.HeatDemand < 4 && filteredSourceData != null)
                         filteredSourceData.Add(parameters);
                 }
             }
@@ -235,7 +237,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                 chosenSeason="Winter";
                 foreach(var parameters in VMParameterLoader.SDMParameters)
                 {
-                    if(parameters.HeatDemand>4)
+                    if(parameters.HeatDemand > 4 && filteredSourceData != null)
                         filteredSourceData.Add(parameters);
                 }
             }

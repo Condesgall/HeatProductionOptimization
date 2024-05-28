@@ -19,13 +19,19 @@ public partial class MainAppView : UserControl
     {
         var openedTab = this.FindControl<ContentControl>("OpenedTab");
         
-        openedTab.Content = new AM_View();
+        if (openedTab != null)
+        {
+            openedTab.Content = new AM_View();
+        }
     }
 
     public void RedirectToOptimizer(object sender, RoutedEventArgs e)
     {
         var openedTab = this.FindControl<ContentControl>("OpenedTab");
         
-        openedTab.Content = new OptimizerView();
+        if (openedTab != null)
+        {
+            openedTab.Content = new OptimizerView();
+        }
     }
 }

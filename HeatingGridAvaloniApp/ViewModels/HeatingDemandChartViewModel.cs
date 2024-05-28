@@ -22,11 +22,14 @@ namespace HeatingGridAvaloniApp.ViewModels
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
-                    var values = line.Split(',');
-
-                    if (values[2] == unitname)
+                    if (line != null)
                     {
-                        producedHeat.Add(int.Parse(values[3]));
+                        var values = line.Split(',');
+
+                        if (values[2] == unitname)
+                        {
+                            producedHeat.Add(int.Parse(values[3]));
+                        }
                     }
                 }
             }
@@ -69,7 +72,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             }
         };
 
-        public Axis[] XAxes { get; set; }
+        public Axis[]? XAxes { get; set; }
 
         public HeatDemandChartViewModel()
         {
