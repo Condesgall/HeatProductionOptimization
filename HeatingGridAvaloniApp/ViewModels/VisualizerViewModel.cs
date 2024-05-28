@@ -63,24 +63,62 @@ namespace HeatingGridAvaloniApp.ViewModels
                     // Check if the unit name is combined with another unit (e.g., "GB+OB")
                     else if (values[2] == $"{unitname}+GB" || values[2] == $"{unitname}+OB" || values[2] == $"{unitname}+EK" || values[2] == $"{unitname}+GM")
                     {
-                        producedHeat.Add(GetValues(unitname)); // Add the maximum heat value for the unit
+                        if (!(double.Parse(values[3]) < GetValues("EK")))
+                        {
+                            producedHeat.Add(GetValues(unitname)); // Add the maximum heat value for the unit
+                        }else 
+                        {
+                            producedHeat.Add(double.Parse(values[3]));
+                        }
                     }
                     // Check if the unit name is combined with another unit (e.g., "GB+EK")
                     else if (values[2] == $"GB+{unitname}")
                     {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("GB")); // Subtract the maximum heat value for the unit
+                        double value = double.Parse(values[3]);
+                        if (!(value < GetValues("GB")))
+                        {
+                            producedHeat.Add(value - GetValues("GB")); // Subtract the maximum heat value for the unit
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                     else if (values[2] == $"OB+{unitname}")
                     {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("OB")); // Subtract the maximum heat value for the unit 
+                        double value = double.Parse(values[3]);
+                        if (!(value < GetValues("OB")))
+                        {
+                            producedHeat.Add(value - GetValues("OB")); // Subtract the maximum heat value for the unit 
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                     else if (values[2] == $"EK+{unitname}")
                     {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("EK")); // Subtract the maximum heat value for the unit
+                        double value = double.Parse(values[3]);
+                        if (!(value < GetValues("EK")))
+                        {
+                            producedHeat.Add(value - GetValues("EK")); // Subtract the maximum heat value for the unit
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                     else if (values[2] == $"GM+{unitname}")
                     {
-                        producedHeat.Add(double.Parse(values[3]) - GetValues("GM")); // Subtract the maximum heat value for the unit
+                        double value = double.Parse(values[3]);
+                        if (!(value < GetValues("GM")))
+                        {
+                            producedHeat.Add(value - GetValues("EK")); // Subtract the maximum heat value for the unit
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                 }
             }
