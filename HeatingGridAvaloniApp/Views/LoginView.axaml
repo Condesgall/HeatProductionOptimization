@@ -26,23 +26,23 @@
     </Grid.ColumnDefinitions>
 
     <!-- Login Panel -->
-    <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#ABAAAA" CornerRadius="1" BorderBrush="#979595" BorderThickness="8" Padding="30" Height ="755" Opacity="0.9">
+    <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#FFFFFF" CornerRadius="30" BorderBrush="#EAEAEA" BorderThickness="8" Padding="30" Height ="755" Opacity="0.9">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="500">
             <!-- LOGIN -->
-            <Label Margin="0,60,0,0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="25"/>
-
+            <Label Margin="0,10,0,0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="40"/>
+            
             <!-- Username Section -->
-            <Label Foreground="Black" Margin="0,100,0,0" Content="Username"/>
-            <TextBox Margin="0 5" Name="userName"/>
+            <Label Foreground="Black" Margin="0,100,0,0" Content="Username" FontSize="30"/>
+            <TextBox Margin="0, 10" Name="userName" CornerRadius="10" Height="40"/>
 
             <!-- Password Section -->
-            <Label Foreground="Black" Margin="0,20,0,0" Content="Password"/>
-            <TextBox Margin="0 5" PasswordChar="*" Name="password"/>
+            <Label Foreground="Black" Margin="0,20,0,0" Content="Password" FontSize="30"/>
+            <TextBox Margin="0, 10" PasswordChar="*" Name="password" CornerRadius="10" Height="40"/>
 
             <!-- Login Button -->
             <Button Margin="0,70,0,0" Width="500" Height="50" HorizontalAlignment="Center" CornerRadius="10"
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    Content="LOGIN"
+                    Content="LOGIN" FontSize="20"
                     Background="#FA2929"
                     Foreground="White"
                     Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).LoginButtonCommand}"/>
