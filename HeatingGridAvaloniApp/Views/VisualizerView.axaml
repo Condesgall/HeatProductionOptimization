@@ -13,7 +13,7 @@
         <vm:VisualizerViewModel />
     </UserControl.DataContext>
 
-   <Grid ShowGridLines="True">
+   <Grid ShowGridLines="False">
     <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
