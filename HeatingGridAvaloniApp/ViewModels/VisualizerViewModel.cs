@@ -65,11 +65,11 @@ namespace HeatingGridAvaloniApp.ViewModels
                         // Check if the unit name is combined with another unit (e.g., "GB+OB")
                         else if (values[2] == $"{unitname}+GB" || values[2] == $"{unitname}+OB" || values[2] == $"{unitname}+EK" || values[2] == $"{unitname}+GM")
                         {
-                            if (!(double.Parse(values[3]) < GetValues("EK")))
+                            if (!(double.Parse(values[3]) <= GetValues(unitname)))
                             {
                                 producedHeat.Add(GetValues(unitname)); // Add the maximum heat value for the unit
                             }else 
-                            {
+                            {   
                                 producedHeat.Add(double.Parse(values[3]));
                             }
                         }
