@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using HeatingGridAvaloniaApp.Models;
 using HeatingGridAvaloniApp.ViewModels;
 using HeatingGridAvaloniApp.Views;
 
@@ -11,19 +12,11 @@ namespace HeatingGridAvaloniApp.Views
 {
     public partial class OptimizerView : UserControl
     {
+        OptimizerViewModel optimizerViewModel = new OptimizerViewModel();
         public OptimizerView()
         {
             InitializeComponent();
             DataContext = new OptimizerViewModel();
-        }
-
-        public void Save(object sender, RoutedEventArgs e)
-        {
-            var saveButton = this.FindControl<Button>("SaveButton");
-            if (saveButton != null)
-            {
-                saveButton.Content = "Saved";
-            }
         }
 
         public void Visualize(object sender, RoutedEventArgs e)
@@ -45,12 +38,14 @@ namespace HeatingGridAvaloniApp.Views
             });
         }
 
-        public void SaveWeights(object sender, RoutedEventArgs e)
+        public void LoadEmptyGraph(object sender, RoutedEventArgs e)
         {
-            var saveButton = this.FindControl<Button>("SaveWeightsButton");
-            if (saveButton != null)
+            ResultDataManager.ResultData.Clear();
+            optimizerViewModel.OptimizeApplyFilters();
+            var openedTab = this.FindControl<ContentControl>("OpenedTab");
+            if (openedTab != null)
             {
-                saveButton.Content = "Saved"; 
+                openedTab.Content = new VisualizerView();
             }
         }
     }

@@ -22,7 +22,7 @@
                 <Border CornerRadius="10">
                     <Grid>
                         <StackPanel>
-                                <Image Source="/Assets/danfossLogo.png" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="200" Height="100"/>
+                                <Image Source="/Assets/danfossLogoRed.png" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="200" Height="100"/>
                         </StackPanel>
                         <UserControl Content="{Binding ContentViewModel}"/>
                     </Grid>

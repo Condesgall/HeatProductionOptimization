@@ -19,14 +19,6 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
 
         }
-        public string ImagePath
-        {
-            get => "/Assets/danfossLogin.jpg";
-        }
-        public string ImagePath2
-        {
-            get => "/Assets/background.pmh";
-        }
 
         /*public string UserName
         {
