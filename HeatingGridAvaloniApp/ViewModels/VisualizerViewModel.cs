@@ -64,32 +64,83 @@ namespace HeatingGridAvaloniApp.ViewModels
                         // Get the index where the value was added
                         int index = gbValues.Count; // Using gbValues.Count, assuming all lists are synchronized
 
-                        // Check for combined unit names
-                        bool isGb = values[2].Contains("GB");
-                        bool isOb = values[2].Contains("OB");
-                        bool isGm = values[2].Contains("GM");
-                        bool isEk = values[2].Contains("EK");
-
                         // Insert NaN or actual values into each list
-                        InsertValue(gbValues, index, isGb ? double.Parse(values[3]) :0);
-                        InsertValue(obValues, index, isOb ? double.Parse(values[3]) : 0);
-                        InsertValue(gmValues, index, isGm ? double.Parse(values[3]) :0);
-                        InsertValue(ekValues, index, isEk ? double.Parse(values[3]) : 0);
+                        InsertValue(gbValues, index, values, "GB");
+                        InsertValue(obValues, index, values, "OB");
+                        InsertValue(gmValues, index, values, "GM");
+                        InsertValue(ekValues, index, values, "EK");
                     }
                 }
             }
         }
 
         // Helper function to insert a value into a list
-        static void InsertValue(List<double> list, int index, double value)
+        static void InsertValue(List<double> list, int index, string[] values, string unitName)
         {
-            if (index >= list.Count)
+            double parsedValue = double.Parse(values[3]);
+
+            if (values[2] == unitName)
             {
-                list.Add(value);
+                list.Add(parsedValue);
+            }
+            else if (values[2] == $"{unitName}+GB" || values[2] == $"{unitName}+OB" || values[2] == $"{unitName}+EK" || values[2] == $"{unitName}+GM")
+            {
+                if (!(parsedValue < GetValues(unitName)))
+                {
+                    list.Add(GetValues(unitName));
+                }
+                else
+                {
+                    list.Add(parsedValue);
+                }
+            }
+            else if (values[2] == $"GB+{unitName}")
+            {
+                if (!(parsedValue < GetValues("GB")))
+                {
+                    list.Add(parsedValue - GetValues("GB"));
+                }
+                else
+                {
+                    list.Add(0);
+                }
+            }
+            else if (values[2] == $"OB+{unitName}")
+            {
+                if (!(parsedValue < GetValues("OB")))
+                {
+                    list.Add(parsedValue - GetValues("OB"));
+                }
+                else
+                {
+                    list.Add(0);
+                }
+            }
+            else if (values[2] == $"EK+{unitName}")
+            {
+                if (!(parsedValue < GetValues("EK")))
+                {
+                    list.Add(parsedValue - GetValues("EK"));
+                }
+                else
+                {
+                    list.Add(0);
+                }
+            }
+            else if (values[2] == $"GM+{unitName}")
+            {
+                if (!(parsedValue < GetValues("GM")))
+                {
+                    list.Add(parsedValue - GetValues("GM"));
+                }
+                else
+                {
+                    list.Add(0);
+                }
             }
             else
             {
-                list.Insert(index, value);
+                list.Add(0);
             }
         }
 
@@ -101,7 +152,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             // Graph logic
             Series = new ISeries[]
             {
-               new StackedStepAreaSeries<double>
+                new StackedStepAreaSeries<double>
                 {
                     Values = gbValues,
                     Fill = new SolidColorPaint(SKColors.Blue)
