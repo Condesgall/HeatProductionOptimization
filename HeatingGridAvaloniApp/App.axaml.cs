@@ -1,3 +1,4 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -33,6 +34,9 @@ public partial class App : Application
                 DataContext = new MainWindowViewModel(),
             };
         }
+
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
         base.OnFrameworkInitializationCompleted();
     }

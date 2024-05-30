@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using HeatingGridAvaloniaApp.Models;
+using System.Globalization;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
@@ -182,7 +183,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                     CrosshairLabelsBackground = SKColors.DarkOrange.AsLvcColor(),
                     CrosshairLabelsPaint = new SolidColorPaint(SKColors.DarkRed, 1),
                     CrosshairPaint = new SolidColorPaint(SKColors.DarkOrange, 1),
-                    Labeler = value => value.ToString("N2")
+                    Labeler = value => value.ToString("N2", CultureInfo.InvariantCulture)
                 }
             };
 
