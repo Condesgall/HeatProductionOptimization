@@ -104,11 +104,10 @@ public class Optimizer
             // Check how much heat is needed.
             decimal currentHeatNeeded = sdmParameters.HeatDemand;
 
+            // Empty resultData instance for results.
+            ResultData resultData = new ResultData();
             while (true)
             {
-                // Empty resultData instance for results.
-                ResultData resultData = new ResultData();
-
                 // Declare currentMaxHeat with a value of unit's max heat.
                 decimal currentMaxHeat = primaryUnit.MaxHeat;
 
@@ -119,17 +118,20 @@ public class Optimizer
                 if (currentMaxHeat >= 0)
                 {
                     // *Produce* all heat with the first boiler.
-                    resultData.OptimizationResults.ProducedHeat = currentHeatNeeded;
-                    resultData.OptimizationResults.Expenses = currentHeatNeeded * primaryUnit.ProductionCosts;
-                    resultData.OptimizationResults.PrimaryEnergyConsumption = currentHeatNeeded * primaryUnit.GasConsumption;
-                    resultData.OptimizationResults.Co2Emissions = currentHeatNeeded * primaryUnit.Co2Emissions;
+                    resultData.OptimizationResults.ProducedHeat += currentHeatNeeded;
+                    resultData.OptimizationResults.Expenses += currentHeatNeeded * primaryUnit.ProductionCosts;
+                    resultData.OptimizationResults.PrimaryEnergyConsumption += currentHeatNeeded * primaryUnit.GasConsumption;
+                    resultData.OptimizationResults.Co2Emissions += currentHeatNeeded * primaryUnit.Co2Emissions;
                     resultData.TimeFrom = sdmParameters.TimeFrom;
                     resultData.TimeTo = sdmParameters.TimeTo;
-                    resultData.ProductionUnit = primaryUnit.Name;
+
+                    // If there was more heat produced before, add the unit name to the string with unit names
+                    // else, only use add the unit name without the '+' sign before it
+                    if(resultData.ProductionUnit=="") resultData.ProductionUnit = primaryUnit.Name;
+                    else resultData.ProductionUnit += $"+{primaryUnit.Name}";
 
                     // Save the data.
                     SaveToResultDataManager(resultData, sdmParameters);
-
                     break;
                 }
                 else
@@ -146,9 +148,6 @@ public class Optimizer
                     // Then let secondaryUnit produce the rest.
                     currentHeatNeeded = currentMaxHeat * (-1.0m);
                     primaryUnit = secondaryUnit;
-
-                    // Save the data.
-                    SaveToResultDataManager(resultData, sdmParameters);
                 }
             }
         }
