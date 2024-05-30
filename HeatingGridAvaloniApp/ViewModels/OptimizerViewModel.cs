@@ -15,7 +15,6 @@ namespace HeatingGridAvaloniApp.ViewModels
 {
     public class OptimizerViewModel : ReactiveObject
     {
-        
         public Optimizer VMOptimizer = new Optimizer();
         public ParameterLoader VMParameterLoader{get;}
         private List<SdmParameters>? filteredSourceData;
@@ -26,7 +25,6 @@ namespace HeatingGridAvaloniApp.ViewModels
 
         public OptimizerViewModel()
         {
-            VMOptimizer = new Optimizer();
             VMParameterLoader = new ParameterLoader("Assets/SourceData.csv");
             VMParameterLoader.Load();
 
@@ -141,6 +139,11 @@ namespace HeatingGridAvaloniApp.ViewModels
         
         public void OptimizeApplyFilters()
         {
+            // Instances a new Optimizer so that it doesn't collide with previous optimizations
+            VMOptimizer = new Optimizer();
+            // Saves the weights to it
+            SaveWeights();
+
             ResultDataManager.ResultData.Clear();
             try
             {
