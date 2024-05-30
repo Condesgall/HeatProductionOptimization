@@ -154,6 +154,11 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 new StackedStepAreaSeries<double>
                 {
+                    Values = gmValues,
+                    Fill = new SolidColorPaint(SKColors.Red)
+                },
+                new StackedStepAreaSeries<double>
+                {
                     Values = gbValues,
                     Fill = new SolidColorPaint(SKColors.Blue)
                 },
@@ -162,11 +167,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                     Values = obValues,
                     Fill = new SolidColorPaint(SKColors.Orange)
                 },
-                new StackedStepAreaSeries<double>
-                {
-                    Values = gmValues,
-                    Fill = new SolidColorPaint(SKColors.Red)
-                },
+                
                 new StackedStepAreaSeries<double>
                 {
                     Values = ekValues,
