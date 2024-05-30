@@ -141,6 +141,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         
         public void OptimizeApplyFilters()
         {
+            ResultDataManager.ResultData.Clear();
             try
             {
                 // Declares a list to hold filtered data.

@@ -82,8 +82,8 @@ public class Optimizer
                 case 3:
                     // This checks expenses * co2 emissions, i.e. rate of both cost
                     // and co2 emissions when producing a MWh of heat.
-                    decimal coefficient0 = (netWeight * AssetManager.productionUnits[0].ProductionCosts) + (AssetManager.productionUnits[0].Co2Emissions * co2Weight);
-                    decimal coefficient1 = (netWeight * AssetManager.productionUnits[1].ProductionCosts) + (AssetManager.productionUnits[1].Co2Emissions * co2Weight);
+                    decimal coefficient0 = (NetWeight * AssetManager.productionUnits[0].ProductionCosts) + (AssetManager.productionUnits[0].Co2Emissions * Co2Weight);
+                    decimal coefficient1 = (NetWeight * AssetManager.productionUnits[1].ProductionCosts) + (AssetManager.productionUnits[1].Co2Emissions * Co2Weight);
                     if (coefficient0 < coefficient1)
                     {
                         primaryUnit = AssetManager.productionUnits[0];
@@ -167,7 +167,6 @@ public class Optimizer
     public void OptimizeResultsSc2(List<SdmParameters> sourceData, int optimizeBy)
     {
         ResultDataManager.ResultData.Clear();
-        Console.WriteLine($"{netWeight}");
         foreach (var sdmParameters in sourceData)
         {
             switch (optimizeBy)
@@ -503,24 +502,22 @@ public class Optimizer
                 return GetBestUnitCombinations(sdmParameters, primaryUnitIndex + 1, 0);
             }
         }
-        return combinedUnitsNetCost.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+        combinedUnitsNetCost = combinedUnitsNetCost.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+        return combinedUnitsNetCost;
     }
 
     public void AddCombinationToDictionary(ProductionUnit optimalUnit, ProductionUnit unit2)
     {
         List<ProductionUnit> options = new List<ProductionUnit> { optimalUnit, unit2 };
 
-        options.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
 
         decimal netCost1 = unitPairingCandidates[optimalUnit];
         decimal netCost2 = unitPairingCandidates[unit2];
 
         decimal totalNetCost = netCost1 + netCost2;
 
-        bool combinationExists = combinedUnitsNetCost.Keys.Any(key => key.SequenceEqual(options));
-
         // Add to unit options if it doesn't already exist
-        if (!combinationExists)
+        if (!combinedUnitsNetCost.ContainsKey(options))
         {
             combinedUnitsNetCost.Add(options, totalNetCost);
         }

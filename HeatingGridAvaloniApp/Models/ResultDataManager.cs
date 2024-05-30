@@ -133,7 +133,7 @@ public class OptimizationResults
 
         public void UpdateOptimizationResults_NetCosts(decimal netCost)
         {
-            if (netCost > 0)
+            if (netCost < 0)
             {
                 OptimizationResults.Profit = netCost;
             }
