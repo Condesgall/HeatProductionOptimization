@@ -15,41 +15,45 @@ namespace HeatingGridAvaloniApp.ViewModels
     {
         ResultDataManager resultDataManager = new ResultDataManager();
 
+        static List<double> gbValues = new List<double>();
+        static List<double> obValues = new List<double>();
+        static List<double> gmValues = new List<double>();
+        static List<double> ekValues = new List<double>();
+
         // Returns the maximum heat data for a given unit
         public static double GetValues(string unitName)
         {
-            // File path containing the data
             string filePath = "Assets/heatingGrids.csv";
-            // Read the CSV file and split the values
             string[] values = File.ReadAllText(filePath).Split(',');
 
-            // Switch statement to extract the maximum heat data based on the unit name
             switch (unitName)
             {
                 case "GB":
-                    return double.Parse(values[4]); // Extract maximum heat for GB
+                    return double.Parse(values[4]);
                 case "OB":
-                    return double.Parse(values[10]); // Extract maximum heat for OB
+                    return double.Parse(values[10]);
                 case "GM":
-                    return double.Parse(values[16]); // Extract maximum heat for GM
+                    return double.Parse(values[16]);
                 case "EK":
-                    return double.Parse(values[22]); // Extract maximum heat for EK
+                    return double.Parse(values[22]);
                 default:
                     throw new ArgumentException($"Unit name {unitName} not found in the file.");
             }
         }
 
         // Reads data for the graph
-        static List<double> ReadProducedHeat(string filename, string unitname)
+        static void ReadProducedHeat(string filename)
         {
-            List<double> producedHeat = new List<double>();
+            // Clear the lists
+            gbValues.Clear();
+            obValues.Clear();
+            gmValues.Clear();
+            ekValues.Clear();
 
-            // Read the CSV file containing the produced heat data
             using (var reader = new StreamReader(filename))
             {
                 reader.ReadLine(); // Skip header line
 
-                // Read each line of the CSV file
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
@@ -57,112 +61,68 @@ namespace HeatingGridAvaloniApp.ViewModels
                     {
                         var values = line.Split(',');
 
-                        // Check if the unit name matches
-                        if (values[2] == unitname)
-                        {
-                            producedHeat.Add(double.Parse(values[3])); // Add the produced heat value
-                        }
-                        // Check if the unit name is combined with another unit (e.g., "GB+OB")
-                        else if (values[2] == $"{unitname}+GB" || values[2] == $"{unitname}+OB" || values[2] == $"{unitname}+EK" || values[2] == $"{unitname}+GM")
-                        {
-                            if (!(double.Parse(values[3]) <= GetValues(unitname)))
-                            {
-                                producedHeat.Add(GetValues(unitname)); // Add the maximum heat value for the unit
-                            }else 
-                            {   
-                                producedHeat.Add(double.Parse(values[3]));
-                            }
-                        }
-                        // Check if the unit name is combined with another unit (e.g., "GB+EK")
-                        else if (values[2] == $"GB+{unitname}")
-                        {
-                            double value = double.Parse(values[3]);
-                            if (!(value < GetValues("GB")))
-                            {
-                                producedHeat.Add(value - GetValues("GB")); // Subtract the maximum heat value for the unit
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                        else if (values[2] == $"OB+{unitname}")
-                        {
-                            double value = double.Parse(values[3]);
-                            if (!(value < GetValues("OB")))
-                            {
-                                producedHeat.Add(value - GetValues("OB")); // Subtract the maximum heat value for the unit 
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                        else if (values[2] == $"EK+{unitname}")
-                        {
-                            double value = double.Parse(values[3]);
-                            if (!(value < GetValues("EK")))
-                            {
-                                producedHeat.Add(value - GetValues("EK")); // Subtract the maximum heat value for the unit
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                        else if (values[2] == $"GM+{unitname}")
-                        {
-                            double value = double.Parse(values[3]);
-                            if (!(value < GetValues("GM")))
-                            {
-                                producedHeat.Add(value - GetValues("EK")); // Subtract the maximum heat value for the unit
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
+                        // Get the index where the value was added
+                        int index = gbValues.Count; // Using gbValues.Count, assuming all lists are synchronized
+
+                        // Check for combined unit names
+                        bool isGb = values[2].Contains("GB");
+                        bool isOb = values[2].Contains("OB");
+                        bool isGm = values[2].Contains("GM");
+                        bool isEk = values[2].Contains("EK");
+
+                        // Insert NaN or actual values into each list
+                        InsertValue(gbValues, index, isGb ? double.Parse(values[3]) :0);
+                        InsertValue(obValues, index, isOb ? double.Parse(values[3]) : 0);
+                        InsertValue(gmValues, index, isGm ? double.Parse(values[3]) :0);
+                        InsertValue(ekValues, index, isEk ? double.Parse(values[3]) : 0);
                     }
                 }
             }
-
-            return producedHeat; // Return the list of produced heat values
         }
 
-        // Graph logic
-        public ISeries[] Series { get; set; } =
+        // Helper function to insert a value into a list
+        static void InsertValue(List<double> list, int index, double value)
         {
-            // Initialize the series with the produced heat data for each unit
-            new StackedAreaSeries<double>
+            if (index >= list.Count)
             {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "GB"), // Produced heat data for GB
-                Fill = new SolidColorPaint(SKColors.Blue) // Set color for GB
-            },
-            new StackedAreaSeries<double>
-            {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "OB"), // Produced heat data for OB
-                Fill = new SolidColorPaint(SKColors.Orange) // Set color for OB
-            },
-            new StackedAreaSeries<double>
-            {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "GM"), // Produced heat data for GM
-                Fill = new SolidColorPaint(SKColors.Red) // Set color for GM
-            },
-            new StackedAreaSeries<double>
-            {
-                Values = ReadProducedHeat("Assets/ResultData.csv", "EK"), // Produced heat data for EK
-                Fill = new SolidColorPaint(SKColors.Green) // Set color for EK
+                list.Add(value);
             }
-        };
-
-        // X and Y axes properties
-        public Axis[] XAxes { get; set; } // X-axis
-        public Axis[] YAxes { get; set; } // Y-axis
+            else
+            {
+                list.Insert(index, value);
+            }
+        }
 
         // Constructor
         public VisualizerViewModel()
         {
-            // Initialize X and Y axes
+            ReadProducedHeat("Assets/ResultData.csv");
+
+            // Graph logic
+            Series = new ISeries[]
+            {
+               new StackedStepAreaSeries<double>
+                {
+                    Values = gbValues,
+                    Fill = new SolidColorPaint(SKColors.Blue)
+                },
+                new StackedStepAreaSeries<double>
+                {
+                    Values = obValues,
+                    Fill = new SolidColorPaint(SKColors.Orange)
+                },
+                new StackedStepAreaSeries<double>
+                {
+                    Values = gmValues,
+                    Fill = new SolidColorPaint(SKColors.Red)
+                },
+                new StackedStepAreaSeries<double>
+                {
+                    Values = ekValues,
+                    Fill = new SolidColorPaint(SKColors.Green)
+                }
+            };
+
             XAxes = new Axis[]
             {
                 new Axis
@@ -170,7 +130,7 @@ namespace HeatingGridAvaloniApp.ViewModels
                     CrosshairLabelsBackground = SKColors.DarkOrange.AsLvcColor(),
                     CrosshairLabelsPaint = new SolidColorPaint(SKColors.DarkRed, 1),
                     CrosshairPaint = new SolidColorPaint(SKColors.DarkOrange, 1),
-                    Labeler = value => value.ToString("N2") // Labeler function to format X-axis labels
+                    Labeler = value => value.ToString("N2")
                 }
             };
 
@@ -181,10 +141,14 @@ namespace HeatingGridAvaloniApp.ViewModels
                     CrosshairLabelsBackground = SKColors.DarkOrange.AsLvcColor(),
                     CrosshairLabelsPaint = new SolidColorPaint(SKColors.DarkRed, 1),
                     CrosshairPaint = new SolidColorPaint(SKColors.DarkOrange, 1),
-                    CrosshairSnapEnabled = true // Enable snapping for Y-axis
+                    CrosshairSnapEnabled = true
                 }
             };
         }
+
+        public ISeries[] Series { get; set; }
+        public Axis[] XAxes { get; set; }
+        public Axis[] YAxes { get; set; }
 
         public decimal NetCostAverage
         {

@@ -4,9 +4,12 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:vm="using:HeatingGridAvaloniApp.ViewModels"
             mc:Ignorable="d"
+           
+            xmlns:vms="using:ViewModelsSamples.StackedArea.StepArea"
             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
             x:Class="HeatingGridAvaloniApp.Views.VisualizerView"
             x:DataType="vm:VisualizerViewModel">
+            
 
 
     <UserControl.DataContext>
