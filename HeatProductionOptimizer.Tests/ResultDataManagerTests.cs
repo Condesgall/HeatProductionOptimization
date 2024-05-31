@@ -1,5 +1,4 @@
 using HeatingGridAvaloniaApp.Models;
-using AssetManager_;
 namespace HeatProductionOptimizer.Test;
 public class ResultDataManagerTests
 {
@@ -49,17 +48,17 @@ public class ResultDataManagerTests
     }
 
     [Fact]
-    public void UpdateOptimizationResults_NetCosts_Profit()
+    public void UpdateOptimizationResults_NetCosts_Expenses()
     {
         resultData.UpdateOptimizationResults_NetCosts(100);
-        Assert.Equal(100, resultData.OptimizationResults.Profit);
+        Assert.Equal(100, resultData.OptimizationResults.Expenses);
     }
 
     [Fact]
-    public void UpdateOptimizationResults_NetCosts_Expenses()
+    public void UpdateOptimizationResults_NetCosts_Profit()
     {
         resultData.UpdateOptimizationResults_NetCosts(-50);
-        Assert.Equal(-50, resultData.OptimizationResults.Expenses);
+        Assert.Equal(50, resultData.OptimizationResults.Profit);
     }
 
     [Fact]
@@ -121,7 +120,7 @@ public class ResultDataManagerTests
         
         resultData.UpdateResultData_Name(optimalUnit, unit2);
         
-        Assert.Equal("a, b", resultData.ProductionUnit);
+        Assert.Equal("a+b", resultData.ProductionUnit);
     }
 
     [Fact]

@@ -39,14 +39,30 @@ namespace HeatingGridAvaloniApp.ViewModels
         public bool IsScenario1Chosen
         {
             get => isScenario1Chosen;
-            set => this.RaiseAndSetIfChanged(ref isScenario1Chosen, value);
+            set 
+            {
+                if (value)
+                {
+                    // Scenario 1 is chosen, so uncheck Scenario 2
+                    IsScenario2Chosen = false;
+                }
+                this.RaiseAndSetIfChanged(ref isScenario1Chosen, value);
+            }
         }
 
         private bool isScenario2Chosen;
         public bool IsScenario2Chosen
         {
             get => isScenario2Chosen;
-            set => this.RaiseAndSetIfChanged(ref isScenario2Chosen, value);
+            set 
+            {
+                if (value)
+                {
+                    // Scenario 2 is chosen, so uncheck Scenario 1
+                    IsScenario1Chosen = false;
+                }
+                this.RaiseAndSetIfChanged(ref isScenario2Chosen, value);
+            }
         }
         
 

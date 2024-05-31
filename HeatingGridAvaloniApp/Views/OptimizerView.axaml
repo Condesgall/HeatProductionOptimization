@@ -26,6 +26,24 @@
                 <Image Source="/Assets/refresh.png" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30"/>
             </Button>
 
+        <StackPanel>
+            <StackPanel Grid.Row="2" Margin="10">
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
+                <Border Background="#979595" CornerRadius="10" Width="200" Margin="0,0,10,0">
+                    <RadioButton Content="Scenario 1" IsChecked="{Binding IsScenario1Chosen}" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    FontSize="16"/>
+                </Border>
+                <Border Background="#979595" CornerRadius="10" Width="200" Height="50" Margin="10,0,0,0">
+                    <RadioButton Content="Scenario 2" IsChecked="{Binding IsScenario2Chosen}" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    FontSize="16"/>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+        
             <StackPanel Grid.Column="0">
             <StackPanel Grid.Row ="2" Margin="10">
                 <Border Background="#E53939" CornerRadius="10">
@@ -63,22 +81,6 @@
         </StackPanel>
 
 
-        <StackPanel>
-            <StackPanel Grid.Row="2" Margin="10">
-                <Border Background="#E53939" CornerRadius="10">
-                    <TextBlock Text="Scenario:" Foreground="White" Margin="10"/>
-                </Border>
-
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <CheckBox IsChecked="{Binding IsScenario1Chosen}"/>
-                <TextBlock VerticalAlignment="Center" Text="Scenario 1"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <CheckBox IsChecked="{Binding IsScenario2Chosen}"/>
-                <TextBlock VerticalAlignment="Center" Text="Scenario 2"/>
-            </StackPanel>
-        </StackPanel>
 
         <StackPanel IsEnabled="{Binding IsOptimizationChoice3}">
             <TextBlock Text="{Binding NetWeight, StringFormat='NetCost Weight: {0:F2}'}" 

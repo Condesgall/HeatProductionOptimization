@@ -5,272 +5,129 @@ public class OptimizerTests
     SdmParameters sdmParameters = new SdmParameters("01", "02", 1.79m, 752.03m);
     ResultData resultData = new ResultData();
 
-
     [Fact]
-    public void OptimizeByCostsHandler_WhenIndividualUnit_UpdatesResultData()
+    public void SaveResult_SavesToResultData()
     {
-        SdmParameters sdmParameters = new SdmParameters("01", "02", 1m, 1m);
-        ProductionUnit productionUnit = new ProductionUnit("", 1, 1, 1, 1, 1);
-        AssetManager.productionUnits = new List<ProductionUnit>() { productionUnit };
-
-        optimizer.OptimizeByCostsHandler(resultData, sdmParameters);
-
-        Assert.Contains(resultData, ResultDataManager.ResultData);
-    }
-
-    [Fact]
-    public void GetOptimizedNetCosts_ReturnsLowestNetCost()
-    {
-        SdmParameters sdmParameters = new SdmParameters("01", "02", 4m, 752.03m);
-        ProductionUnit productionUnit1 = new ProductionUnit("a", 4, 1, 0, 0, 0);
-        AssetManager.productionUnits = new List<ProductionUnit>() { productionUnit1 };
-
-        var result = optimizer.GetOptimizedNetCosts(sdmParameters);
-        Dictionary<List<ProductionUnit>, decimal> expected = new Dictionary<List<ProductionUnit>, decimal>()
+        ResultDataManager.ResultData.Clear();
+        List<ProductionUnit> productionUnits = new List<ProductionUnit>()
         {
-            { AssetManager.productionUnits, 4}
+            new ProductionUnit("GB", 5.0m, 500, 215, 1.1m, 0), //heat only boiler
+            new ProductionUnit("OB", 4.0m, 700, 265, 1.2m, 0), //heat only boiler
         };
 
-        Assert.Equal(expected.Values, result.Values);
-        Assert.Equal(expected.Keys, result.Keys);
-        
-    }
-
-    [Fact]
-    public void GetOptimizedCO2_ReturnsList()
-    {
-        SdmParameters sdmParameters = new SdmParameters("01", "02", 4m, 752.03m);
-        ProductionUnit productionUnit1 = new ProductionUnit("a", 4, 0, 4, 0, 0);
-        AssetManager.productionUnits = new List<ProductionUnit>() { productionUnit1 };
-        Co2AndNetCost expected = new Co2AndNetCost(AssetManager.productionUnits, 0, 16, 0);
-
-        optimizer.GetOptimizedCO2(sdmParameters);
-
-        foreach (var co2AndNetCost in optimizer.co2AndNetCostsCandidates)
+        SortedSet<Co2AndNetCost> sortedUnits = new SortedSet<Co2AndNetCost>()
         {
-            Assert.Equal(expected.ProductionUnits, co2AndNetCost.ProductionUnits);
-            Assert.Equal(expected.NetCost, co2AndNetCost.NetCost);
-            Assert.Equal(expected.Co2Emissions, co2AndNetCost.Co2Emissions);
-            Assert.Equal(expected.Result, co2AndNetCost.Result);
-        }
+            new Co2AndNetCost(productionUnits, 10, 10, 10),
+        };
+
+        ResultData newResultData = new ResultData();
+        newResultData.UpdateResultData(productionUnits, 10, sdmParameters);
+
+        optimizer.SaveResult(sdmParameters, sortedUnits);
+
+        ResultData actual = ResultDataManager.ResultData.First();
+
+        Assert.Equal(newResultData.OptimizationResults.Co2Emissions, actual.OptimizationResults.Co2Emissions);
+        Assert.Equal(newResultData.OptimizationResults.Profit, actual.OptimizationResults.Profit);
+        Assert.Equal(newResultData.OptimizationResults.Expenses, actual.OptimizationResults.Expenses);
+        Assert.Equal(newResultData.OptimizationResults.ConsumedElectricity, actual.OptimizationResults.ConsumedElectricity);
+        Assert.Equal(newResultData.OptimizationResults.ProducedElectricity, actual.OptimizationResults.ProducedElectricity);
+        Assert.Equal(newResultData.ProductionUnit, actual.ProductionUnit);
     }
 
     [Fact]
-    public void GetOptimizedCo2AndNet_ReturnsList()
+    public void GroupUnitsByDependency_UpdatesLists()
     {
-        ProductionUnit productionUnit = new ProductionUnit("a", 4, 0, 2, 0, 0);
-        List<ProductionUnit> productionUnits = new List<ProductionUnit>() { productionUnit };
-        SdmParameters sdmParameters1 = new SdmParameters("01", "02", 4m, 0);
-
-        List<Co2AndNetCost> a = optimizer.GetOptimizedCo2AndNet(sdmParameters1, productionUnits);
-        decimal expectedNetCost = optimizer.CalculateIndividualUnitNetCosts(sdmParameters1, productionUnit);
-        decimal expectedCo2 = sdmParameters1.HeatDemand * productionUnit.Co2Emissions;
-        decimal expectedResult = expectedCo2 * expectedNetCost;
-
-        foreach (var item in a)
+        List<ProductionUnit> productionUnits = new List<ProductionUnit>()
         {
-            Assert.Equal(expectedNetCost, item.NetCost);
-            Assert.Equal(expectedCo2, item.Co2Emissions);
-            Assert.Equal(expectedResult, item.Result);
-            Assert.Equal(productionUnits, item.ProductionUnits);
-        }
-    }
-
-    /*--------------------------------------------------------------------------------
-        METHODS RELATED TO INDIVIDUAL UNIT CALCULATIONS
-    ---------------------------------------------------------------------------------*/
-
-    [Fact]
-    public void GroupUnitsByDependency_OrdersDictionaries()
-    {
-        ProductionUnit productionUnit = new ProductionUnit("b", 0.5m, 1, 0, 0, 0);
-        ProductionUnit productionUnit2 = new ProductionUnit("a", 1, 1, 1, 1, 1);
-        List<ProductionUnit> productionUnits = new List<ProductionUnit>() { productionUnit, productionUnit2 };
-
-        SdmParameters sdmParameters = new SdmParameters("01", "02", 1m, 752.03m);
+            new ProductionUnit("GB", 1m, 500, 215, 1.1m, 0),
+            new ProductionUnit("OB", 4.0m, 700, 265, 1.2m, 0),
+        };
 
         optimizer.GroupUnitsByDependency(sdmParameters, productionUnits);
-        var result1 = optimizer.individualUnitCandidates.OrderBy(key => key.Value);
-        var result2 = optimizer.unitPairingCandidates.OrderBy(key => key.Value);
-        List<ProductionUnit> expectedList = new List<ProductionUnit>() { productionUnit2 };
-        
-        foreach (var key in optimizer.individualUnitCandidates.Keys)
+
+        Assert.Contains(productionUnits.Last(), optimizer.individualUnitCandidates);
+        Assert.Contains(productionUnits.Last(), optimizer.unitPairingCandidates);
+        Assert.Contains(productionUnits.First(), optimizer.unitPairingCandidates);
+    }
+
+    [Fact]
+    public void CalculateCo2AndNet_WhenUnitCombination_AddsToList()
+    {
+        List<ProductionUnit> productionUnits = new List<ProductionUnit>()
         {
-            Assert.Equal(key, expectedList);
-        }
-        Assert.Equal(result1, optimizer.individualUnitCandidates);
-        foreach (var pair in result2)
+            new ProductionUnit("GB", 1m, 500, 215, 1.1m, 0),
+            new ProductionUnit("OB", 4.0m, 700, 265, 1.2m, 0),
+        };
+        decimal heatProducedUnit1 = productionUnits.First().MaxHeat;
+        decimal heatProducedUnit2 = sdmParameters.HeatDemand - heatProducedUnit1;
+
+        decimal co2EmissionsUnit1 = heatProducedUnit1 * productionUnits.First().Co2Emissions;
+        decimal co2EmissionsUnit2 = heatProducedUnit2 * productionUnits.Last().Co2Emissions;
+        decimal expectedCo2 = co2EmissionsUnit1 + co2EmissionsUnit2;
+
+        decimal expectedNetCost = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnits, heatProducedUnit1);
+
+        decimal expectedResult = (optimizer.Co2Weight * expectedCo2) + (expectedNetCost * optimizer.NetWeight);
+
+        Co2AndNetCost expected = new Co2AndNetCost(productionUnits, expectedNetCost, expectedCo2, expectedResult);
+
+        optimizer.CalculateCo2AndNet(sdmParameters, productionUnits);
+
+        Co2AndNetCost actual = optimizer.unitCandidates.First();   
+
+        Assert.Equal(expected.NetCost, actual.NetCost); 
+        Assert.Equal(expected.Co2Emissions, actual.Co2Emissions); 
+        Assert.Equal(expected.Result, actual.Result); 
+        Assert.Equal(expected.ProductionUnits, actual.ProductionUnits); 
+    }
+
+    [Fact]
+    public void CalculateCo2AndNet_WhenIndividualUnit_AddsToList()
+    {
+        List<ProductionUnit> productionUnits = new List<ProductionUnit>()
         {
-            var key = pair.Key;
-            var value = pair.Value;
-            Assert.True(optimizer.unitPairingCandidates.ContainsKey(key));
-            Assert.Equal(value, optimizer.unitPairingCandidates[key]);
-        }
-    }
-
-    [Fact]
-    public void CalculateIndividualUnitNetCosts_WhenElectricityProducing_ReturnsNetCost()
-    {
-        //arrange
-        string timeFrom = "00";
-        string timeTo = "01";
-        decimal heatDemand = 1.79m;
-        decimal elPrice = 752.03m;
-        SdmParameters sdmParameters = new SdmParameters(timeFrom, timeTo, heatDemand, elPrice);
-        ProductionUnit productionUnit = new ProductionUnit("GM", 3.6m, 1100, 640, 1.9m, 2.7m);
-        decimal electricityProduced = productionUnit.CalculateElectricityProduced(sdmParameters.HeatDemand);
-
-        //act
-        var test1 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
-
-        //when heatDemand <= maxEl -- heatDemand, sdmParameters
-        decimal profit = electricityProduced * sdmParameters.ElPrice;
-        decimal expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
-        decimal result1 = expenses - profit;
-
-        //assert
-        Assert.Equal(result1, test1);
-    }
-
-    [Fact]
-    public void CalculateIndividualUnitNetCosts_WhenElectricityConsuming_ReturnsNetCost()
-    {
-        string timeFrom = "00";
-        string timeTo = "01";
-        decimal heatDemand = 1.79m;
-        decimal elPrice = 752.03m;
-        SdmParameters sdmParameters = new SdmParameters(timeFrom, timeTo, heatDemand, elPrice);
-        ProductionUnit productionUnit = new ProductionUnit("GM", 2m, 1100, 640, 1.9m, -8.0m);
-        //act
-        var test = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
-
-        decimal expenses = sdmParameters.HeatDemand * productionUnit.ProductionCosts;
-        decimal extraExpenses = sdmParameters.HeatDemand * sdmParameters.ElPrice;
-        decimal result = expenses + extraExpenses;
-
-        //assert
-        Assert.Equal(result, test);
-    }
-
-    [Fact]
-    public void CalculateIndividualUnitNetCosts_WhenHeatBoiler_ReturnsNetCost()
-    {
-        string timeFrom = "00";
-        string timeTo = "01";
-        decimal heatDemand = 1.79m;
-        decimal heatDemand2 = 3.00m;
-        decimal elPrice = 752.03m;
-        SdmParameters sdmParameters = new SdmParameters(timeFrom, timeTo, heatDemand, elPrice);
-        SdmParameters sdmParameters2 = new SdmParameters(timeFrom, timeTo, heatDemand2, elPrice);
-        ProductionUnit productionUnit = new ProductionUnit("GM", 2m, 1100, 640, 1.9m, 0);
-        //act
-        var test1 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnit);
-        var test2 = optimizer.CalculateIndividualUnitNetCosts(sdmParameters2, productionUnit);
-        decimal calculations = productionUnit.ProductionCosts * sdmParameters.HeatDemand;
-        decimal calculations2 = productionUnit.ProductionCosts * productionUnit.MaxHeat;
-
-        //assert
-        Assert.Equal(calculations, test1);
-        Assert.Equal(calculations2, test2);
-    }
-
-    [Fact]
-    public void CalculateCo2IndividualUnits_CalculatesCo2Emissions()
-    {
-        ProductionUnit productionUnit = new ProductionUnit("a", 2, 0, 2, 0, 0);
-        List<ProductionUnit> productionUnits = new List<ProductionUnit>() { productionUnit };
-        optimizer.individualUnitCandidates = new Dictionary<List<ProductionUnit>, decimal>
-        {
-            { productionUnits, 10 }
+            new ProductionUnit("GB", 1m, 500, 215, 1.1m, 0),
         };
 
-        optimizer.CalculateCo2IndividualUnits(sdmParameters);
-        decimal expectedCo2 = sdmParameters.HeatDemand * productionUnit.Co2Emissions;
+        decimal heatProducedUnit1 = sdmParameters.HeatDemand;
+        decimal expectedCo2 = heatProducedUnit1 * productionUnits.First().Co2Emissions;
+        decimal expectedNetCost = optimizer.CalculateIndividualUnitNetCosts(sdmParameters, productionUnits, heatProducedUnit1);
+        decimal expectedResult = (optimizer.Co2Weight * expectedCo2) + (expectedNetCost * optimizer.NetWeight);
+        Co2AndNetCost expected = new Co2AndNetCost(productionUnits, expectedNetCost, expectedCo2, expectedResult);
 
-        foreach (var item in optimizer.co2AndNetCostsCandidates)
+        optimizer.CalculateCo2AndNet(sdmParameters, productionUnits);
+
+        Co2AndNetCost actual = optimizer.unitCandidates.First();   
+
+        Assert.Equal(expected.NetCost, actual.NetCost); 
+        Assert.Equal(expected.Co2Emissions, actual.Co2Emissions); 
+        Assert.Equal(expected.Result, actual.Result); 
+        Assert.Equal(expected.ProductionUnits, actual.ProductionUnits); 
+    }
+
+    [Fact]
+    public void GetBestUnitCombinations()
+    {
+        optimizer.unitPairingCandidates = new List<ProductionUnit>()
         {
-            Assert.Equal(10, item.NetCost);
-            Assert.Equal(expectedCo2, item.Co2Emissions);
-            Assert.Equal(productionUnits, item.ProductionUnits);
-        }
-    }
-
-    /*------------------------------------------------------------------------------
-        METHODS RELATED TO UNIT COMBINATIONS AND SELECTION
-    --------------------------------------------------------------------------------*/
-
-    [Fact]
-    public void GetBestUnitCombinations_ReturnsDictionaryWithNetCosts()
-    {
-        // arrange
-        ProductionUnit productionUnit = new ProductionUnit("b", 0, 0, 0, 0, 0);
-        ProductionUnit productionUnit2 = new ProductionUnit("a", 1, 1, 1, 1, 1);
-        decimal netCost1 = 10;
-        decimal netCost2 = 5;
-
-        optimizer.unitPairingCandidates.Add(productionUnit, netCost1);
-        optimizer.unitPairingCandidates.Add(productionUnit2, netCost2);
-
-        SdmParameters sdmParameters = new SdmParameters("01", "02", 0.9m, 752.03m);
-
-        int index1 = 0;
-        int index2 = 1;
-
-        // act
-        var result = optimizer.GetBestUnitCombinations(sdmParameters, index1, index2);
-        var orderedResult = result.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
-
-        // assert
-        Assert.True(result.ContainsValue(netCost1 + netCost2));
-        Assert.True(orderedResult.SequenceEqual(result));
-    }
-
-    [Fact]
-    public void AddCombinationToDictionary_AddsCombinationToDicc()
-    {
-        // arrange
-        List<ProductionUnit> options = new List<ProductionUnit>();
-        ProductionUnit productionUnit = new ProductionUnit("b", 0, 0, 0, 0, 0);
-        ProductionUnit productionUnit2 = new ProductionUnit("a", 1, 1, 1, 1, 1);
-        decimal netCost1 = 1;
-        decimal netCost2 = 2;
-
-        optimizer.unitPairingCandidates.Add(productionUnit, netCost1);
-        optimizer.unitPairingCandidates.Add(productionUnit2, netCost2);
-
-        // act
-        optimizer.AddCombinationToDictionary(productionUnit, productionUnit2, options);
-
-        // assert
-        Assert.Contains(productionUnit, options);
-        Assert.Contains(productionUnit2, options);
-        Assert.True(optimizer.combinedUnitsNetCost.ContainsKey(options));
-        Assert.True(optimizer.combinedUnitsNetCost.ContainsValue(netCost1 + netCost2));
-    }
-
-    [Fact]
-    public void CalculateCo2CombinedUnits_CalculatesCo2Emissions()
-    {
-        ProductionUnit productionUnit = new ProductionUnit("a", 1, 0, 2, 0, 0);
-        ProductionUnit productionUnit2 = new ProductionUnit("b", 3, 0, 4, 0, 0);
-        List<ProductionUnit> productionUnits = new List<ProductionUnit>() { productionUnit, productionUnit2 };
-        SdmParameters sdmParameters = new SdmParameters("01", "02", 4m, 752.03m);
-
-        optimizer.combinedUnitsNetCost = new Dictionary<List<ProductionUnit>, decimal>()
-        {
-            { productionUnits, 6 }
+            new ProductionUnit("GB", 1m, 500, 215, 1.1m, 0),
+            new ProductionUnit("OB", 4.0m, 700, 265, 1.2m, 0),
         };
 
-        optimizer.CalculateCo2CombinedUnits(sdmParameters);
-        decimal co2Emissions_Unit1 = productionUnit.MaxHeat * productionUnit.Co2Emissions;
-        decimal co2Emissions_Unit2 = (sdmParameters.HeatDemand - productionUnit.MaxHeat) * productionUnit2.Co2Emissions;
-        decimal expectedCo2 = co2Emissions_Unit1 + co2Emissions_Unit2;
+        decimal totalNetCost = 0;
+        decimal totalCo2 = 0;
+        optimizer.CalculateCo2AndNetUnitCombination(sdmParameters, optimizer.unitPairingCandidates, ref totalCo2, ref totalNetCost);
+        decimal result = (optimizer.Co2Weight * totalCo2) + (totalNetCost * optimizer.NetWeight);
+        Co2AndNetCost expected = new Co2AndNetCost(optimizer.unitPairingCandidates, totalNetCost, totalCo2, result);
 
-        foreach (var item in optimizer.co2AndNetCostsCandidates)
-        {
-            Assert.Equal(6, item.NetCost);
-            Assert.Equal(productionUnits, item.ProductionUnits);
-            Assert.Equal(expectedCo2, item.Co2Emissions);
-        }
-    }
+        optimizer.GetBestUnitCombinations(sdmParameters, 0, 1);
+
+        Co2AndNetCost actual = optimizer.unitCandidates.First();
+
+        Assert.Equal(expected.NetCost, actual.NetCost);
+        Assert.Equal(expected.Co2Emissions, actual.Co2Emissions);
+        Assert.Equal(expected.ProductionUnits, actual.ProductionUnits);
+        Assert.Equal(expected.Result, actual.Result);
+    }   
 }
