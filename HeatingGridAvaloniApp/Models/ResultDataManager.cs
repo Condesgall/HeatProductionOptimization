@@ -117,8 +117,18 @@ public class OptimizationResults
             OptimizationResults = optimizationResults;
         }
 
-        public void UpdateResultData(ProductionUnit optimalUnit, ProductionUnit secondUnit, decimal netCost, SdmParameters sdmParameters)
+        public void UpdateResultData(List<ProductionUnit> productionUnits, decimal netCost, SdmParameters sdmParameters)
         {
+            ProductionUnit optimalUnit = productionUnits.First();
+            ProductionUnit secondUnit;
+            if (productionUnits.Count() == 2)
+            {
+                secondUnit = productionUnits.Last(); 
+            }
+            else
+            {
+                secondUnit = new ProductionUnit("",0,0,0,0,0);
+            }
             UpdateResultData_Name(optimalUnit, secondUnit);
             timeFrom = sdmParameters.TimeFrom;
             timeTo = sdmParameters.TimeTo;
