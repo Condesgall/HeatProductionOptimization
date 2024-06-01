@@ -117,39 +117,39 @@ public class OptimizationResults
             OptimizationResults = optimizationResults;
         }
 
-        public void UpdateResultData(List<ProductionUnit> productionUnits, decimal netCost, SdmParameters sdmParameters)
+        public void UpdateResultData(Co2AndNetCost co2AndNetCost, SdmParameters sdmParameters)
         {
-            ProductionUnit optimalUnit = productionUnits.First();
-            ProductionUnit secondUnit;
-            if (productionUnits.Count() == 2)
+            if (co2AndNetCost.ProductionUnits != null)
             {
-                secondUnit = productionUnits.Last(); 
-            }
-            else
-            {
-                secondUnit = new ProductionUnit("",0,0,0,0,0);
-            }
-            UpdateResultData_Name(optimalUnit, secondUnit);
-            timeFrom = sdmParameters.TimeFrom;
-            timeTo = sdmParameters.TimeTo;
+                ProductionUnit optimalUnit = co2AndNetCost.ProductionUnits.First();
+                ProductionUnit secondUnit = new ProductionUnit("", 0, 0, 0, 0, 0);
+                if (co2AndNetCost.ProductionUnits.Count() == 2)
+                {
+                    secondUnit = co2AndNetCost.ProductionUnits.Last();
+                }
+                UpdateResultData_Name(optimalUnit, secondUnit);
+                timeFrom = sdmParameters.TimeFrom;
+                timeTo = sdmParameters.TimeTo;
 
-            decimal heatDemand = sdmParameters.HeatDemand;
-            OptimizationResults.ProducedHeat = heatDemand;
-            UpdateOptimizationResults_NetCosts(netCost);
-            UpdateOptimizationResults_PrimaryEnergyConsumption(optimalUnit, secondUnit, sdmParameters);
-            UpdateOptimizationResults_Co2Emissions(optimalUnit, secondUnit, sdmParameters);
-            UpdateOptimizationResults_Electricity(optimalUnit, secondUnit, sdmParameters);
+                decimal heatDemand = sdmParameters.HeatDemand;
+                OptimizationResults.ProducedHeat = heatDemand;
+                UpdateOptimizationResults_NetCosts(co2AndNetCost);
+                UpdateOptimizationResults_PrimaryEnergyConsumption(optimalUnit, secondUnit, sdmParameters);
+                OptimizationResults.Co2Emissions = co2AndNetCost.Co2Emissions;
+                UpdateOptimizationResults_Electricity(optimalUnit, secondUnit, sdmParameters);
+            }
+            
         }
 
-        public void UpdateOptimizationResults_NetCosts(decimal netCost)
+        public void UpdateOptimizationResults_NetCosts(Co2AndNetCost co2AndNetCost)
         {
-            if (netCost < 0)
+            if (co2AndNetCost.NetCost < 0)
             {
-                OptimizationResults.Profit = netCost;
+                OptimizationResults.Profit = -co2AndNetCost.NetCost;
             }
             else
             {
-                OptimizationResults.Expenses = netCost;
+                OptimizationResults.Expenses = co2AndNetCost.NetCost;
             }
         }
 
@@ -176,20 +176,6 @@ public class OptimizationResults
                 {
                     OptimizationResults.PrimaryEnergyConsumption = OptimizationResults.ConsumedElectricity;
                 }
-            }
-        }
-
-        public void UpdateOptimizationResults_Co2Emissions(ProductionUnit optimalUnit, ProductionUnit secondUnit, SdmParameters sdmParameters)
-        {
-            decimal heatDemand = sdmParameters.HeatDemand;
-            if (optimalUnit.CanReachHeatDemand(sdmParameters))
-            {
-                OptimizationResults.Co2Emissions = heatDemand * optimalUnit.Co2Emissions;
-            }
-            else
-            {
-                OptimizationResults.Co2Emissions = 
-                optimalUnit.MaxHeat * optimalUnit.Co2Emissions + (heatDemand - optimalUnit.MaxHeat) * secondUnit.Co2Emissions;
             }
         }
 

@@ -124,11 +124,10 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref netWeight, value);
                 AdjustWeights();
-                SaveWeights();
             }   
         }
 
-        private decimal co2Weight = 0.1m;
+        private decimal co2Weight;
         public decimal Co2Weight
         {
             
@@ -137,7 +136,6 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref co2Weight, value);
                 AdjustWeights();
-                SaveWeights();
             } 
         }
 
@@ -158,7 +156,6 @@ namespace HeatingGridAvaloniApp.ViewModels
             // Instances a new Optimizer so that it doesn't collide with previous optimizations
             VMOptimizer = new Optimizer();
             // Saves the weights to it
-            SaveWeights();
 
             ResultDataManager.ResultData.Clear();
             try
@@ -196,7 +193,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             
             if(chosenOptimizeBy != "x" && chosenSeason != "x" && filteredSourceData != null)
             {
-                VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy));
+                VMOptimizer.OptimizeProduction(filteredSourceData, int.Parse(chosenOptimizeBy), NetWeight, Co2Weight);
                 Console.WriteLine("Optimization successful.");
                 OptimizationSuccessful=true;
             }
@@ -210,7 +207,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
             if(chosenOptimizeBy != "x" && chosenSeason != "x" && filteredSourceData != null)
             {
-                VMOptimizer.OptimizeResultsSc2(filteredSourceData, int.Parse(chosenOptimizeBy));
+                VMOptimizer.OptimizeResultsSc2(filteredSourceData, int.Parse(chosenOptimizeBy), NetWeight, Co2Weight);
                 Console.WriteLine("Optimization successful.");
                 OptimizationSuccessful=true;
             }
@@ -287,12 +284,6 @@ namespace HeatingGridAvaloniApp.ViewModels
         {
             ResultDataCSV resultDataCSV = new ResultDataCSV("Assets/ResultData.csv");
             resultDataCSV.Save(ResultDataManager.ResultData);
-        }
-
-        public void SaveWeights()
-        {
-            VMOptimizer.Co2Weight = Convert.ToDecimal(co2Weight);
-            VMOptimizer.NetWeight = netWeight;
         }
 
         public void UpdateOptimizationChoice3()
