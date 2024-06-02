@@ -15,7 +15,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-<Viewbox>
+<Viewbox Stretch="Fill">
     <Grid Width="1920" Height="1080">
         <StackPanel Margin="5" VerticalAlignment="Top">
             <StackPanel>

@@ -287,18 +287,6 @@ public class OptimizationResults
             return 0;
         }
 
-        public bool ElecricityProducing(decimal electricityProduced, decimal electricityConsumed)
-        {
-            if (electricityProduced - electricityConsumed >= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public bool PrimaryEnergyIsGas(decimal gasConsumption, decimal consumedElectricity)
         {
             if (gasConsumption > consumedElectricity)
@@ -356,14 +344,8 @@ public class OptimizationResults
             {
                 decimal profit = resultData.OptimizationResults.Profit;
                 decimal expenses = resultData.OptimizationResults.Expenses;
-                if (profit == 0)
-                {
-                    netCosts.Add(expenses);
-                }
-                else if (expenses == 0)
-                {
-                    netCosts.Add(profit);
-                }
+                netCosts.Add(expenses);
+                netCosts.Add(profit);
             }
             return netCosts.Average();
         }

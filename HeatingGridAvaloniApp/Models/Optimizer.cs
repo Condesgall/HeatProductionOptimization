@@ -11,9 +11,9 @@ namespace HeatingGridAvaloniaApp.Models;
 
 public class Optimizer
 {
-    public List<ProductionUnit>individualUnitCandidates = new List<ProductionUnit>();
-    public List<ProductionUnit> unitPairingCandidates = new List<ProductionUnit>();
-    public SortedSet<Co2AndNetCost> unitCandidates = new SortedSet<Co2AndNetCost>(new Co2AndNetCostComparer());
+    private List<ProductionUnit> individualUnitCandidates = new List<ProductionUnit>();
+    private List<ProductionUnit> unitPairingCandidates = new List<ProductionUnit>();
+    private SortedSet<Co2AndNetCost> unitCandidates = new SortedSet<Co2AndNetCost>(new Co2AndNetCostComparer());
 
     private decimal netProductionCosts;
     //properties
@@ -527,7 +527,14 @@ public class Co2AndNetCostComparer : IComparer<Co2AndNetCost>
         {
             // One or both objects have null productionUnits list
             // Compare based on null check
-            return x.ProductionUnits == null ? -1 : 1;
+            if (x.ProductionUnits == null)
+            {
+                return -1;
+            }
+            else
+            {
+                return 1;
+            }
         }
     }
 }

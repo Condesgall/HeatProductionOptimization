@@ -64,7 +64,6 @@ namespace HeatingGridAvaloniApp.ViewModels
                 this.RaiseAndSetIfChanged(ref isScenario2Chosen, value);
             }
         }
-        
 
         private bool _isSummerChosen;
         public bool IsSummerChosen
