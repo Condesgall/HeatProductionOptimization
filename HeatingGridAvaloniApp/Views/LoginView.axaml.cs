@@ -1,13 +1,18 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace HeatingGridAvaloniApp.Views;
-
-public partial class LoginView : UserControl
+namespace HeatingGridAvaloniApp.Views
 {
-    public LoginView()
+    public partial class LoginView : UserControl
     {
-        InitializeComponent();
-    }    
+        public LoginView()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
+        }
+    }
 }
