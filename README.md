@@ -7,3 +7,4 @@ ___
 ### By:
 
 - [Rita Braunschweig](https://github.com/pastelnata)
+- [Hubert Sylwesiuk](https://github.com/sduhubert)
