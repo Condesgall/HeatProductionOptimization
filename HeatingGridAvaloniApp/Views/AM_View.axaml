@@ -21,7 +21,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
+        
+        <!-- First Unit (GB) -->
         <Border Grid.Row="1" Grid.Column="0" Background="White" CornerRadius="10,0,0,0" BorderBrush="#979595" BorderThickness="5">
             <StackPanel Margin="30,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" DataContext="{Binding ProductionUnits[0]}">
                 <StackPanel HorizontalAlignment="Left">
