@@ -44,6 +44,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.Name = value;
                 this.RaisePropertyChanged();
+                SaveChanges();
             }
         }
 
@@ -65,6 +66,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.ProductionCosts = value;
                 this.RaisePropertyChanged();
+                SaveChanges();
             }
         }
 
@@ -75,6 +77,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.Co2Emissions = value;
                 this.RaisePropertyChanged();
+                SaveChanges();
             }
         }
 
@@ -85,6 +88,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.GasConsumption = value;
                 this.RaisePropertyChanged();
+                SaveChanges();
             }
         }
 
@@ -95,6 +99,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.MaxElectricity = value;
                 this.RaisePropertyChanged();
+                SaveChanges();
             }
         }
 

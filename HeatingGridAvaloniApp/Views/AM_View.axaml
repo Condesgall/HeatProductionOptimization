@@ -21,7 +21,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <!-- First Unit (GB) -->
         <Border Grid.Row="1" Grid.Column="0" Background="White" CornerRadius="10,0,0,0" BorderBrush="#979595" BorderThickness="5">
             <StackPanel Margin="30,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" DataContext="{Binding ProductionUnits[0]}">
@@ -29,7 +29,7 @@
                     <Image Source="/Assets/GB.png" Width="570"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="40,0,0,0">
-                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Gas Boiler" FontSize="25" FontWeight="Bold"/>
                     <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
                     <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
                     <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
@@ -51,7 +51,7 @@
                     <Image Source="/Assets/OB.png" Width="535"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="40,0,0,0">
-                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Oil Boiler" FontSize="25" FontWeight="Bold"/>
                     <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
                     <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
                     <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
@@ -73,7 +73,7 @@
                     <Image Source="/Assets/GM.png" Width="565"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="40,0,0,0">
-                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Gas Motor" FontSize="25" FontWeight="Bold"/>
                     <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
                     <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
                     <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
@@ -94,7 +94,7 @@
                     <Image Source="/Assets/EK.png" Width="600" Height="300"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Electric Boiler" FontSize="25" FontWeight="Bold"/>
                     <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
                     <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
                     <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
