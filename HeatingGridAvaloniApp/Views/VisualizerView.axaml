@@ -49,7 +49,15 @@
     <lvc:CartesianChart Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Series="{Binding Series}" ZoomMode="X">
     </lvc:CartesianChart>
 
+    
     <!-- Legend -->
+    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Usage of the boilers each hour" Margin="5,0,0,0" FontSize="20"/>
+        </StackPanel>
+    </StackPanel>
+    
+    
     <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
         <StackPanel Orientation="Horizontal" Margin="10">
             <Rectangle Width="20" Height="20" Fill="Blue"/>
