@@ -6,84 +6,106 @@
              mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="900"
              x:Class="HeatingGridAvaloniApp.Views.AM_View"
              x:DataType="vm:AM_ViewModel">
+    
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-        <RowDefinition Height="100" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
-   
-        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Background="White" CornerRadius ="10,0,0,0" BorderBrush="#979595" BorderThickness="5">
-        <StackPanel Margin="30,0,0,0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-            <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-                <Image Source="/Assets/GB.png" Grid.Row="1" Grid.Column="0" Width="570"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" Grid.Column="0" Background="White" CornerRadius="10,0,0,0" BorderBrush="#979595" BorderThickness="5">
+            <StackPanel Margin="30,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" DataContext="{Binding ProductionUnits[0]}">
+                <StackPanel HorizontalAlignment="Left">
+                    <Image Source="/Assets/GB.png" Width="570"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Margin="40,0,0,0">
+                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
+                    <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding Co2Emissions, Mode=TwoWay}"/>
+                    <TextBlock Text="Gas Consumption: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding GasConsumption, Mode=TwoWay}"/>
+                    <TextBlock Text="Max Electricity: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxElectricity, Mode=TwoWay}"/>         
+                    <TextBlock Text="Max Heat:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxHeat, Mode=TwoWay}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="40,0,0,0">
-                <TextBlock Text="GB" FontSize="25" FontWeight="Bold"/>
-                <TextBlock Text="Max Heat: 5.0" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Production Costs: 500" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="CO2 Emissions: 215" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Gas Consumption: 1.1" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Max Electricity: 0" FontSize="20" FontWeight="Bold"/>    
-            </StackPanel>
-        </StackPanel>
         </Border>
 
-
-        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Background="White" CornerRadius ="0,10,0,0" BorderBrush="#979595" BorderThickness="5" Padding="30">
-        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-            <StackPanel Grid.Column="2" HorizontalAlignment="Left">
-                <Image Source="/Assets/OB.png" Grid.Row="1" Grid.Column="2" Width="535"/>
+       <!-- Second Unit (OB) -->
+        <Border Grid.Row="1" Grid.Column="1" Background="White" CornerRadius="0,10,0,0" BorderBrush="#979595" BorderThickness="5" Padding="30">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" DataContext="{Binding ProductionUnits[1]}">
+                <StackPanel HorizontalAlignment="Left">
+                    <Image Source="/Assets/OB.png" Width="535"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Margin="40,0,0,0">
+                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
+                    <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding Co2Emissions, Mode=TwoWay}"/>
+                    <TextBlock Text="Gas Consumption: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding GasConsumption, Mode=TwoWay}"/>
+                    <TextBlock Text="Max Electricity: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxElectricity, Mode=TwoWay}"/>         
+                    <TextBlock Text="Max Heat:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxHeat, Mode=TwoWay}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="40,0,0,0">
-                <TextBlock Text="OB" FontSize="25" FontWeight="Bold"/>
-                <TextBlock Text="Max Heat: 4.0" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Production Costs: 700" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="CO2 Emissions: 265" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Gas Consumption: 1.2" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Max Electricity: 0" FontSize="20" FontWeight="Bold"/> 
-            </StackPanel>
-        </StackPanel>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Background="White" CornerRadius ="0,0,0,10" BorderBrush="#979595" BorderThickness="5" Padding="30">
-        <StackPanel Margin="10,0,0,0" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-            <StackPanel Grid.Column="0">
-                <Image Source="/Assets/GM.png" Grid.Column="2" Width="565"/>
+        <!-- Third Unit (GM) -->
+        <Border Grid.Row="2" Grid.Column="0" Background="White" CornerRadius="0,0,0,10" BorderBrush="#979595" BorderThickness="5" Padding="30">
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" DataContext="{Binding ProductionUnits[2]}">
+                <StackPanel>
+                    <Image Source="/Assets/GM.png" Width="565"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Margin="40,0,0,0">
+                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
+                    <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding Co2Emissions, Mode=TwoWay}"/>
+                    <TextBlock Text="Gas Consumption: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding GasConsumption, Mode=TwoWay}"/>
+                    <TextBlock Text="Max Electricity: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxElectricity, Mode=TwoWay}"/>         
+                    <TextBlock Text="Max Heat:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxHeat, Mode=TwoWay}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="40,0,0,0">
-                <TextBlock Text="GM" FontSize="25" FontWeight="Bold"/>
-                <TextBlock Text="Max Heat: 3.6" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Production Costs: 1100" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="CO2 Emissions: 640" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Gas Consumption: 1.0" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Max Electricity: 2.7" FontSize="20" FontWeight="Bold"/> 
-            </StackPanel>
-        </StackPanel>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Background="White" CornerRadius ="0,0,10,0" BorderBrush="#979595" BorderThickness="5">
-        <StackPanel Margin="0,0,0,0" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <StackPanel Grid.Column="0">
-                <Image Source="/Assets/EK.png" Grid.Column="2" Width="600" Height="300"/>
+        <Border Grid.Row="2" Grid.Column="1" Background="White" CornerRadius="0,0,10,0" BorderBrush="#979595" BorderThickness="5">
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding ProductionUnits[3]}">
+                <StackPanel>
+                    <Image Source="/Assets/EK.png" Width="600" Height="300"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="Bold"/>
+                    <TextBlock Text="Production Cost:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding ProductionCosts, Mode=TwoWay}"/>
+                    <TextBlock Text="CO2 Emissions: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding Co2Emissions, Mode=TwoWay}"/>
+                    <TextBlock Text="Gas Consumption: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding GasConsumption, Mode=TwoWay}"/>
+                    <TextBlock Text="Max Electricity: " FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxElectricity, Mode=TwoWay}"/>         
+                    <TextBlock Text="Max Heat:" FontSize="20" FontWeight="Bold"/>
+                    <MaskedTextBox Text="{Binding MaxHeat, Mode=TwoWay}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,0">
-                <TextBlock Text="EK" FontSize="25" FontWeight="Bold"/>
-                <TextBlock Text="Max Heat: 8.0" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Production Costs: 50" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="CO2 Emissions: 0" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Gas Consumption: 0" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Max Electricity: -8.0" FontSize="20" FontWeight="Bold"/> 
-            </StackPanel>
-        </StackPanel>
         </Border>
-</Grid>
+    </Grid>
 </UserControl>
