@@ -52,7 +52,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         private void Login()
         {
             const string correctUsername = "Danfos"; // Correct username
-            const string correctPassword = "Grup3project"; // Correct password
+            const string correctPassword = "Danfos123"; // Correct password
 
             if (UserName == correctUsername && Password == correctPassword)
             {
