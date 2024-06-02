@@ -8,3 +8,4 @@ ___
 
 - [Rita Braunschweig](https://github.com/pastelnata)
 - [Hubert Sylwesiuk](https://github.com/sduhubert)
+- [Dominik Bosy](https://github.com/Dobos23)
