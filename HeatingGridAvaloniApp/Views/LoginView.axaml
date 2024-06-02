@@ -6,55 +6,55 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HeatingGridAvaloniApp.Views.LoginView"
              x:DataType="vm:LoginViewModel">
-  
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-    <!-- Background Image -->
-    <Image Source="/Assets/background.png" Stretch="Fill" Grid.ColumnSpan="4" Grid.RowSpan="4" Opacity="0.7"/>
+        <!-- Background Image -->
+        <Image Source="/Assets/background.png" Stretch="Fill" Grid.ColumnSpan="4" Grid.RowSpan="4" Opacity="0.7"/>
 
+        <!-- Grid Rows and Columns Definitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-    <!-- Grid Rows and Columns Definitions -->
-    <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
+        <!-- Login Panel -->
+        <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#FFFFFF" CornerRadius="30,0,0,30" BorderBrush="#EAEAEA" BorderThickness="8" Padding="30" Height="755" Opacity="0.9">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="500">
+                <!-- LOGIN -->
+                <Label Margin="0,10,0,0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="40"/>
 
-    <!-- Login Panel -->
-    <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#FFFFFF" CornerRadius="30,0,0,30" BorderBrush="#EAEAEA" BorderThickness="8" Padding="30" Height ="755" Opacity="0.9">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="500">
-            <!-- LOGIN -->
-            <Label Margin="0,10,0,0" Content="LOGIN" HorizontalAlignment="Left" FontWeight="Bold" FontSize="40"/>
-            
-            <!-- Username Section -->
-            <Label Foreground="Black" Margin="0,100,0,0" Content="Username" FontSize="30"/>
-            <TextBox Margin="0, 10" Name="userName" CornerRadius="10" Height="40" FontSize="20"/>
+                <!-- Username Section -->
+                <Label Foreground="Black" Margin="0,100,0,0" Content="Username" FontSize="30"/>
+                <TextBox Margin="0, 10" Text="{Binding UserName, Mode=TwoWay}" CornerRadius="10" Height="40" FontSize="20"/>
 
-            <!-- Password Section -->
-            <Label Foreground="Black" Margin="0,20,0,0" Content="Password" FontSize="30"/>
-            <TextBox Margin="0, 10" PasswordChar="*" Name="password" CornerRadius="10" Height="40" FontSize="20"/>
+                <!-- Password Section -->
+                <Label Foreground="Black" Margin="0,20,0,0" Content="Password" FontSize="30"/>
+                <TextBox Margin="0, 10" PasswordChar="*" Text="{Binding Password, Mode=TwoWay}" CornerRadius="10" Height="40" FontSize="20"/>
 
-            <!-- Login Button -->
-            <Button Margin="0,70,0,0" Width="500" Height="50" HorizontalAlignment="Center" CornerRadius="10"
-                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    Content="LOGIN" FontSize="20"
-                    Background="#FA2929"
-                    Foreground="White"
-                    Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).LoginButtonCommand}"/>
+                <!-- Error Message -->
+                <TextBlock Foreground="Red" Text="{Binding ErrorMessage}" FontSize="20" Margin="0,10,0,0"/>
+
+                <!-- Login Button -->
+                <Button Margin="0,70,0,0" Width="500" Height="50" HorizontalAlignment="Center" CornerRadius="10"
+                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                        Content="LOGIN" FontSize="20"
+                        Background="#FA2929"
+                        Foreground="White"
+                        Command="{Binding LoginCommand}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Image Panel -->
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Border CornerRadius="0,30,30,0" BorderBrush="#F52626" ClipToBounds="True">
+                <Image Source="/Assets/danfossLogin.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="755" Opacity="0.9"/>
+            </Border>
         </StackPanel>
-    </Border>
-
-    <!-- Image Panel -->
-    <StackPanel Grid.Row="1" Grid.Column="2">
-    <Border CornerRadius="0,30,30,0" BorderBrush="#F52626" ClipToBounds="True">
-        <Image Source="/Assets/danfossLogin.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="755" Opacity="0.9"/>
-    </Border>
-</StackPanel>
-</Grid>
-
+    </Grid>
 </UserControl>

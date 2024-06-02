@@ -5,7 +5,7 @@ public class MainWindowViewModel : ViewModelBase
 {
     public MainWindowViewModel()
     {
-        Login = new LoginViewModel();
+        Login = new LoginViewModel(this);
         MainApp = new MainAppViewModel();
         _contentViewModel = Login;
     }
