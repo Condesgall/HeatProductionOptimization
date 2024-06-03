@@ -1,1 +1,7 @@
-single district heating network,1600,Heatington,GB,5.0,500,215,1.1,0,OB,4.0,700,265,1.2,0,GM,3.6,1100,640,1.9,2.7,EK,8.0,50,10000,0,-8.0
+Architecture,CityBuildings,CityName
+single district heating network,1600,Heatington
+Name,MaxHeat,ProductionCosts,Co2Emissions,GasConsumption,MaxElectricity
+GB,5.0,100,215,1.1,0
+OB,4.0,700,265,1.2,0
+GM,3.6,1100,640,1.9,2.7
+EK,8.0,50,0,0,-8.0

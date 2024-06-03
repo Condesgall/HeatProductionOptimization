@@ -52,7 +52,7 @@ namespace HeatingGridAvaloniApp.ViewModels
         private void Login()
         {
             const string correctUsername = "Danfos"; // Correct username
-            const string correctPassword = "Danfos123"; // Correct password
+            const string correctPassword = "Danfos"; // Correct password
 
             if (UserName == correctUsername && Password == correctPassword)
             {
@@ -61,7 +61,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             }
             else
             {
-                ErrorMessage = "Invalid username or password."; // Update the error message to indicate failure
+                ErrorMessage = "Invalid username or password. Hint: Danfos"; // Update the error message to indicate failure
             }
         }
 

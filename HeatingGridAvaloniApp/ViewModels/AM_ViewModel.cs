@@ -1,3 +1,5 @@
+// File: HeatingGridAvaloniApp/ViewModels/AM_ViewModel.cs
+
 using Avalonia.Collections;
 using ReactiveUI;
 using System.Linq;
@@ -7,12 +9,17 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.IO;
+using System.Reactive;
+using System.Reactive.Linq;
+using Avalonia.Interactivity;
 
 namespace HeatingGridAvaloniApp.ViewModels
 {
     public class AM_ViewModel : ViewModelBase
     {
         public ObservableCollection<ProductionUnitViewModel> ProductionUnits { get; }
+
+        public ReactiveCommand<Unit, Unit> SaveCommand { get; }
 
         public AM_ViewModel()
         {
@@ -23,6 +30,14 @@ namespace HeatingGridAvaloniApp.ViewModels
                 ProductionUnitViewModel productionUnitViewModel = new ProductionUnitViewModel(assetManagerUnit);
                 ProductionUnits.Add(productionUnitViewModel);
             }
+
+            SaveCommand = ReactiveCommand.Create(SaveData);
+        }
+
+        private void SaveData()
+        {
+            var assetManagerStorage = new AssetManagerStorage();
+            assetManagerStorage.SaveAMData();
         }
     }
 
@@ -44,7 +59,6 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.Name = value;
                 this.RaisePropertyChanged();
-                SaveChanges();
             }
         }
 
@@ -55,7 +69,6 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref _maxHeat, value);
                 _productionUnit.MaxHeat = value;
-                SaveChanges();
             }
         }
 
@@ -66,7 +79,6 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.ProductionCosts = value;
                 this.RaisePropertyChanged();
-                SaveChanges();
             }
         }
 
@@ -77,7 +89,6 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.Co2Emissions = value;
                 this.RaisePropertyChanged();
-                SaveChanges();
             }
         }
 
@@ -88,7 +99,6 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.GasConsumption = value;
                 this.RaisePropertyChanged();
-                SaveChanges();
             }
         }
 
@@ -99,19 +109,12 @@ namespace HeatingGridAvaloniApp.ViewModels
             {
                 _productionUnit.MaxElectricity = value;
                 this.RaisePropertyChanged();
-                SaveChanges();
             }
         }
 
         public string ImagePath
         {
             get => "/Assets/" + _productionUnit.Name + ".png";
-        }
-
-        private void SaveChanges()
-        {
-            var assetManagerStorage = new AssetManagerStorage();
-            assetManagerStorage.SaveAMData();
         }
     }
 }

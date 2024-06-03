@@ -28,7 +28,7 @@ public class AssetManagerStorage : IAssetManagerStorage
                     HeaderValidated = null,
                     Delimiter = ","
                 };
-                using (StreamReader reader = new StreamReader("heatingGrids.csv"))
+                using (StreamReader reader = new StreamReader("Assets/heatingGrids.csv"))
                 using (CsvReader csvReader = new CsvReader(reader, config))
                 {
                     while (csvReader.Read())
@@ -75,9 +75,9 @@ public class AssetManagerStorage : IAssetManagerStorage
     public void SaveAMData()
     {
         //Checks if file exists
-        if (!File.Exists("heatingGrids.csv"))
+        if (!File.Exists("Assets/heatingGrids.csv"))
         {
-            File.Create("heatingGrids.csv").Close();
+            File.Create("Assets/heatingGrids.csv").Close();
         }
         //configuration for the csv reader
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -89,7 +89,7 @@ public class AssetManagerStorage : IAssetManagerStorage
             //separates fields with comm
             Delimiter = ","
         };
-        using (var writer = new StreamWriter("heatingGrids.csv"))
+        using (var writer = new StreamWriter("Assets/heatingGrids.csv"))
         using (var csv = new CsvWriter(writer, config))
         {
             //writes all the heating grid properties for each heating grid in the dictionary
