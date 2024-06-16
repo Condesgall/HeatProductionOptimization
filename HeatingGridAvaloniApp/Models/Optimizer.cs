@@ -160,10 +160,12 @@ public class Optimizer
                     sortedUnits = GetOptimizedNetCosts(sdmParameters, netWeight, co2Weight);
                     SaveResult(sdmParameters, sortedUnits);
                     break;
+                //optimize by CO2
                 case 2:
                     sortedUnits = GetOptimizedCO2(sdmParameters, netWeight, co2Weight);
                     SaveResult(sdmParameters, sortedUnits);
                     break;
+                //optimize by co2 and costs
                 case 3:
                     sortedUnits = GetOptimizedCo2AndNet(sdmParameters, netWeight, co2Weight);
                     SaveResult(sdmParameters, sortedUnits);
@@ -187,7 +189,10 @@ public class Optimizer
 
     public SortedSet<Co2AndNetCost> GetOptimizedNetCosts(SdmParameters sdmParameters, decimal netWeight, decimal co2Weight)
     {
+        //updates the list sortedUnitCandidates with possible candidates
         GetOptimalUnits(sdmParameters, netWeight, co2Weight);
+        //this is a comparer, it compares Co2AndNetCost x and Co2AndNetCost y (in the list unitCandidates) based on the net cost
+        //the sorted set mantains the elements sorted.
         SortedSet<Co2AndNetCost> sortedUnitCandidates = new SortedSet<Co2AndNetCost>(unitCandidates, Comparer<Co2AndNetCost>.Create((x, y)
         => x.NetCost.CompareTo(y.NetCost)));
         return sortedUnitCandidates;
@@ -212,14 +217,17 @@ public class Optimizer
     public void GetOptimalUnits(SdmParameters sdmParameters, decimal netWeight, decimal co2Weight)
     {
         unitCandidates.Clear();
+        //gets units that can reach the heat demand
         GroupUnitsByDependency(sdmParameters, AssetManager.productionUnits);
 
+        //HashSet is used to ensure there's no repetitions as well
         var uniqueUnits = new HashSet<string>();
         foreach (var unit in individualUnitCandidates)
         {
             List<ProductionUnit> units = new List<ProductionUnit>() { unit };
             string unitKey = unit.Name;
 
+            //the unit key is an extra step to make sure there's no repetitions
             if (!uniqueUnits.Contains(unitKey))
             {
                 uniqueUnits.Add(unitKey);
@@ -250,6 +258,7 @@ public class Optimizer
     {
         decimal totalNetCost = 0;
         decimal totalCo2 = 0;
+        //if it's a unit combination
         if (productionUnits.Count() == 2)
         {
             //Console.WriteLine($"{productionUnits.First().Name}+{productionUnits.Last().Name}");
@@ -264,6 +273,7 @@ public class Optimizer
                 unitCandidates.Add(co2AndNetCostOfUnit);
             }
         }
+        //if it's an individual unit
         else
         {
             CalculateCo2AndNetIndividualUnits(sdmParameters, productionUnits, ref totalCo2, ref totalNetCost);
@@ -274,18 +284,20 @@ public class Optimizer
             if (!unitCandidates.Contains(co2AndNetCostOfUnit))
             {
                 unitCandidates.Add(co2AndNetCostOfUnit);
-            }
-            
+            } 
         }
     }
 
     public void CalculateCo2AndNetUnitCombination(SdmParameters sdmParameters, List<ProductionUnit> productionUnits, ref decimal totalCo2, ref decimal totalNetCost)
     {
+        //gets the heat produced by the first unit and the second unit
         decimal heatProducedUnit1 = productionUnits.First().MaxHeat;
         decimal heatProducedUnit2 = sdmParameters.HeatDemand - heatProducedUnit1;
 
+        //calculates co2 emissions of each unit
         decimal co2EmissionsUnit1 = heatProducedUnit1 * productionUnits.First().Co2Emissions;
         decimal co2EmissionsUnit2 = heatProducedUnit2 * productionUnits.Last().Co2Emissions;
+        //adds the total co2 emissions
         totalCo2 = co2EmissionsUnit1 + co2EmissionsUnit2;
 
         totalNetCost = CalculateIndividualUnitNetCosts(sdmParameters, productionUnits, heatProducedUnit1);
@@ -302,9 +314,9 @@ public class Optimizer
     {
         List<decimal> netCosts = new List<decimal>();
 
-        // for electricity producing units
         foreach (var productionUnit in productionUnits)
         {
+            // for electricity producing units
             if (productionUnit.GetProductionUnitType() == -1)
             {
                 NetCostsForElProducingUnitsHandler(productionUnits, sdmParameters, heatProduced);
@@ -323,6 +335,7 @@ public class Optimizer
         }
         if (productionUnits.Count() == 2)
         {
+            //sums the values in the list
             return netCosts.Sum();
         }
         else
@@ -336,6 +349,7 @@ public class Optimizer
         decimal expenses;
         decimal profit;
 
+        //if the first production unit is electricity producing
         if (productionUnits.First().GetProductionUnitType() == -1)
         {
             ProductionUnit productionUnit = productionUnits.First();
@@ -354,6 +368,7 @@ public class Optimizer
                 NetProductionCosts = expenses - profit;
             }
         }
+        //if the last production unit is electricity producing
         else if(productionUnits.Last().GetProductionUnitType() == -1)
         {
             ProductionUnit productionUnit = productionUnits.First();
@@ -425,10 +440,13 @@ public class Optimizer
     {
         List<ProductionUnit> unitCandidates = unitPairingCandidates;
 
+        //checks if the first index didn't exceed limits
         if (primaryUnitIndex < unitCandidates.Count)
         {
+            //checks if the second index didn't exceed limits
             if (secondUnitIndex < unitCandidates.Count)
             {
+                //checks if the first and second index aren't equal (there can't be a combination of GM+GM for example)
                 if (primaryUnitIndex != secondUnitIndex)
                 {
                     ProductionUnit optimalUnit = unitCandidates[primaryUnitIndex];
