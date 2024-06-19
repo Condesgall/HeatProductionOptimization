@@ -2,6 +2,7 @@ using Avalonia.Data.Converters;
 using System;
 using System.Globalization;
 
+//Used for ShowPassword
 namespace HeatingGridAvaloniApp.Converters
 {
     public class InverseBooleanConverter : IValueConverter
