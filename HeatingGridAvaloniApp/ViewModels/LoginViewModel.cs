@@ -51,8 +51,8 @@ namespace HeatingGridAvaloniApp.ViewModels
         // Method to check the entered credentials and navigate if successful
         private void Login()
         {
-            const string correctUsername = "Danfos"; // Correct username
-            const string correctPassword = "Danfos"; // Correct password
+            const string correctUsername = "Danfoss"; // Correct username
+            const string correctPassword = "Danfoss"; // Correct password
 
             if (UserName == correctUsername && Password == correctPassword)
             {
@@ -61,7 +61,7 @@ namespace HeatingGridAvaloniApp.ViewModels
             }
             else
             {
-                ErrorMessage = "Invalid username or password. Hint: Danfos"; // Update the error message to indicate failure
+                ErrorMessage = "Invalid username or password. Hint: Danfoss"; // Update the error message to indicate failure
             }
         }
 
